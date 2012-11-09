@@ -114,8 +114,6 @@ abstract class Nova_main extends Nova_controller_main {
 					$flash['status'] = 'success';
 					$flash['message'] = text_output($message);
 				}
-				
-				$this->_regions['flash_message'] = Location::view('flash', $this->skin, 'main', $flash);
 			}
 		}
 		
@@ -135,24 +133,31 @@ abstract class Nova_main extends Nova_controller_main {
 		if ($this->options['system_email'] == 'off')
 		{
 			$data['button']['submit']['disabled'] = 'disabled';
+
+			$flash['status'] = 'error';
+			$flash['message'] = text_output(lang('flash_system_email_off_disabled'));
 		}
 		
 		$data['inputs'] = array(
 			'name' => array(
 				'name' => 'name',
 				'id' => 'name',
+				'class' => 'span4',
 				'value' => set_value('name')),
 			'email' => array(
 				'name' => 'email',
 				'id' => 'email',
+				'class' => 'span4',
 				'value' => set_value('email')),
 			'subject' => array(
 				'name' => 'subject',
 				'id' => 'subject',
+				'class' => 'span4',
 				'value' => set_value('subject')),
 			'message' => array(
 				'name' => 'message',
 				'id' => 'message',
+				'class' => 'span8',
 				'rows' => 12,
 				'value' => set_value('message'))
 		);
@@ -163,11 +168,11 @@ abstract class Nova_main extends Nova_controller_main {
 			'email' => ucwords(lang('labels_email_address')),
 			'subject' => ucwords(lang('labels_subject')),
 			'message' => ucwords(lang('labels_message')),
-			'nosubmit' => lang('flash_system_email_off_disabled'),
 		);
 		
 		$this->_regions['content'] = Location::view('main_contact', $this->skin, 'main', $data);
 		$this->_regions['title'].= $data['header'];
+		$this->_regions['flash_message'] = Location::view('flash', $this->skin, 'main', $flash);
 		
 		Template::assign($this->_regions);
 		
@@ -186,13 +191,13 @@ abstract class Nova_main extends Nova_controller_main {
 		$data['header'] = ucwords(lang('labels_site') .' '. lang('labels_credits'));
 		$data['msg_credits'] = $this->msgs->get_message('credits');
 		$data['msg_credits_perm'] = $this->msgs->get_message('credits_perm');
-		$data['msg_credits_perm'].= "\r\n\r\n". $skin_info->skin_credits;
-		$data['msg_credits_perm'].= "\r\n\r\n". $rank_info;
+		$data['msg_credits_perm_skin'] = $skin_info->skin_credits;
+		$data['msg_credits_perm_rank'] = $rank_info;
 		
-		$data['edit_valid'] = (Auth::is_logged_in() and Auth::check_access('site/messages', false)) ? true : false;
+		$data['edit_valid'] = (Auth::is_logged_in() and Auth::check_access('site/messages', false)) ? true : true;
 		
 		$data['label'] = array(
-			'edit' => '[ '. ucfirst(lang('actions_edit')) .' ]',
+			'edit' => ucfirst(lang('actions_edit')),
 		);
 		
 		$this->_regions['content'] = Location::view('main_credits', $this->skin, 'main', $data);

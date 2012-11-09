@@ -7,10 +7,9 @@
 		background: transparent url('<?php echo base_url().APPFOLDER;?>/assets/images/exclamation-red.png') no-repeat left center;
 	}
 </style>
-<?php echo text_output($header, 'h1', 'page-head');?>
+<?php echo text_output($header, 'h1');?>
 
-<?php if ($this->options['system_email'] == 'on'): ?>
-	<?php echo text_output($msg);?>
+<?php echo text_output($msg);?>
 	
 	<?php echo form_open('main/contact');?>
 		<p>
@@ -38,6 +37,3 @@
 			<?php echo form_button($button['submit']);?>
 		</p>
 	<?php echo form_close();?>
-<?php else: ?>
-	<?php echo text_output($label['nosubmit'], 'h4', 'orange');?>
-<?php endif;?>
