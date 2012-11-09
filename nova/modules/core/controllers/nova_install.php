@@ -1125,76 +1125,24 @@ abstract class Nova_install extends CI_Controller {
 		switch ($step)
 		{
 			case 1:
-				// update the character set and collation
+				// Update the character set and collation
 				$charset = $this->sys->update_database_charset();
-				
-				// pull in the install fields asset file
-				include_once MODPATH.'assets/install/fields.php';
-				
-				// create an array for storing the results of the creation process
-				$table = array();
-				
-				foreach ($data as $key => $value)
-				{
-					$this->dbforge->add_field($$value['fields']);
-					$this->dbforge->add_key($value['id'], true);
-					$table[] = $this->dbforge->create_table($key, true);
-				}
-				
-				foreach ($table as $key => $t)
-				{
-					if ($t)
-					{
-						unset($table[$key]);
-					}
-				}
-				
-				$message = (count($table) > 0) ? lang('install_step1_failure') : lang('install_step1_success');
-				
-				$next = array(
-					'type' => 'submit',
-					'class' => 'btn-main',
-					'name' => 'next',
-					'value' => 'next',
-					'id' => 'next',
-					'content' => ucwords(lang('button_next'))
-				);
-				
-				if (count($table) > 0)
-				{
-					$next['disabled'] = 'disabled';
-				}
-				
-				$data['label']['inst_step1'] = $message;
-				
-				// the view files
-				$view_loc = 'step_1';
-				$js_loc = 'step_1_js';
-				
-				$this->_regions['controls'] = form_open('install/step/2').form_button($next).form_close();
-				$this->_regions['title'].= lang('install_step1_title');
-				$this->_regions['label'] = lang('install_step1_label');
-			break;
-				
-			case 2:
-				// pull in the install data asset file
-				include_once MODPATH.'assets/install/data.php';
-				
-				$insert = array();
-				
-				foreach ($data as $value)
-				{
-					foreach ($$value as $k => $v)
-					{
-						$insert[] = $this->db->insert($value, $v);
-					}
-				}
-				
+
+				// Load the migration library with configuration
+				$this->load->library('migration', array(
+					'migration_enabled'	=> true,
+					'migration_path'	=> MODPATH.'assets/migrations/',
+				));
+
+				// Run up to the latest migration
+				$this->migration->latest();
+
 				if (APP_DATA_DEV !== false)
 				{
-					// pull in the dev data
+					// Pull in the dev data
 					include_once MODPATH.'assets/install/dev.php';
 					
+					// Loop through the data and insert it
 					foreach ($data as $value)
 					{
 						foreach ($$value as $k => $v)
@@ -1204,16 +1152,6 @@ abstract class Nova_install extends CI_Controller {
 					}
 				}
 				
-				foreach ($insert as $key => $i)
-				{
-					if ($i === true)
-					{
-						unset($insert[$key]);
-					}
-				}
-				
-				$message = (count($insert) > 0) ? lang('install_step2_failure') : lang('install_step2_success');
-				
 				$next = array(
 					'type' => 'submit',
 					'class' => 'btn-main',
@@ -1223,33 +1161,18 @@ abstract class Nova_install extends CI_Controller {
 					'content' => ucwords(lang('button_next'))
 				);
 				
-				if (count($insert) > 0 or GENRE == '')
-				{
-					$next['disabled'] = 'disabled';
-				}
+				$data['label']['inst_step1'] = lang('install_step1_success');
 				
-				if (GENRE == '')
-				{
-					$flash['message'] = lang_output('error_install_no_genre');
-					$flash['status'] = 'error';
-					
-					// set the flash message
-					$this->_regions['flash_message'] = Location::view('flash', '_base', 'install', $flash);
-				}
+				$view_loc = 'step_1';
+				$js_loc = 'step_1_js';
 				
-				$data['label']['inst_step2'] = $message;
-				
-				// the view files
-				$view_loc = 'step_2';
-				$js_loc = 'step_2_js';
-				
-				$this->_regions['controls'] = form_open('install/step/3').form_button($next).form_close();
-				$this->_regions['title'].= lang('install_step2_title');
-				$this->_regions['label'] = lang('install_step2_label');
+				$this->_regions['controls'] = form_open('install/step/2').form_button($next).form_close();
+				$this->_regions['title'].= lang('install_step1_title');
+				$this->_regions['label'] = lang('install_step1_label');
 			break;
 				
-			case 3:
-				// pull in the install genre data asset file
+			case 2:
+				// Pull in the install genre data asset file
 				include_once MODPATH.'assets/install/genres/'.GENRE.'.php';
 				
 				$genre = array();
@@ -1363,7 +1286,7 @@ abstract class Nova_install extends CI_Controller {
 				$this->_regions['label'] = lang('install_step3_label');
 			break;
 				
-			case 4:
+			case 3:
 				// set the variables
 				$submit = $this->input->post('next');
 				
@@ -1554,7 +1477,7 @@ abstract class Nova_install extends CI_Controller {
 				$this->_regions['label'] = lang('install_step4_label');
 			break;
 				
-			case 5:
+			case 4:
 				$this->load->library('ftp');
 				$this->load->model('settings_model', 'settings');
 				$this->load->model('messages_model', 'msgs');
