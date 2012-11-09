@@ -1,0 +1,169 @@
+@import url(http://fonts.googleapis.com/css?family=Iceland);
+
+@import url(http://fonts.googleapis.com/css?family=Quando);
+html,
+body {
+  height: 100%;
+}
+#wrap {
+  height: auto !important;
+  margin: 0 auto -60px;
+  min-height: 100%;
+}
+#push,
+#footer {
+  height: 60px;
+}
+.hero-unit {
+  margin-top: 20px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+/*
+|---------------------------------------------------------------
+| FOOTER
+|---------------------------------------------------------------
+*/
+#footer {
+  clear: both;
+  line-height: 60px;
+  background: #f0f0f0;
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+  color: #888;
+}
+/*
+|---------------------------------------------------------------
+| FONT COLORS
+|---------------------------------------------------------------
+*/
+.gray {
+  color: #777;
+}
+.red {
+  color: #c00;
+}
+.orange {
+  color: #e99e1c;
+}
+.green {
+  color: #008000;
+}
+.blue {
+  color: lightblue;
+}
+/*
+|---------------------------------------------------------------
+| TABLES
+|---------------------------------------------------------------
+*/
+tr.alt td,
+tr.light_gray {
+  background-color: #f3f3f3;
+}
+th {
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+/*
+|---------------------------------------------------------------
+| COMMENTS & NOTES
+|---------------------------------------------------------------
+*/
+#comments p,
+#news_blocks p,
+.post_info {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px 3px 3px 3px;
+}
+/*
+|---------------------------------------------------------------
+| LIST STYLES
+|---------------------------------------------------------------
+*/
+ul.square {
+  list-style: square;
+}
+ol.roman {
+  list-style: upper-roman;
+}
+ul.none,
+ol.none {
+  list-style: none;
+}
+/*
+|---------------------------------------------------------------
+| MISC
+|---------------------------------------------------------------
+*/
+.loader {
+  text-align: center;
+}
+.system_warning {
+  height: 20px;
+  line-height: 19px;
+  width: 100%;
+  background: transparent url('../images/js-disabled.png') repeat-x 0 0;
+  color: #111;
+  font-weight: bold;
+  text-align: center;
+}
+.logged-in-controls a {
+  border: 0;
+}
+kbd {
+  font-weight: bold;
+  font-family: helvetica, arial, sans-serif;
+}
+.cell-label {
+  font-weight: bold;
+  font-size: 100%;
+  text-align: right;
+}
+.alert p {
+  margin: 8px 0;
+}
+/*
+|---------------------------------------------------------------
+| DASHBOARD
+|---------------------------------------------------------------
+*/
+#panel .panel-body {
+  background: #777777;
+  background: -moz-linear-gradient(top, #777777 0%, #555555 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #777777), color-stop(100%, #555555));
+  background: -webkit-linear-gradient(top, #777777 0%, #555555 100%);
+  background: -o-linear-gradient(top, #777777 0%, #555555 100%);
+  background: -ms-linear-gradient(top, #777777 0%, #555555 100%);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#777777', endColorstr='#555555', GradientType=0);
+  background: linear-gradient(top, #777777 0%, #555555 100%);
+  border: 1px solid #333;
+  color: #fff;
+  text-align: left;
+  -moz-border-radius: 6px;
+  border-radius: 6px 6px 6px 6px;
+  -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.panel_1 a,
+.panel_2 a,
+.panel_3 a {
+  color: #fff;
+  border-bottom: 1px solid;
+}
+.panel_1 a.edit,
+.panel_2 a.edit,
+.panel_3 a.edit {
+  color: #999;
+  border-bottom: 0;
+  font-weight: bold;
+}
+.panel_1 a.edit:hover,
+.panel_2 a.edit:hover,
+.panel_3 a.edit:hover {
+  color: #ddd;
+}
