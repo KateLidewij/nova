@@ -9,6 +9,7 @@ application/views/
 application/config/database.php
 
 !application/views/default/*
+!application/views/bootstrap/*
 !application/views/titan/*
 !application/views/_base_override/*
 !application/views/_mobile/*
