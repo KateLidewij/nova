@@ -62,6 +62,18 @@ class Migration_Create_news extends CI_Migration {
 		$this->dbforge->add_key('newscat_id', true);
 		$this->dbforge->create_table('news_categories');
 
+		$news_categories = array(
+			array('newscat_name' => 'General News'),
+			array('newscat_name' => 'Out of Character'),
+			array('newscat_name' => 'Sim Announcement'),
+			array('newscat_name' => 'Website Update')
+		);
+
+		foreach ($news_categories as $d)
+		{
+			$this->db->insert('news_categories', $d);
+		}
+
 		$this->dbforge->add_field(array(
 			'ncomment_id' => array(
 				'type' => 'INT',

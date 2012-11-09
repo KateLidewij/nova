@@ -82,6 +82,54 @@ class Migration_Create_wiki extends CI_Migration {
 		$this->dbforge->add_key('draft_id', true);
 		$this->dbforge->create_table('wiki_drafts');
 
+		$wiki_drafts = array(
+			array(
+				'draft_title' => 'Welcome to Thresher',
+				'draft_author_user' => 0,
+				'draft_author_character' => 0,
+				'draft_summary' => "This is the main wiki system page.",
+				'draft_content' => "<p>Welcome to Thresher R2. Thresher is Nova's built-in mini-wiki to help your RPG collaborate and share information easily. You can change this message by editing the system page from the Wiki Page Management page.</p>",
+				'draft_page' => 1,
+				'draft_created_at' => now()),
+			array(
+				'draft_title' => 'Create Wiki Page',
+				'draft_author_user' => 0,
+				'draft_author_character' => 0,
+				'draft_summary' => "",
+				'draft_content' => "",
+				'draft_page' => 2,
+				'draft_created_at' => now()),
+			array(
+				'draft_title' => 'Edit Wiki Page',
+				'draft_author_user' => 0,
+				'draft_author_character' => 0,
+				'draft_summary' => "",
+				'draft_content' => "",
+				'draft_page' => 3,
+				'draft_created_at' => now()),
+			array(
+				'draft_title' => 'Wiki Categories',
+				'draft_author_user' => 0,
+				'draft_author_character' => 0,
+				'draft_summary' => "Categories in Thresher allow pages to be broken up in to different subject matters and categorized in a way that makes sense. Below is the complete list of categories. Clicking on one of the categories will show all pages associated with that category.",
+				'draft_content' => "",
+				'draft_page' => 4,
+				'draft_created_at' => now()),
+			array(
+				'draft_title' => 'Wiki Category Page',
+				'draft_author_user' => 0,
+				'draft_author_character' => 0,
+				'draft_summary' => "",
+				'draft_content' => "",
+				'draft_page' => 5,
+				'draft_created_at' => now()),
+		);
+
+		foreach ($wiki_drafts as $d)
+		{
+			$this->db->insert('wiki_drafts', $d);
+		}
+
 		$this->dbforge->add_field(array(
 			'page_id' => array(
 				'type' => 'INT',
@@ -123,6 +171,54 @@ class Migration_Create_wiki extends CI_Migration {
 		));
 		$this->dbforge->add_key('page_id', true);
 		$this->dbforge->create_table('wiki_pages');
+
+		$wiki_pages = array(
+			array(
+				'page_draft' => 1,
+				'page_created_at' => now(),
+				'page_created_by_user' => 0,
+				'page_created_by_character' => 0,
+				'page_comments' => 'closed',
+				'page_type' => 'system',
+				'page_key' => 'index'),
+			array(
+				'page_draft' => 2,
+				'page_created_at' => now(),
+				'page_created_by_user' => 0,
+				'page_created_by_character' => 0,
+				'page_comments' => 'closed',
+				'page_type' => 'system',
+				'page_key' => 'create'),
+			array(
+				'page_draft' => 3,
+				'page_created_at' => now(),
+				'page_created_by_user' => 0,
+				'page_created_by_character' => 0,
+				'page_comments' => 'closed',
+				'page_type' => 'system',
+				'page_key' => 'edit'),
+			array(
+				'page_draft' => 4,
+				'page_created_at' => now(),
+				'page_created_by_user' => 0,
+				'page_created_by_character' => 0,
+				'page_comments' => 'closed',
+				'page_type' => 'system',
+				'page_key' => 'categories'),
+			array(
+				'page_draft' => 5,
+				'page_created_at' => now(),
+				'page_created_by_user' => 0,
+				'page_created_by_character' => 0,
+				'page_comments' => 'closed',
+				'page_type' => 'system',
+				'page_key' => 'category'),
+		);
+
+		foreach ($wiki_pages as $d)
+		{
+			$this->db->insert('wiki_pages', $d);
+		}
 
 		$this->dbforge->add_field(array(
 			'restr_id' => array(

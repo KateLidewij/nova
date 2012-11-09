@@ -49,6 +49,54 @@ class Migration_Create_users extends CI_Migration {
 		$this->dbforge->add_key('pref_id', true);
 		$this->dbforge->create_table('user_prefs');
 
+		$user_prefs = array(
+			array(
+				'pref_key' => 'email_new_news_comments',
+				'pref_label' => 'Email News Comments',
+				'pref_default' => 'y'),
+			array(
+				'pref_key' => 'email_new_log_comments',
+				'pref_label' => 'Email Log Comments',
+				'pref_default' => 'y'),
+			array(
+				'pref_key' => 'email_new_post_comments',
+				'pref_label' => 'Email Post Comments',
+				'pref_default' => 'y'),
+			array(
+				'pref_key' => 'email_new_wiki_comments',
+				'pref_label' => 'Email Wiki Comments',
+				'pref_default' => 'y'),
+			array(
+				'pref_key' => 'email_private_message',
+				'pref_label' => 'Email Private Messages',
+				'pref_default' => 'y'),
+			array(
+				'pref_key' => 'email_personal_logs',
+				'pref_label' => 'Email Personal Logs',
+				'pref_default' => 'y'),
+			array(
+				'pref_key' => 'email_news_items',
+				'pref_label' => 'Email News Items',
+				'pref_default' => 'y'),
+			array(
+				'pref_key' => 'email_mission_posts',
+				'pref_label' => 'Email Mission Posts',
+				'pref_default' => 'y'),
+			array(
+				'pref_key' => 'email_mission_posts_save',
+				'pref_label' => 'Email Mission Post Saved Notifications',
+				'pref_default' => 'y'),
+			array(
+				'pref_key' => 'email_mission_posts_delete',
+				'pref_label' => 'Email Mission Post Delete Notifications',
+				'pref_default' => 'y'),
+		);
+
+		foreach ($user_prefs as $d)
+		{
+			$this->db->insert('user_prefs', $d);
+		}
+
 		$this->dbforge->add_field(array(
 			'prefvalue_id' => array(
 				'type' => 'INT',

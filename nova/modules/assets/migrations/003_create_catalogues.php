@@ -68,6 +68,18 @@ class Migration_Create_catalogues extends CI_Migration {
 		$this->dbforge->add_key('skin_id', true);
 		$this->dbforge->create_table('catalogue_skins');
 
+		$catalogue_skins = array(
+			array(
+				'skin_name' => 'Pulsar',
+				'skin_location' => 'default',
+				'skin_credits' => 'The Pulsar skin was created by Anodyne Productions. Edits are permissible as long as original credits stay intact. The Pulsar skin includes the jQuery BlockUI plugin by Malsup. More information can be found at <a href="http://malsup.com/jquery/block/">http://malsup.com/jquery/block/</a>.'),
+		);
+
+		foreach ($catalogue_skins as $d)
+		{
+			$this->db->insert('catalogue_skins', $d);
+		}
+
 		$this->dbforge->add_field(array(
 			'skinsec_id' => array(
 				'type' => 'INT',
@@ -96,6 +108,34 @@ class Migration_Create_catalogues extends CI_Migration {
 		));
 		$this->dbforge->add_key('skinsec_id', true);
 		$this->dbforge->create_table('catalogue_skinsecs');
+
+		$catalogue_skinsecs = array(
+			array(
+				'skinsec_section' => 'main',
+				'skinsec_skin' => 'default',
+				'skinsec_image_preview' => 'preview-main.jpg',
+				'skinsec_default' => 'y'),
+			array(
+				'skinsec_section' => 'admin',
+				'skinsec_skin' => 'default',
+				'skinsec_image_preview' => 'preview-admin.jpg',
+				'skinsec_default' => 'y'),
+			array(
+				'skinsec_section' => 'wiki',
+				'skinsec_skin' => 'default',
+				'skinsec_image_preview' => 'preview-wiki.jpg',
+				'skinsec_default' => 'y'),
+			array(
+				'skinsec_section' => 'login',
+				'skinsec_skin' => 'default',
+				'skinsec_image_preview' => 'preview-login.jpg',
+				'skinsec_default' => 'y'),
+		);
+
+		foreach ($catalogue_skinsecs as $d)
+		{
+			$this->db->insert('catalogue_skinsecs', $d);
+		}
 	}
 
 	public function down()

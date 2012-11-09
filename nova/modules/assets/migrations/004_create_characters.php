@@ -175,6 +175,22 @@ class Migration_Create_characters extends CI_Migration {
 		));
 		$this->dbforge->add_key('manifest_id', true);
 		$this->dbforge->create_table('manifests');
+
+		$manifests = array(
+			array(
+				'manifest_name' => 'Primary Manifest',
+				'manifest_desc' => "This is the primary manifest used by the sim.",
+				'manifest_header_content' => "Update your manifest header content from the manifest management page.",
+				'manifest_order' => 0,
+				'manifest_display' => 'y',
+				'manifest_default' => 'y',
+				'manifest_view' => "$('tr.active').show();,$('tr.npc').show();"),
+		);
+
+		foreach ($manifests as $d)
+		{
+			$this->db->insert('manifests', $d);
+		}
 	}
 
 	public function down()
