@@ -95,7 +95,7 @@ abstract class Nova_menu {
 		}
 		
 		/* start the output */
-		self::$output = '<ul>';
+		self::$output = '<ul class="nav">';
 		
 		foreach ($array as $k => $v)
 		{
@@ -121,13 +121,13 @@ abstract class Nova_menu {
 			
 			if ($display === TRUE)
 			{
-				self::$output.= '<li>';
-			
-				$class = array();
-			
 				if ($v['active'] == $ci->uri->rsegment(1))
 				{
-					$class[] = 'active';
+					self::$output.= '<li class="active">';
+				}
+				else
+				{
+					self::$output.= '<li>';
 				}
 			
 				if ($v['link_type'] == 'onsite')
@@ -141,10 +141,7 @@ abstract class Nova_menu {
 					$url = $v['link'];
 				}
 			
-				/* create a string from the array of classes */
-				$class_string = implode(' ', $class);
-			
-				self::$output.= '<a href="'. $url .'"'. $target .' class="'. $class_string .'"><span>'. $v['name'] .'</span></a></li>';
+				self::$output.= '<a href="'. $url .'"'. $target .'><span>'. $v['name'] .'</span></a></li>';
 			}
 		}
 			
@@ -168,7 +165,7 @@ abstract class Nova_menu {
 		
 		if ($menu_items->num_rows() > 0)
 		{
-			self::$output = '<ul>'; /* start the output of the menu */
+			self::$output = '<ul class="nav nav-list">'; /* start the output of the menu */
 			
 			foreach ($menu_items->result() as $item)
 			{
@@ -176,7 +173,7 @@ abstract class Nova_menu {
 				
 				if ($item->menu_group != 0 && $item->menu_order == 0)
 				{
-					self::$output.= '<li class="spacer"></li>';
+					self::$output.= '<li class="divider"></li>';
 				}
 				
 				if ($item->menu_link_type == 'offsite')
@@ -264,7 +261,7 @@ abstract class Nova_menu {
 	
 	protected static function _render($data)
 	{
-		self::$output = '<ul>';
+		self::$output = '<ul class="nav nav-list">';
 		
 		foreach ($data as $key => $value)
 		{
@@ -276,7 +273,7 @@ abstract class Nova_menu {
 				{
 					if ($item->menu_group != 0 && $item->menu_order == 0)
 					{
-						self::$output.= '<li class="spacer"></li>';
+						self::$output.= '<li class="divider"></li>';
 					}
 					
 					if ($item->menu_link_type == 'offsite')
