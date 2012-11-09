@@ -16,13 +16,12 @@ $uiTheme = ( ! is_file(APPPATH .'views/'.$current_skin.'/main/css/jquery.ui.them
 	? base_url().MODFOLDER.'/assets/js/css/jquery.ui.theme.css'
 	: base_url().APPFOLDER.'/views/'.$current_skin.'/main/css/jquery.ui.theme.css';
 
-?><style type="text/css">
-			@import url("<?php echo base_url() . MODFOLDER .'/assets/js/css/jquery.ui.core.css';?>");
-			@import url('<?php echo $faceboxcss;?>');
-			@import url('<?php echo $uiTheme;?>');
-		</style>
+?><link rel="stylesheet" href="<?php echo base_url().MODFOLDER.'/assets/js/css/jquery.ui.core.css';?>">
+		<link rel="stylesheet" href="<?php echo $faceboxcss;?>">
+		<link rel="stylesheet" href="<?php echo $uiTheme;?>">
 		
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url().MODFOLDER.'/assets/js/bootstrap.min.js';?>"></script>
 		<script type="text/javascript" src="<?php echo base_url().MODFOLDER .'/assets/js/jquery.lazy.js';?>"></script>
 		<script type="text/javascript" src="<?php echo base_url().MODFOLDER .'/assets/js/jquery.ui.core.min.js';?>"></script>
 		<script type="text/javascript" src="<?php echo base_url().MODFOLDER .'/assets/js/jquery.ui.widget.min.js';?>"></script>
@@ -41,15 +40,6 @@ $uiTheme = ( ! is_file(APPPATH .'views/'.$current_skin.'/main/css/jquery.ui.them
 					name: 'prettyPhoto',
 					dependencies: {
 						css: ['<?php echo base_url() . MODFOLDER;?>/assets/js/css/jquery.prettyPhoto.css']
-					},
-					cache: true
-				});
-				
-				$.lazy({
-					src: '<?php echo base_url() . MODFOLDER;?>/assets/js/bootstrap-twipsy.js',
-					name: 'twipsy',
-					dependencies: {
-						css: ['<?php echo base_url() . MODFOLDER;?>/assets/js/css/bootstrap.css']
 					},
 					cache: true
 				});
