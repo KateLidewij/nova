@@ -1193,7 +1193,7 @@ abstract class Nova_install extends CI_Controller {
 					}
 				}
 				
-				$message = (count($genre) > 0) ? lang('install_step3_failure') : lang('install_step3_success');
+				$message = (count($genre) > 0) ? lang('install_step2_failure') : lang('install_step2_success');
 				
 				$next = array(
 					'type' => 'submit',
@@ -1260,30 +1260,30 @@ abstract class Nova_install extends CI_Controller {
 				);
 		
 				$data['label'] = array(
-					'user' => lang('install_step3_user'),
-					'name' => lang('install_step3_name'),
+					'user' => lang('install_step2_user'),
+					'name' => lang('install_step2_name'),
 					'email' => lang('global_email'),
 					'password' => lang('global_password'),
-					'dob' => lang('install_step3_dob'),
-					'question' => lang('install_step3_question'),
-					'answer' => lang('install_step3_answer'),
+					'dob' => lang('install_step2_dob'),
+					'question' => lang('install_step2_question'),
+					'answer' => lang('install_step2_answer'),
 					'remember' => lang('text_security_question'),
-					'timezone' => lang('install_step3_timezone'),
-					'character' => lang('install_step3_character'),
-					'fname' => lang('install_step3_fname'),
-					'lname' => lang('install_step3_lname'),
-					'rank' => lang('install_step3_rank'),
-					'position' => lang('install_step3_position'),
+					'timezone' => lang('install_step2_timezone'),
+					'character' => lang('install_step2_character'),
+					'fname' => lang('install_step2_fname'),
+					'lname' => lang('install_step2_lname'),
+					'rank' => lang('install_step2_rank'),
+					'position' => lang('install_step2_position'),
 					'inst_step3' => $message,
 				);
 				
 				// the view files
-				$view_loc = 'step_3';
-				$js_loc = 'step_3_js';
+				$view_loc = 'step_2';
+				$js_loc = 'step_2_js';
 				
 				$this->_regions['controls'] = form_button($next).form_close();
-				$this->_regions['title'].= lang('install_step3_title');
-				$this->_regions['label'] = lang('install_step3_label');
+				$this->_regions['title'].= lang('install_step2_title');
+				$this->_regions['label'] = lang('install_step2_label');
 			break;
 				
 			case 3:
@@ -1390,7 +1390,7 @@ abstract class Nova_install extends CI_Controller {
 					}
 				}
 				
-				$message = (count($insert) > 0) ? lang('install_step4_failure') : lang('install_step4_success');
+				$message = (count($insert) > 0) ? lang('install_step3_failure') : lang('install_step3_success');
 				
 				// the next button
 				$next = array(
@@ -1432,49 +1432,49 @@ abstract class Nova_install extends CI_Controller {
 				);
 				
 				$data['updates_v'] = array(
-					'all' => lang('install_step4_updates_all'),
-					'major' => lang('install_step4_updates_maj'),
-					'minor' => lang('install_step4_updates_min'),
-					'update' => lang('install_step4_updates_incr'),
-					'none' => lang('install_step4_updates_none')
+					'all' => lang('install_step3_updates_all'),
+					'major' => lang('install_step3_updates_maj'),
+					'minor' => lang('install_step3_updates_min'),
+					'update' => lang('install_step3_updates_incr'),
+					'none' => lang('install_step3_updates_none')
 				);
 				
 				$data['dates_v'] = array(
-					'%D %M %j%S, %Y @ %g:%i%a'	=> 'Mon Jan 1st, 2009 @ 12:01am',
-					'%D %M %j, %Y @ %g:%i%a'	=> 'Mon Jan 1, 2009 @ 12:01am',
-					'%l %F %j%S, %Y @ %g:%i%a'	=> 'Monday January 1st, 2009 @ 12:01am',
-					'%l %F %j, %Y @ %g:%i%a'	=> 'Monday January 1, 2009 @ 12:01am',
-					'%m/%d/%Y @ %g:%i%a'		=> '01/01/2009 @ 12:01am',
-					'%d %M %Y @ %g:%i%a'		=> '01 Jan 2009 @ 12:01am',
+					'%D %M %j%S, %Y @ %g:%i%a'	=> 'Tues Jan 1st, 2013 @ 12:01am',
+					'%D %M %j, %Y @ %g:%i%a'	=> 'Tues Jan 1, 2013 @ 12:01am',
+					'%l %F %j%S, %Y @ %g:%i%a'	=> 'Tuesday January 1st, 2013 @ 12:01am',
+					'%l %F %j, %Y @ %g:%i%a'	=> 'Tuesday January 1, 2013 @ 12:01am',
+					'%m/%d/%Y @ %g:%i%a'		=> '01/01/2013 @ 12:01am',
+					'%d %M %Y @ %g:%i%a'		=> '01 Jan 2013 @ 12:01am',
 				);
 				
 				$data['label'] = array(
-					'simname' => lang('install_step4_simname'),
-					'sysemail' => lang('install_step4_sysemail'),
-					'emailsubject' => lang('install_step4_emailsubject'),
-					'updates' => lang('install_step4_updates'),
-					'characters' => lang('install_step4_chars'),
-					'npcs' => lang('install_step4_npcs'),
-					'dates' => lang('install_step4_dates'),
+					'simname' => lang('install_step3_simname'),
+					'sysemail' => lang('install_step3_sysemail'),
+					'emailsubject' => lang('install_step3_emailsubject'),
+					'updates' => lang('install_step3_updates'),
+					'characters' => lang('install_step3_chars'),
+					'npcs' => lang('install_step3_npcs'),
+					'dates' => lang('install_step3_dates'),
 					'inst_step4' => $message,
 				);
 				
 				if (ini_get('allow_url_fopen') != 1)
 				{
 					$flash['status'] = 'info';
-					$flash['message'] = lang_output('install_step4_filehandle');
+					$flash['message'] = lang_output('install_step3_filehandle');
 					
 					// set the flash message
 					$this->_regions['flash_message'] = Location::view('flash', '_base', 'install', $flash);
 				}
 				
 				// the view files
-				$view_loc = 'step_4';
-				$js_loc = 'step_4_js';
+				$view_loc = 'step_3';
+				$js_loc = 'step_3_js';
 				
 				$this->_regions['controls'] = form_button($next).form_close();
-				$this->_regions['title'].= lang('install_step4_title');
-				$this->_regions['label'] = lang('install_step4_label');
+				$this->_regions['title'].= lang('install_step3_title');
+				$this->_regions['label'] = lang('install_step3_label');
 			break;
 				
 			case 4:
@@ -1532,16 +1532,16 @@ abstract class Nova_install extends CI_Controller {
 					}
 				}
 				
-				$message = ($update > 0) ? lang('install_step5_success') : lang('install_step5_failure');
+				$message = ($update > 0) ? lang('install_step4_success') : lang('install_step4_failure');
 				
 				$data['label'] = array(
 					'site' => lang('button_site'),
-					'inst_step5' => $message,
+					'inst_step4' => $message,
 				);
 					
 				// the view files
-				$view_loc = 'step_5';
-				$js_loc = 'step_5_js';
+				$view_loc = 'step_4';
+				$js_loc = 'step_4_js';
 				
 				$next = array(
 					'type' => 'submit',
@@ -1553,8 +1553,8 @@ abstract class Nova_install extends CI_Controller {
 				);
 				
 				$this->_regions['controls'] = form_open('main/index').form_button($next).form_close();
-				$this->_regions['title'].= lang('install_step5_title');
-				$this->_regions['label'] = lang('install_step5_label');
+				$this->_regions['title'].= lang('install_step4_title');
+				$this->_regions['label'] = lang('install_step4_label');
 			break;
 		}
 		
