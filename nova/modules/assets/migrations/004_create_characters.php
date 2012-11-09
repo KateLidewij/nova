@@ -145,6 +145,36 @@ class Migration_Create_characters extends CI_Migration {
 		));
 		$this->dbforge->add_key('app_id', true);
 		$this->dbforge->create_table('applications');
+
+		$this->dbforge->add_field(array(
+			'manifest_id' => array(
+				'type' => 'INT',
+				'constraint' => 5,
+				'auto_increment' => TRUE),
+			'manifest_name' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 255,
+				'default' => ''),
+			'manifest_order' => array(
+				'type' => 'INT',
+				'constraint' => 5),
+			'manifest_desc' => array(
+				'type' => 'TEXT'),
+			'manifest_header_content' => array(
+				'type' => 'TEXT'),
+			'manifest_display' => array(
+				'type' => 'ENUM',
+				'constraint' => "'y','n'",
+				'default' => 'y'),
+			'manifest_default' => array(
+				'type' => 'ENUM',
+				'constraint' => "'y','n'",
+				'default' => 'n'),
+			'manifest_view' => array(
+				'type' => 'TEXT'),
+		));
+		$this->dbforge->add_key('manifest_id', true);
+		$this->dbforge->create_table('manifests');
 	}
 
 	public function down()
@@ -153,5 +183,6 @@ class Migration_Create_characters extends CI_Migration {
 		$this->dbforge->drop_table('characters_promotions');
 		$this->dbforge->drop_table('coc');
 		$this->dbforge->drop_table('applications');
+		$this->dbforge->drop_table('manifests');
 	}
 }
