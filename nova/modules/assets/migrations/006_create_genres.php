@@ -113,7 +113,7 @@ class Migration_Create_genres extends CI_Migration {
 		$tables = $this->db->list_tables();
 
 		// Get the database prefix
-		$prefix = $this->db->dbprefix();
+		$prefix = $this->db->dbprefix;
 
 		// Loop through and remove what we need to
 		foreach ($tables as $table)
