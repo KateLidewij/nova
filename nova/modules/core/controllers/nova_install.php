@@ -92,7 +92,7 @@ abstract class Nova_install extends CI_Controller {
 		
 		$this->_regions['content'] = Location::view('index', '_base', 'install', $data);
 		$this->_regions['title'].= lang('install_index_title');
-		$this->_regions['label'] = lang('install_index_title');
+		$this->_regions['label'] = '';
 		
 		Template::assign($this->_regions);
 		
@@ -633,8 +633,14 @@ abstract class Nova_install extends CI_Controller {
 			
 			if ($verify == 0 and $sysadmin)
 			{
-				// remove the data
-				$this->_destroy_data();
+				// Load the migration library with configuration
+				$this->load->library('migration', array(
+					'migration_enabled'	=> true,
+					'migration_path'	=> MODPATH.'assets/migrations/',
+				));
+
+				// Run down to the zero migration
+				$this->migration->version(0);
 				
 				// set the flash info
 				$flash['status'] = 'success';
