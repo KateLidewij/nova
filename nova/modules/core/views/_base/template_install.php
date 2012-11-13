@@ -34,13 +34,14 @@
 			
 			<div id="loaded">
 				<?php if ($this->uri->segment(2) == 'step' and $this->uri->segment(3) > 0): ?>
-					<div id="amount">
-						<span id="percent">0%</span>
-						<div id="progress-container">
-							<div id="progress"></div>
+					<div class="row">
+						<div class="span11">
+							<div class="progress progress-striped active">
+								<div class="bar" style="width:60%;"></div>
+							</div>
 						</div>
+						<div class="span1 progress-amount"><span id="percent"></span>%</div>
 					</div>
-					<div style="clear:both;"></div>
 				<?php endif;?>
 			
 				<?php echo $flash_message;?>

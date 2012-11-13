@@ -2,8 +2,8 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#progress").progressbar({ value: 25 });
-		$('#percent').text($('#progress').progressbar('option', 'value') + '%');
+		$(".progress .bar").css('width', '25%');
+		$('#percent').text('25');
 		
 		$('#next').click(function(){
 			$('.lower').fadeOut('fast');

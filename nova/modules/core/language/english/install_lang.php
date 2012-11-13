@@ -75,28 +75,6 @@ $lang['setup.text.step3nowrite'] = "Uh-oh! I couldn't write the database connect
 
 $lang['setup.text.step4success'] = "Alright sparky! You've finally finished. If you're ready, you can click on the button below to head over to the Installation Center and continuing installing Nova...";
 
-
-/*
-|---------------------------------------------------------------
-| INSTALL TYPE
-|---------------------------------------------------------------
-*/
-
-$lang['install_options_choose'] = 'Please select from the following options:';
-$lang['install_options_fresh_title'] = 'Fresh Install';
-$lang['install_options_upd_title'] = 'Update Nova';
-$lang['install_options_upg_title'] = 'Upgrade From SMS 2';
-$lang['install_options_genre_title'] = 'Install a New Genre';
-$lang['install_options_remove_title'] = 'Uninstall Nova';
-$lang['install_options_db_title'] = 'Add New Database Tables/Fields';
-
-$lang['install_options_fresh_text'] = "If you don't already have Nova installed on your server and want to install a clean copy of the system, use this option. Don't try to install the system over top of an existing Nova installation. If you want to re-install Nova, you'll need to uninstall the system first then install it again.";
-$lang['install_options_upd_text'] = "Anodyne is committed to providing continued support for Nova through software updates. If you need to access the Update Center to check for and apply Nova software updates, use this option.";
-$lang['install_options_upg_text'] = "Nova includes an easy-to-use upgrade process that will take the information from a site running SMS 2.6.9 or higher and upgrade it to be usable by Nova. In order to do the upgrade, your SMS database has to be in the same database as where you're installing Nova.";
-$lang['install_options_genre_text'] = "Nova's been built from the ground up with flexibility in mind and allows you to install one of several genres for your game. You'll have to make manual adjustments to your characters once the new genre is installed. You must be a system administrator to install a new genre.";
-$lang['install_options_remove_text'] = "If you want to remove all of your current Nova data you can uninstall the system. <strong>Warning:</strong> this action is permanent and cannot be undone! You must be a system administrator to uninstall Nova.";
-$lang['install_options_db_text'] = "If you want to add new database tables or fields to your database, you can use this simple user interface to do so. For advanced operations, please use a MySQL management tool like phpMyAdmin. You must be a system administrator to change the database.";
-
 /*
 |---------------------------------------------------------------
 | INSTALL
@@ -228,24 +206,9 @@ $lang['install_step4_failure'] = "There was a problem updating your system setti
 |---------------------------------------------------------------
 */
 
-$lang['verify_component'] = 'Component';
-$lang['verify_required'] = 'Required';
-$lang['verify_actual'] = 'Actual';
-$lang['verify_result'] = 'Result';
-
-$lang['verify_php'] = 'PHP';
-$lang['verify_db'] = 'Database Platform';
-$lang['verify_db_ver'] = 'Database Version';
-$lang['verify_mem'] = 'Memory Limit';
-$lang['verify_regglobals'] = 'Register Globals';
-$lang['verify_file'] = 'File Handling';
-
-$lang['verify_success'] = '<span class="bold green">Success</span>';
-$lang['verify_failure'] = '<span class="bold red">Failed</span>';
-$lang['verify_warning'] = '<span class="bold orange">Warning</span>';
-
-$lang['verify_title'] = 'Verify Server Requirements';
-$lang['verify_text'] = 'Below are the results of the server verification test. If any of the items have <span class="bold red">failed</span>, Nova won\'t install properly (or at all). If there are any <span class="bold orange">warnings</span> listed, you should talk to your host about getting those items updated, but you\'ll still be able to install and use Nova despite the warnings.';
+$lang['verify_success'] = '<span class="label label-success">Success</span>';
+$lang['verify_failure'] = '<span class="label label-important">Failed</span>';
+$lang['verify_warning'] = '<span class="label label-warning">Warning</span>';
 
 /*
 |---------------------------------------------------------------

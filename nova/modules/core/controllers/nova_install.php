@@ -403,16 +403,6 @@ abstract class Nova_install extends CI_Controller {
 					
 					// the view to use
 					$view_loc = 'genre';
-					
-					$submit = array(
-						'type' => 'submit',
-						'class' => 'btn-main',
-						'name' => 'submit',
-						'value' => 'submit',
-						'content' => ucwords(lang('button_submit'))
-					);
-					
-					$this->_regions['controls'] = form_button($submit).form_close();
 				break;
 					
 				case 'verify':
@@ -450,16 +440,6 @@ abstract class Nova_install extends CI_Controller {
 						
 						// the view to use
 						$view_loc = 'genre_main';
-						
-						$submit = array(
-							'type' => 'submit',
-							'class' => 'btn-main',
-							'name' => 'submit',
-							'value' => 'submit',
-							'content' => ucwords(lang('button_submit'))
-						);
-						
-						$this->_regions['controls'] = form_button($submit).form_close();
 					}
 					else
 					{
@@ -471,16 +451,6 @@ abstract class Nova_install extends CI_Controller {
 						
 						// set the view
 						$view_loc = 'genre';
-						
-						$submit = array(
-							'type' => 'submit',
-							'class' => 'btn-main',
-							'name' => 'submit',
-							'value' => 'submit',
-							'content' => ucwords(lang('button_submit'))
-						);
-						
-						$this->_regions['controls'] = form_button($submit).form_close();
 					}
 				break;
 			}
@@ -489,33 +459,9 @@ abstract class Nova_install extends CI_Controller {
 		{
 			// set the view
 			$view_loc = 'genre';
-			
-			$submit = array(
-				'type' => 'submit',
-				'class' => 'btn-main',
-				'name' => 'submit',
-				'value' => 'submit',
-				'content' => ucwords(lang('button_submit'))
-			);
-			
-			$this->_regions['controls'] = form_button($submit).form_close();
 		}
-		
-		$data['inputs'] = array(
-			'email' => array(
-				'name' => 'email',
-				'id' => 'email'),
-			'password' => array(
-				'name' => 'password',
-				'id' => 'password'),
-			'submit' => array(
-				'type' => 'submit',
-				'class' => 'button',
-				'name' => 'submit',
-				'value' => 'submit',
-				'content' => ucwords(lang('button_submit'))
-			)
-		);
+
+		$data['header'] = lang('install_genre_title');
 		
 		$data['label'] = array(
 			'email' => ucwords(lang('global_email')),
@@ -532,7 +478,6 @@ abstract class Nova_install extends CI_Controller {
 		$this->_regions['content'] = Location::view($view_loc, '_base', 'install', $data);
 		$this->_regions['javascript'] = Location::js('genre_js', '_base', 'install');
 		$this->_regions['title'].= lang('install_genre_title');
-		$this->_regions['label'] = lang('install_genre_title');
 		
 		Template::assign($this->_regions);
 		
@@ -602,9 +547,8 @@ abstract class Nova_install extends CI_Controller {
 	
 	public function readme()
 	{
-		$this->_regions['content'] = Location::view('readme', '_base', 'install', 'foo');
+		$this->_regions['content'] = Location::view('readme', '_base', 'install', false);
 		$this->_regions['title'].= APP_NAME.' '.lang('global_readme_title');
-		$this->_regions['label'] = APP_NAME.' '.lang('global_readme_title');
 		
 		Template::assign($this->_regions);
 		
@@ -613,9 +557,6 @@ abstract class Nova_install extends CI_Controller {
 	
 	public function remove()
 	{
-		$flash['status'] = 'info';
-		$flash['message'] = lang_output('install_remove_warning');
-		
 		if (isset($_POST['submit']))
 		{
 			// set the POST variables
@@ -667,22 +608,11 @@ abstract class Nova_install extends CI_Controller {
 			// build the next step control
 			$this->_regions['controls'] = form_open('install/index').form_button($button).form_close();
 			$this->_regions['_redirect'] = Template::add_redirect('install/index', 15);
+			$this->_regions['flash_message'] = Location::view('flash', '_base', 'install', $flash);
 		}
 		else
 		{
-			$clear = array(
-				'type' => 'submit',
-				'class' => 'btn-main',
-				'name' => 'submit',
-				'value' => 'clear',
-				'id' => 'clear',
-				'content' => ucwords(lang('button_clear'))
-			);
-		
 			$view_loc = 'remove';
-			
-			// build the next step control
-			$this->_regions['controls'] = form_button($clear).form_close();
 		}
 		
 		$data['label'] = array(
@@ -690,12 +620,12 @@ abstract class Nova_install extends CI_Controller {
 			'email' => lang('global_email'),
 			'password' => lang('global_password'),
 		);
+
+		$data['header'] = lang('install_remove_title');
 		
 		$this->_regions['content'] = Location::view($view_loc, '_base', 'install', $data);
 		$this->_regions['javascript'] = Location::js('remove_js', '_base', 'install');
 		$this->_regions['title'].= lang('install_remove_title');
-		$this->_regions['label'] = lang('install_remove_title');
-		$this->_regions['flash_message'] = Location::view('flash', '_base', 'install', $flash);
 		
 		Template::assign($this->_regions);
 		
@@ -1582,20 +1512,12 @@ abstract class Nova_install extends CI_Controller {
 			'back' => lang('button_back_install'),
 			'text' => lang('verify_text')
 		);
-		
-		$button = array(
-			'name' => 'install',
-			'type' => 'submit',
-			'id' => 'install',
-			'class' => 'btn-main',
-			'content' => lang('button_begin_install'),
-		);
+
+		$data['header'] = 'Verify Server Requirements';
 		
 		$this->_regions['content'] = Location::view('verify', '_base', 'install', $data);
 		$this->_regions['javascript'] = Location::js('verify_js', '_base', 'install');
-		$this->_regions['controls'] = form_open('install/step/1').form_button($button).form_close();
-		$this->_regions['title'].= lang('verify_title');
-		$this->_regions['label'] = lang('verify_title');
+		$this->_regions['title'].= $data['header'];
 		
 		Template::assign($this->_regions);
 		
