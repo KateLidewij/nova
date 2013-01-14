@@ -92,14 +92,12 @@ if(isset($display))
 			$('tr.npc').toggle();
 			return false;
 		});
-		
-		$('[rel=tooltip]').twipsy({
-			animate: false,
-			offset: 5,
-			placement: 'right'
+
+		$('[rel="tooltip"]').tooltip({
+			placement: 'top'
 		});
 		
-		$('#loader').hide(); /* hide the loader */
-		$('#manifest').removeClass('hidden'); /* show the manifest */
+		$('#loader').hide();
+		$('#manifest').removeClass('hidden');
 	});
 </script>
