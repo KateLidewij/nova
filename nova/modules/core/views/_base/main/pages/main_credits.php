@@ -1,11 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<?php echo text_output($header, 'h1', 'page-head');?>
+<h1><?php echo $header;?></h1>
 
 <p><?php echo link_to_if($edit_valid, 'site/messages', $label['edit'], array('class' => 'edit fontSmall bold'));?></p>
 
-<?php echo text_output($msg_credits_perm);?>
+<?php echo content_output($msg_credits_perm);?>
 
-<br /> <hr /> <br />
+<hr>
 
-<?php echo text_output($msg_credits);?>
+<?php echo content_output($msg_credits);?>

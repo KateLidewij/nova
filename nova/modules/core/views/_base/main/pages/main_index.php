@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<?php echo text_output($header, 'h1', 'page-head');?>
+<h1><?php echo $header;?></h1>
 
-<?php echo text_output($msg_welcome);?>
+<?php echo text_output($message);?>
 
 <?php if (count($lists) > 1): ?>
 	<ul class="nav nav-tabs" id="tabs">
@@ -33,7 +33,7 @@
 					<span class="sub-icn sub-icn-date"><?php echo $value['date'];?></span>
 				</p>
 				
-				<?php echo text_output($value['content'], 'p');?>
+				<?php echo content_output($value['content'], 'p');?>
 
 				<hr>
 			<?php endforeach; ?>
@@ -45,7 +45,7 @@
 			<?php echo text_output($label['posts'], 'h2', 'page-subhead');?>
 			
 			<?php foreach ($lists['posts'] as $value): ?>
-				<h4><?php echo anchor('sim/viewpost/' . $value['id'], $value['title']);?></h4>
+				<h4><?php echo anchor('sim/viewpost/'.$value['id'], $value['title']);?></h4>
 				
 				<p class="muted"><span class="sub-icn sub-icn-user"><?php echo $value['authors'];?></span></p>
 				<p class="muted">
@@ -53,7 +53,7 @@
 					<span class="sub-icn sub-icn-date"><?php echo $value['date'];?></span>
 				</p>
 				
-				<?php echo text_output($value['content'], 'p');?>
+				<?php echo content_output($value['content'], 'p');?>
 
 				<hr>
 			<?php endforeach; ?>
@@ -72,7 +72,7 @@
 					<span class="sub-icn sub-icn-date"><?php echo $value['date'];?></span>
 				</p>
 				
-				<?php echo text_output($value['content'], 'p');?>
+				<?php echo content_output($value['content'], 'p');?>
 
 				<hr>
 			<?php endforeach; ?>
@@ -92,7 +92,7 @@
 				<span class="sub-icn sub-icn-date"><?php echo $value['date'];?></span>
 			</p>
 			
-			<?php echo text_output($value['content'], 'p');?>
+			<?php echo content_output($value['content'], 'p');?>
 
 			<hr>
 		<?php endforeach; ?>
@@ -110,7 +110,7 @@
 				<span class="sub-icn sub-icn-date"><?php echo $value['date'];?></span>
 			</p>
 			
-			<?php echo text_output($value['content'], 'p');?>
+			<?php echo content_output($value['content'], 'p');?>
 
 			<hr>
 		<?php endforeach; ?>
@@ -127,7 +127,7 @@
 				<span class="sub-icn sub-icn-date"><?php echo $value['date'];?></span>
 			</p>
 			
-			<?php echo text_output($value['content'], 'p');?>
+			<?php echo content_output($value['content'], 'p');?>
 
 			<hr>
 		<?php endforeach; ?>

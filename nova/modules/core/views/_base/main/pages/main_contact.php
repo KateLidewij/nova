@@ -1,43 +1,47 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<style type="text/css">
-	.error-icon {
-		margin-left: 1px;
-		padding-left: 22px;
-		background: transparent url('<?php echo base_url().APPFOLDER;?>/assets/images/exclamation-red.png') no-repeat left center;
-	}
-</style>
-<?php echo text_output($header, 'h1', 'page-head');?>
+<h1><?php echo $header;?></h1>
 
 <?php if ($this->options['system_email'] == 'on'): ?>
-	<?php echo text_output($msg);?>
+	<?php echo text_output($message);?>
 	
 	<?php echo form_open('main/contact');?>
-		<p>
-			<kbd><?php echo $label['name'];?></kbd>
-			<?php echo form_error('name');?>
-			<?php echo form_input($inputs['name']);?>
-		</p>
-		<p>
-			<kbd><?php echo $label['email'];?></kbd>
-			<?php echo form_error('email');?>
-			<?php echo form_input($inputs['email']);?>
-		</p>
-		<p>
-			<kbd><?php echo $label['subject'];?></kbd>
-			<?php echo form_error('subject');?>
-			<?php echo form_input($inputs['subject']);?>
-		</p>
-		<p>
-			<kbd><?php echo $label['message'];?></kbd>
-			<?php echo form_error('message');?>
-			<?php echo form_textarea($inputs['message']);?>
-		</p><br />
+		<div class="control-group<?php if ( ! $validate){ echo ' error';}?>">
+			<label class="control-label"><?php echo $label['name'];?></label>
+			<div class="controls">
+				<input type="text" name="name" id="name" class="span4" value="<?php echo set_value('name');?>">
+				<?php echo form_error('name', '<div class="help-block">', '</div>'); ?>
+			</div>
+		</div>
+
+		<div class="control-group<?php if ( ! $validate){ echo ' error';}?>">
+			<label class="control-label"><?php echo $label['email'];?></label>
+			<div class="controls">
+				<input type="email" name="email" id="email" class="span4" value="<?php echo set_value('email');?>">
+				<?php echo form_error('email', '<div class="help-block">', '</div>'); ?>
+			</div>
+		</div>
+
+		<div class="control-group<?php if ( ! $validate){ echo ' error';}?>">
+			<label class="control-label"><?php echo $label['subject'];?></label>
+			<div class="controls">
+				<input type="text" name="subject" id="subject" class="span4" value="<?php echo set_value('subject');?>">
+				<?php echo form_error('subject', '<div class="help-block">', '</div>'); ?>
+			</div>
+		</div>
+
+		<div class="control-group<?php if ( ! $validate){ echo ' error';}?>">
+			<label class="control-label"><?php echo $label['message'];?></label>
+			<div class="controls">
+				<textarea name="message" id="message" rows="12" class="span8"><?php echo set_value('message');?></textarea>
+				<?php echo form_error('message', '<div class="help-block">', '</div>'); ?>
+			</div>
+		</div>
 		
-		<p>
-			<?php echo form_button($button['submit']);?>
-		</p>
+		<div class="controls">
+			<button type="submit" name="submit" class="btn btn-primary"><?php echo $label['submit'];?></button>
+		</div>
 	<?php echo form_close();?>
 <?php else: ?>
-	<?php echo text_output($label['nosubmit'], 'h4', 'orange');?>
+	<?php echo text_output($label['nosubmit'], 'p', 'alert');?>
 <?php endif;?>

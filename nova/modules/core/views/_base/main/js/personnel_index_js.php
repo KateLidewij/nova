@@ -98,6 +98,6 @@ if(isset($display))
 		});
 		
 		$('#loader').hide();
-		$('#manifest').removeClass('hidden');
+		$('#manifest').show();
 	});
 </script>

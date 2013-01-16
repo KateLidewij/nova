@@ -1,10 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<?php echo text_output($header, 'h1', 'page-head');?>
+<h1><?php echo $header;?></h1>
 
 <?php echo text_output($msg);?>
-
-<p>&nbsp;</p>
 
 <?php echo form_open('main/join');?>
 	<?php echo form_hidden('agree', 'yes');?>
@@ -13,5 +11,7 @@
 		<?php echo form_hidden('position', $position);?>
 	<?php endif; ?>
 	
-	<p><?php echo form_button($button['agree']);?></p>
+	<div class="controls">
+		<button type="submit" name="button_agree" class="btn btn-primary"><?php echo ucwords(lang('actions_agree'));?></button>
+	</div>
 <?php echo form_close();?>

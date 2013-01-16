@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<?php echo text_output($header, 'h1', 'page-head');?>
+<h1><?php echo $header;?></h1>
 
-<?php echo text_output($message);?>
+<?php echo content_output($message);?>

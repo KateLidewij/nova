@@ -2,9 +2,8 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#tabs").tabs();
 		
-		$('table.zebra tbody > tr:nth-child(odd)').addClass('alt');
+		$("#tabs a:first").tab('show');
 		
 		$("a[rel^='prettyPhoto']").prettyPhoto({
 			theme: 'dark_rounded',

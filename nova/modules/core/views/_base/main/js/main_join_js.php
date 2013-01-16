@@ -2,17 +2,16 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		var $tabs = $('#tabs').tabs();
 		
+		$('#tabs a:first').tab('show');
+
 		$('#nextTab').click(function(){
-			var value = parseInt($tabs.tabs('option', 'selected'));
-			var length = $tabs.tabs('length');
 			
-			value = value + 1;
-			length = length - 1;
-			
-			if (value <= length)
-				$tabs.tabs('select', value);
+			// Find the active tab
+			var active = $("#tabs li.active");
+
+			// Show the next tab
+			active.next().children('a').tab('show');
 			
 			return false;
 		});
@@ -22,6 +21,7 @@
 		});
 		
 		$('#position').change(function(){
+			
 			var id = $('#position option:selected').val();
 			
 			$('#loading_update').ajaxStart(function(){

@@ -2,9 +2,10 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		
 		$('a.show').click(function() {
-			var id = $(this).attr('myID');
-			var header = $(this).attr('myTitle');
+			var id = $(this).data('id');
+			var header = $(this).data('title');
 			
 			$('.news').hide();
 			$('h1.page-head').html(header);
@@ -14,7 +15,7 @@
 		});
 		
 		$('a.all').click(function(){
-			var header = $(this).attr('myTitle');
+			var header = $(this).data('title');
 			
 			$('h1.page-head').html(header);
 			$('.news').show();
@@ -22,7 +23,7 @@
 			return false;
 		});
 		
-		$('#loader').hide(); /* hide the loader */
-		$('#news').removeClass('hidden'); /* show the news */
+		$('#loader').hide();
+		$('#news').removeClass('hidden');
 	});
 </script>

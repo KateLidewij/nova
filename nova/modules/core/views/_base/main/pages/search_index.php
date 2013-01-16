@@ -3,22 +3,28 @@
 <?php echo text_output($header, 'h1', 'page-head');?>
 
 <?php echo form_open('search/results');?>
-	<p>
-		<kbd><?php echo $label['type'];?></kbd>
-		<?php echo form_dropdown('type', $type);?>
-	</p>
+	<div class="control-group">
+		<label class="control-label"><?php echo $label['type'];?></label>
+		<div class="controls">
+			<?php echo form_dropdown('type', $type, false, 'class="span4"');?>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<label class="control-label"><?php echo $label['search_in'];?></label>
+		<div class="controls">
+			<?php echo form_dropdown('component', $component, false, 'class="span4"');?>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<label class="control-label"><?php echo $label['search_for'];?></label>
+		<div class="controls">
+			<input type="text" name="input" id="input" class="span4">
+		</div>
+	</div>
 	
-	<p>
-		<kbd><?php echo $label['search_in'];?></kbd>
-		<?php echo form_dropdown('component', $component);?>
-	</p>
-	
-	<p>
-		<kbd><?php echo $label['search_for'];?></kbd>
-		<?php echo form_input($inputs['search']);?>
-	</p><br />
-	
-	<p>
-		<?php echo form_button($inputs['submit']);?>
-	</p>
+	<div class="controls">
+		<button type="submit" name="submit" id="submit" class="btn btn-primary"><?php echo $label['submit'];?></button>
+	</div>
 <?php echo form_close();?>

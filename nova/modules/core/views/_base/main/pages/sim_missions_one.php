@@ -6,115 +6,101 @@
 	a.image span img { margin: 0px; padding: 0px; }
 </style>
 
-<?php echo text_output($header, 'h1', 'page-head');?>
+<h1><?php echo $header;?></h1>
 
-<p><?php echo anchor('sim/missions', $label['missions'], array('class' => 'bold'));?></p>
+<?php echo anchor('sim/missions', $label['missions'], array('class' => 'btn btn-small pull-right'));?>
 
 <?php if (isset($mission_img['src'])): ?>
 	<div id="gallery">
-		<?php echo text_output($label['open_gallery'], 'p', 'fontSmall gray bold');?>
-		<a href="<?php echo base_url() . $mission_img['src'];?>" class="image" rel="prettyPhoto[gallery]"><?php echo img($mission_img);?></a>
+		<?php echo text_output($label['open_gallery'], 'p', 'muted');?>
+		<p><a href="<?php echo base_url() . $mission_img['src'];?>" class="image" rel="prettyPhoto[gallery]"><?php echo img($mission_img);?></a></p>
 		
-		<div class="hidden">
+		<div class="hide">
 			<?php if (count($image_array) > 0): ?>
 				<?php foreach ($image_array as $image): ?>
-					<a href="<?php echo base_url() . $image['src'];?>" class="image" rel="prettyPhoto[gallery]"><?php echo img($image);?></a>
-				<?php endforeach; ?>
+					<a href="<?php echo base_url().$image['src'];?>" class="image" rel="prettyPhoto[gallery]"><?php echo img($image);?></a>
+				<?php endforeach;?>
 			<?php endif; ?>
 		</div>
 	</div>
 <?php endif; ?>
 
-<div id="tabs">
-	<ul>
-		<li><a href="#one"><span><?php echo $label['basicinfo'];?></span></a></li>
-		<li><a href="#two"><span><?php echo $label['posts'];?></span></a></li>
-		<li><a href="#three"><span><?php echo $label['summary'];?></span></a></li>
-	</ul>
-	
-	<div id="one">
+<ul class="nav nav-tabs" id="tabs">
+	<li><a href="#basic" data-toggle="tab"><?php echo $label['basicinfo'];?></a></li>
+	<li><a href="#posts" data-toggle="tab"><?php echo $label['posts'];?></a></li>
+	<li><a href="#summary" data-toggle="tab"><?php echo $label['summary'];?></a></li>
+</ul>
+
+<div class="tab-content">
+	<div id="basic" class="tab-pane">
 		<?php if (isset($basic)): ?>
-			<?php echo text_output($info_header, 'h2', 'page-subhead');?>
-			<table class="table100">
-				<tr>
-					<td class="cell-label"><?php echo $label['status'];?></td>
-					<td class="cell-spacer"></td>
-					<td><?php echo $basic['status'] .' '. $label['mission'];?></td>
-				</tr>
-				<?php echo table_row_spacer(3, 10);?>
-				<tr>
-					<td class="cell-label"><?php echo $label['desc'];?></td>
-					<td class="cell-spacer"></td>
-					<td><?php echo $basic['desc'];?></td>
-				</tr>
+			<h2><?php echo $info_header;?></h2>
+
+			<div class="form-horizontal">
+				<div class="control-group">
+					<label class="control-label"><?php echo $label['status'];?></label>
+					<div class="controls"><?php echo $basic['status'] .' '. $label['mission'];?></div>
+				</div>
+
 				<?php if (is_array($basic['group'])): ?>
-					<?php echo table_row_spacer(3, 10);?>
-					<tr>
-						<td class="cell-label"><?php echo $label['group'];?></td>
-						<td class="cell-spacer"></td>
-						<td><?php echo anchor('sim/missions/group/'. $basic['group']['misgroup_id'], $basic['group']['misgroup_name']);?></td>
-					</tr>
+					<div class="control-group">
+						<label class="control-label"><?php echo $label['group'];?></label>
+						<div class="controls"><?php echo anchor('sim/missions/group/'.$basic['group']['misgroup_id'], $basic['group']['misgroup_name']);?></div>
+					</div>
 				<?php endif;?>
-				
-				<?php echo table_row_spacer(3, 10);?>
-				<tr>
-					<td class="cell-label"><?php echo $label['date_start'];?></td>
-					<td class="cell-spacer"></td>
-					<td><?php echo $basic['start'];?></td>
-				</tr>
-				
+
+				<div class="control-group">
+					<label class="control-label"><?php echo $label['desc'];?></label>
+					<div class="controls"><?php echo $basic['desc'];?></div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label"><?php echo $label['date_start'];?></label>
+					<div class="controls"><?php echo $basic['start'];?></div>
+				</div>
+
 				<?php if (isset($basic['end'])): ?>
-					<tr>
-						<td class="cell-label"><?php echo $label['date_end'];?></td>
-						<td class="cell-spacer"></td>
-						<td><?php echo $basic['end'];?></td>
-					</tr>
-				<?php endif; ?>
-			</table><br />
+					<div class="control-group">
+						<label class="control-label"><?php echo $label['date_end'];?></label>
+						<div class="controls"><?php echo $basic['end'];?></div>
+					</div>
+				<?php endif;?>
+			</div>
 		<?php endif; ?>
 	</div>
 	
-	<div id="two">
+	<div id="posts" class="tab-pane">
 		<?php if (isset($posts)): ?>
-			<?php echo text_output($posts_header, 'h2', 'page-subhead');?>
-			<p><?php echo anchor('sim/listposts/mission/'. $mission, $label['view_all_posts'], array('class' => 'bold'));?></p>
-			
-			<table class="table100 zebra" cellspacing="0" cellpadding="3">
-				<thead>
-					<tr>
-						<th><?php echo $label['title'];?></th>
-						<th><?php echo $label['timeline'];?></th>
-						<th><?php echo $label['location'];?></th>
-					</tr>
-				</thead>
-				<tbody>
+			<?php echo anchor('sim/listposts/mission/'. $mission, $label['view_all_posts'], array('class' => 'btn btn-small pull-right'));?>
+
+			<h2><?php echo $posts_header;?></h2>
+
+			<dl>
 				<?php foreach ($posts as $post): ?>
-					<tr>
-						<td class="col_50pct">
-							<strong>
-								<?php echo anchor('sim/viewpost/'. $post['id'], $post['title'], array('class' => 'bold'));?>
-							</strong><br />
-							<span class="fontSmall gray">
-								<?php echo $label['by'] .' '. $post['authors'];?>
-							</span>
-						</td>
-						<td class="col_25pct"><?php echo $post['timeline'];?></td>
-						<td class="col_25pct"><?php echo $post['location'];?></td>
-					</tr>
-				<?php endforeach; ?>
-				</tbody>
-			</table>
+					<dt><?php echo anchor('sim/viewpost/'. $post['id'], $post['title']);?></dt>
+					<dd class="sub-icn sub-icn-user muted"><?php echo $post['authors'];?></dd>
+					
+					<?php if ( ! empty($post['timeline'])): ?>
+						<dd class="sub-icn sub-icn-date muted"><?php echo $post['timeline'];?></dd>
+					<?php endif;?>
+
+					<?php if ( ! empty($post['location'])): ?>
+						<dd class="sub-icn sub-icn-map muted"><?php echo $post['location'];?></dd>
+					<?php endif;?>
+				<?php endforeach;?>
+			</dl>
 		<?php else: ?>
-			<?php echo text_output($label['noposts'], 'h3', 'orange');?>
+			<?php echo text_output($label['noposts'], 'p', 'alert');?>
 		<?php endif; ?>
 	</div>
 	
-	<div id="three">
-		<?php if (isset($summary)): ?>
-			<?php echo text_output($summary['title'], 'h2', 'page-subhead');?>
-			<?php echo text_output($summary['content']);?>
+	<div id="summary" class="tab-pane">
+		<?php if ( ! empty($summary['content'])): ?>
+			<h2><?php echo $summary['title'];?></h2>
+			
+			<?php echo content_output($summary['content']);?>
 		<?php else: ?>
-			<?php echo text_output($label['nosummary'], 'h3', 'orange');?>
+			<?php echo text_output($label['nosummary'], 'p', 'alert');?>
 		<?php endif; ?>
 	</div>
 </div>
