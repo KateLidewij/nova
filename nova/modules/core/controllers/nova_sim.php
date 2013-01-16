@@ -154,7 +154,7 @@ abstract class Nova_sim extends Nova_controller_main {
 				}
 				
 				// other data used by the template
-				$data['header'] = $title . $data['name'];
+				$data['header'] = $data['name'];
 				
 				// the name of the view
 				$view_loc = 'sim_awards_one';
@@ -174,7 +174,8 @@ abstract class Nova_sim extends Nova_controller_main {
 		
 		$data['label'] = array(
 			'awarded' => ucwords(lang('actions_awarded')) .':',
-			'back' => LARROW.' '.ucwords(lang('actions_back')).' '.lang('labels_to').' '.ucwords(lang('global_awards')),
+			'awarded_to' => ucwords(lang('actions_awarded').' '.lang('labels_to')),
+			'back' => ucwords(lang('actions_back')).' '.lang('labels_to').' '.ucwords(lang('global_awards')),
 			'category' => ucwords(lang('labels_category')) .':',
 			'details' => ucfirst(lang('labels_details')),
 			'edit' => '[ '. ucfirst(lang('actions_edit')) .' ]',
@@ -182,7 +183,6 @@ abstract class Nova_sim extends Nova_controller_main {
 		);
 		
 		$this->_regions['content'] = Location::view($view_loc, $this->skin, 'main', $data);
-		$this->_regions['javascript'] = Location::js('sim_awards_js', $this->skin, 'main');
 		$this->_regions['title'].= $data['header'];
 		
 		Template::assign($this->_regions);
@@ -1297,7 +1297,7 @@ abstract class Nova_sim extends Nova_controller_main {
 		}
 		
 		$data['label'] += array(
-			'backgroups' => LARROW.' '.ucwords(lang('actions_back')).' '.lang('labels_to').' '.ucwords(lang('global_missiongroups')),
+			'backgroups' => ucwords(lang('actions_back')).' '.lang('labels_to').' '.ucwords(lang('global_missiongroups')),
 			'basicinfo' => ucwords(lang('labels_basic') .' '. lang('labels_info')),
 			'by' => lang('labels_by'),
 			'count' => ucwords(lang('global_post') .' '. lang('labels_count')) .':',
@@ -1314,7 +1314,7 @@ abstract class Nova_sim extends Nova_controller_main {
 			'included_groups' => ucwords(lang('labels_included') .' '. lang('global_missiongroups')),
 			'location' => ucfirst(lang('labels_location')),
 			'mission' => ucfirst(lang('global_mission')),
-			'missions' => LARROW.' '.ucwords(lang('actions_back')).' '.lang('labels_to').' '.ucwords(lang('global_missions')),
+			'missions' => ucwords(lang('actions_back')).' '.lang('labels_to').' '.ucwords(lang('global_missions')),
 			'nogroup' => sprintf(lang('error_not_found'), lang('global_missiongroup')),
 			'nogroups' => sprintf(lang('error_not_found'), lang('global_missiongroups')),
 			'nomissions' => sprintf(lang('error_not_found'), lang('global_missions')),
@@ -1327,7 +1327,7 @@ abstract class Nova_sim extends Nova_controller_main {
 			'summary' => ucfirst(lang('labels_summary')),
 			'timeline' => ucfirst(lang('labels_timeline')),
 			'title' => ucfirst(lang('labels_title')),
-			'view_all_posts' => ucwords(lang('actions_viewall').' '.lang('global_posts') .' '. RARROW),
+			'view_all_posts' => ucwords(lang('actions_viewall').' '.lang('global_posts')),
 		);
 		
 		$this->_regions['content'] = Location::view($view_loc, $this->skin, 'main', $data);

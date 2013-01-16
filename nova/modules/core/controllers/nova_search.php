@@ -24,19 +24,6 @@ abstract class Nova_search extends Nova_controller_main {
 		// set the page title
 		$data['header'] = ucfirst(lang('actions_search'));
 		
-		// set the input data
-		$data['inputs'] = array(
-			'search' => array(
-				'name' => 'input',
-				'id' => 'input'),
-			'submit' => array(
-				'type' => 'submit',
-				'class' => 'button-main',
-				'name' => 'search',
-				'value' => 'search',
-				'content' => ucwords(lang('actions_search')))
-		);
-		
 		// set the type array
 		$data['type'] = array(
 			'posts' => ucwords(lang('global_missionposts')),
@@ -56,6 +43,7 @@ abstract class Nova_search extends Nova_controller_main {
 			'type' => ucwords(lang('labels_type')),
 			'search_in' => ucwords(lang('actions_search') .' '. lang('labels_in')),
 			'search_for' => ucwords(lang('actions_search') .' '. lang('labels_for')),
+			'submit' => ucwords(lang('actions_search')),
 		);
 		
 		$this->_regions['content'] = Location::view('search_index', $this->skin, 'main', $data);

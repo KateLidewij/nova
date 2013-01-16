@@ -21,37 +21,32 @@ abstract class Nova_main extends Nova_controller_main {
 
 	public function index()
 	{
-		// should we show the news?
+		// Should we show the news?
 		$data['lists']['news'] = ($this->options['show_news'] == 'y') ? self::_show_news() : false;
 		
-		// should we show personal logs?
+		// Should we show personal logs?
 		$data['lists']['logs'] = ($this->options['show_logs'] == 'y') ? self::_show_logs() : false;
 		
-		// should we show mission posts?
+		// Should we show mission posts?
 		$data['lists']['posts'] = ($this->options['show_posts'] == 'y') ? self::_show_posts() : false;
 		
-		// make sure only real content is in the set of lists
+		// Make sure only real content is in the set of lists
 		foreach ($data['lists'] as $key => $list)
 		{
-			if ($list === false)
+			if ( ! $list)
 			{
 				unset($data['lists'][$key]);
 			}
 		}
 		
-		// header and welcome message
+		// Header and welcome message
 		$data['header'] = $this->msgs->get_message('welcome_head');
-		$data['msg_welcome'] = $this->msgs->get_message('welcome_msg');
+		$data['message'] = $this->msgs->get_message('welcome_msg');
 		
-		// labels
 		$data['label'] = array(
 			'logs' => ucwords(lang('status_latest') .' '. lang('global_personallogs')),
 			'news' => ucwords(lang('status_latest') .' '. lang('global_newsitems')),
 			'posts' => ucwords(lang('status_latest') .' '. lang('global_missionposts')),
-			'posted' => ucfirst(lang('actions_posted') .' '. lang('labels_on')),
-			'by' => lang('labels_by'),
-			'in' => lang('labels_in'),
-			'mission' => ucfirst(lang('global_mission')),
 		);
 		
 		$this->_regions['content'] = Location::view('main_index', $this->skin, 'main', $data);
@@ -76,6 +71,8 @@ abstract class Nova_main extends Nova_controller_main {
 		$this->form_validation->set_rules('email', 'lang:labels_email_address', 'required|valid_email');
 		$this->form_validation->set_rules('subject', 'lang:labels_subject', 'required');
 		$this->form_validation->set_rules('message', 'lang:labels_message', 'required');
+
+		$data['validate'] = true;
 		
 		if (isset($_POST['submit']))
 		{
@@ -85,8 +82,10 @@ abstract class Nova_main extends Nova_controller_main {
 				'subject'	=> $this->input->post('subject'),
 				'message'	=> $this->input->post('message')
 			);
+
+			$validate = $this->form_validation->run();
 			
-			if ($this->form_validation->run())
+			if ($validate)
 			{
 				$email = ($this->options['system_email'] == 'on') ? $this->_email('contact', $array) : false;
 				
@@ -117,45 +116,13 @@ abstract class Nova_main extends Nova_controller_main {
 				
 				$this->_regions['flash_message'] = Location::view('flash', $this->skin, 'main', $flash);
 			}
+
+			$data['validate'] = $validate;
 		}
 		
 		// set the title, header and content variables
 		$data['header'] = ucwords(lang('actions_contact').' '.lang('labels_us'));
-		$data['msg'] = $this->msgs->get_message('contact');
-		
-		$data['button'] = array(
-			'submit' => array(
-				'type' => 'submit',
-				'class' => 'button-main',
-				'name' => 'submit',
-				'value' => 'submit',
-				'content' => ucwords(lang('actions_submit'))),
-		);
-		
-		if ($this->options['system_email'] == 'off')
-		{
-			$data['button']['submit']['disabled'] = 'disabled';
-		}
-		
-		$data['inputs'] = array(
-			'name' => array(
-				'name' => 'name',
-				'id' => 'name',
-				'value' => set_value('name')),
-			'email' => array(
-				'name' => 'email',
-				'id' => 'email',
-				'value' => set_value('email')),
-			'subject' => array(
-				'name' => 'subject',
-				'id' => 'subject',
-				'value' => set_value('subject')),
-			'message' => array(
-				'name' => 'message',
-				'id' => 'message',
-				'rows' => 12,
-				'value' => set_value('message'))
-		);
+		$data['message'] = $this->msgs->get_message('contact');
 		
 		$data['label'] = array(
 			'send' => ucwords(lang('actions_send') .' '. lang('labels_to')),
@@ -164,6 +131,7 @@ abstract class Nova_main extends Nova_controller_main {
 			'subject' => ucwords(lang('labels_subject')),
 			'message' => ucwords(lang('labels_message')),
 			'nosubmit' => lang('flash_system_email_off_disabled'),
+			'submit' => ucwords(lang('actions_submit')),
 		);
 		
 		$this->_regions['content'] = Location::view('main_contact', $this->skin, 'main', $data);
@@ -508,43 +476,6 @@ abstract class Nova_main extends Nova_controller_main {
 			// figure out where the view should be coming from
 			$view_loc = 'main_join_2';
 			
-			// inputs
-			$data['inputs'] = array(
-				'name' => array(
-					'name' => 'name',
-					'id' => 'name'),
-				'email' => array(
-					'name' => 'email',
-					'id' => 'email'),
-				'password' => array(
-					'name' => 'password',
-					'id' => 'password'),
-				'dob' => array(
-					'name' => 'date_of_birth',
-					'id' => 'date_of_birth'),
-				'im' => array(
-					'name' => 'instant_message',
-					'id' => 'instant_message',
-					'rows' => 4),
-				'first_name' => array(
-					'name' => 'first_name',
-					'id' => 'first_name'),
-				'middle_name' => array(
-					'name' => 'middle_name',
-					'id' => 'middle_name'),
-				'last_name' => array(
-					'name' => 'last_name',
-					'id' => 'last_name'),
-				'suffix' => array(
-					'name' => 'suffix',
-					'id' => 'suffix',
-					'class' => 'medium'),
-				'sample_post' => array(
-					'name' => 'sample_post',
-					'id' => 'sample_post',
-					'rows' => 30),
-			);
-			
 			// get the sample post question
 			$data['sample_post_msg'] = $this->msgs->get_message('join_post');
 			
@@ -566,37 +497,15 @@ abstract class Nova_main extends Nova_controller_main {
 				'samplepost' => ucwords(lang('labels_sample_post')),
 				'character' => ucfirst(lang('global_character')),
 				'character_info' => ucwords(lang('global_character') .' '. lang('labels_info')),
+				'submit' => ucwords(lang('actions_submit')),
+				'next_step' => ucwords(lang('actions_next') .' '. lang('labels_step')),
 			);
 		}
-		
-		// submit button
-		$data['button'] = array(
-			'submit' => array(
-				'type' => 'submit',
-				'class' => 'button-main',
-				'name' => 'submit',
-				'value' => 'submit',
-				'id' => 'submitJoin',
-				'content' => ucwords(lang('actions_submit'))),
-			'next' => array(
-				'type' => 'submit',
-				'class' => 'button-sec',
-				'name' => 'submit',
-				'value' => 'submit',
-				'id' => 'nextTab',
-				'content' => ucwords(lang('actions_next') .' '. lang('labels_step'))),
-			'agree' => array(
-				'type' => 'submit',
-				'class' => 'button-main',
-				'name' => 'button_agree',
-				'value' => 'agree',
-				'content' => ucwords(lang('actions_agree')))
-		);
 		
 		$data['header'] = ucfirst(lang('actions_join'));
 		
 		$data['loading'] = array(
-			'src' => Location::img('loading-circle.gif', $this->skin, 'main'),
+			'src' => Location::img('loader.gif', $this->skin, 'main'),
 			'alt' => lang('actions_loading'),
 			'class' => 'image'
 		);
@@ -891,9 +800,9 @@ abstract class Nova_main extends Nova_controller_main {
 					'alt' => lang('labels_subscribe'),
 					'class' => 'image'),
 				'comment' => array(
-					'src' => Location::img('comment-add.png', $this->skin, 'main'),
+					'src' => Location::img('comment.png', $this->skin, 'main'),
 					'alt' => '',
-					'class' => 'inline_img_left image'),
+					'class' => 'image'),
 				'edit' => array(
 					'src' => Location::img('write-news-edit.png', $this->skin, 'main'),
 					'alt' => ucfirst(lang('actions_edit')),

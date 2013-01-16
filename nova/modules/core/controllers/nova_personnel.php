@@ -377,7 +377,6 @@ abstract class Nova_personnel extends Nova_controller_main {
 		);
 		
 		$this->_regions['content'] = Location::view('personnel_coc', $this->skin, 'main', $data);
-		$this->_regions['javascript'] = Location::js('personnel_coc_js', $this->skin, 'main');
 		$this->_regions['title'].= $data['header'];
 		
 		Template::assign($this->_regions);
