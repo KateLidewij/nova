@@ -78,17 +78,17 @@ if ( ! function_exists('lang_output'))
  */	
 if ( ! function_exists('text_output'))
 {
-	function text_output($text = '', $element = 'p', $class = NULL, $nl2br = TRUE)
+	function text_output($text = '', $element = 'p', $class = null, $nl2br = true)
 	{
 		/* set the class variable */
-		$class_var = (isset($class)) ? ' class="' . $class . '"' : NULL;
+		$class_var = (isset($class)) ? ' class="' . $class . '"' : null;
 		
 		/* set the content */
-		$content = ($nl2br == TRUE) ? nl2br($text) : $text;
+		$content = ($nl2br) ? nl2br($text) : $text;
 		
 		/* set the elements */
-		$start_element = ($element == '') ? NULL : '<'. $element . $class_var .'>';
-		$end_element = ($element == '') ? NULL : '</'. $element .'>';
+		$start_element = ($element == '') ? null : '<'. $element . $class_var .'>';
+		$end_element = ($element == '') ? null : '</'. $element .'>';
 		
 		/* set up the entire element */
 		$retval = $start_element . $content . $end_element;
@@ -96,4 +96,69 @@ if ( ! function_exists('text_output'))
 		/* return the element */
 		return $retval;
 	}
+}
+
+if ( ! function_exists('nl2p'))
+{
+	function nl2p($str)
+	{
+		return str_replace("\n\n", "</p>\n<p>", '<p>'.$str.'</p>');
+	}
+}
+
+if ( ! function_exists('content_output'))
+{
+	function content_output($str, $class = false)
+	{
+		return br2p(text_output($str, '', $class));
+	}
+}
+
+if ( ! function_exists('br2p'))
+{
+	function br2p($text)
+    {
+    	$text = explode('<br />', $text);
+		
+		$lastEmpty = true;
+		$outOfP = false;
+		
+		$str = '<p>';
+		
+		foreach($text as $sub)
+		{
+			$len0 = (strlen(trim($sub)) == 0);
+
+			if ($len0)
+			{
+				if( ! $outOfP)
+					$str.= '</p>';
+				else
+					$str.= '<br>';
+			}
+			else
+			{
+				if ($outOfP)
+				{
+					$str.= '<p>';
+					$outOfP = false;
+				}
+				elseif ( ! $lastEmpty)
+				{
+					$str.= '<br>';
+				}
+				
+				$str.= $sub;
+			}
+
+			if($len0)
+				$outOfP = true;
+
+			$lastEmpty = $len0;
+		}
+
+		$str.= '</p>';
+		
+		return $str;
+    }
 }
