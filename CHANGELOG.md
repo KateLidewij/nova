@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.5.0
+
+### Nova Core
+
+* Updated Bootstrap to version 2.2.1.
+* Updated Pulsar skin to be built entirely off of Bootstrap.
+* Updated Titan skin to be built entirely off of Bootstrap.
+* Removed excess `<br>` tags from the view files that were used for spacing purposes.
+* Removed the SMS Archives feature from Nova 1.0. The Archives model still exists to pull information from old SMS tables, but there is no longer a front-end interface for viewing them out of the box.
+* Added a page to view all of character or user's news items.
+
 ## 2.1.4 (10 January 2013)
 
 ### Nova Core
