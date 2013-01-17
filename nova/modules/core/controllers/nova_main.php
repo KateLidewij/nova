@@ -785,31 +785,6 @@ abstract class Nova_main extends Nova_controller_main {
 					'content' => ucwords(lang('actions_submit')))
 			);
 			
-			// image parameters
-			$data['images'] = array(
-				'next' => array(
-					'src' => Location::img('next.png', $this->skin, 'main'),
-					'alt' => ucfirst(lang('actions_next')),
-					'class' => 'image'),
-				'prev' => array(
-					'src' => Location::img('previous.png', $this->skin, 'main'),
-					'alt' => ucfirst(lang('status_previous')),
-					'class' => 'image'),
-				'feed' => array(
-					'src' => Location::img('feed.png', $this->skin, 'main'),
-					'alt' => lang('labels_subscribe'),
-					'class' => 'image'),
-				'comment' => array(
-					'src' => Location::img('comment.png', $this->skin, 'main'),
-					'alt' => '',
-					'class' => 'image'),
-				'edit' => array(
-					'src' => Location::img('write-news-edit.png', $this->skin, 'main'),
-					'alt' => ucfirst(lang('actions_edit')),
-					'title' => ucfirst(lang('actions_edit')),
-					'class' => 'image'),
-			);
-			
 			// figure out where the view should be coming from
 			$view_loc = 'main_viewnews';
 			$js_loc = 'main_viewnews_js';
@@ -856,14 +831,12 @@ abstract class Nova_main extends Nova_controller_main {
 			'by' => lang('labels_by'),
 			'category' => ucfirst(lang('labels_category')) .':',
 			'tags' => ucfirst(lang('labels_tags')) .':',
-			'addcomment' => ucfirst(lang('actions_add')) .' '. lang('labels_a') .' '.
-				ucfirst(lang('labels_comment')),
+			'addcomment' => ucfirst(lang('actions_add')) .' '. lang('labels_a') .' '. ucfirst(lang('labels_comment')),
 			'comments' => ucfirst(lang('labels_comments')),
 			'on' => lang('labels_on'),
 			'edited' => ucfirst(lang('actions_edited')),
 			'error_pagetitle' => lang('error_pagetitle'),
-			'error_private_news' => lang('error_private_news'),
-			'edit' => '[ '. ucfirst(lang('actions_edit')) .' ]',
+			'error_private_news' => sprintf(lang('error_private_news'), lang('global_newsitem')),
 		);
 		
 		$this->_regions['content'] = Location::view($view_loc, $this->skin, 'main', $data);

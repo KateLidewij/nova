@@ -909,6 +909,7 @@ abstract class Nova_personnel extends Nova_controller_main {
 			
 			$posts = $this->posts->get_character_posts($characters, 5);
 			$logs = $this->logs->get_character_logs($characters, 5);
+			$news = $this->news->get_character_news($characters, 5);
 			
 			if ($posts->num_rows() > 0)
 			{
@@ -935,6 +936,21 @@ abstract class Nova_personnel extends Nova_controller_main {
 					$data['logs'][$i]['log_id'] = $l->log_id;
 					$data['logs'][$i]['date'] = mdate($datestring, gmt_to_local($l->log_date, $this->timezone, $this->dst));
 					$data['logs'][$i]['author'] = $this->char->get_character_name($l->log_author_character, true);
+					
+					++$i;
+				}
+			}
+
+			if ($news->num_rows() > 0)
+			{
+				$i = 1;
+				foreach ($news->result() as $n)
+				{
+					$data['news'][$i]['title'] = $n->news_title;
+					$data['news'][$i]['news_id'] = $n->news_id;
+					$data['news'][$i]['category'] = $n->newscat_name;
+					$data['news'][$i]['date'] = mdate($datestring, gmt_to_local($n->news_date, $this->timezone, $this->dst));
+					$data['news'][$i]['author'] = $this->char->get_character_name($n->news_author_character, true);
 					
 					++$i;
 				}
@@ -1017,6 +1033,7 @@ abstract class Nova_personnel extends Nova_controller_main {
 			'mission' => ucfirst(lang('global_mission')),
 			'missionposts' => ucwords(lang('global_missionposts')),
 			'name' => ucfirst(lang('labels_name')),
+			'newsitems' => ucwords(lang('global_newsitems')),
 			'noawards' => sprintf(lang('error_not_found'), lang('global_awards')),
 			'nologin' => sprintf(lang('error_not_found'), lang('order_last').' '.lang('actions_login')),
 			'nologs' => sprintf(lang('error_not_found'), lang('global_personallogs')),
@@ -1024,6 +1041,7 @@ abstract class Nova_personnel extends Nova_controller_main {
 			'nobasic' => sprintf(lang('error_not_found'), lang('labels_basic').' '.lang('labels_info')),
 			'nopost' => sprintf(lang('error_not_found'), lang('order_last').' '.lang('global_post')),
 			'noposts' => sprintf(lang('error_not_found'), lang('global_missionposts')),
+			'nonews' => sprintf(lang('error_not_found'), lang('global_newsitems')),
 			'norankhistory' => sprintf(lang('error_not_found'), lang('global_rank').' '.lang('labels_history')),
 			'npcs' => lang('abbr_npcs'),
 			'personallogs' => ucwords(lang('global_personallogs')),
@@ -1039,9 +1057,10 @@ abstract class Nova_personnel extends Nova_controller_main {
 			'to' => lang('labels_to'),
 			'totallogs' => ucwords(lang('labels_total').' '.lang('global_personallogs')),
 			'totalposts' => ucwords(lang('labels_total').' '.lang('global_missionposts')),
-			'viewawards' => ucwords(lang('actions_view').' '.lang('global_user').' '.lang('global_awards').' '.RARROW),
-			'viewlogs' => ucwords(lang('actions_view').' '.lang('global_user').' '.lang('global_logs').' '.RARROW),
-			'viewposts' => ucwords(lang('actions_view').' '.lang('global_user').' '.lang('global_posts').' '.RARROW),
+			'viewawards' => ucwords(lang('actions_view').' '.lang('global_user').' '.lang('global_awards')),
+			'viewlogs' => ucwords(lang('actions_view').' '.lang('global_user').' '.lang('global_logs')),
+			'viewnews' => ucwords(lang('actions_view').' '.lang('global_user').' '.lang('global_news')),
+			'viewposts' => ucwords(lang('actions_view').' '.lang('global_user').' '.lang('global_posts')),
 		);
 		
 		$this->_regions['content'] = Location::view('personnel_user', $this->skin, 'main', $data);
@@ -1094,7 +1113,8 @@ abstract class Nova_personnel extends Nova_controller_main {
 								$data['char'][$row->awardrec_character]['character'] = $this->char->get_character_name($row->awardrec_character, true);
 								$data['char'][$row->awardrec_character]['awards'][$i]['award_id'] = $row->award_id;
 								$data['char'][$row->awardrec_character]['awards'][$i]['award'] = $row->award_name;
-								$data['char'][$row->awardrec_character]['awards'][$i]['date'] = mdate($datestring, $date);
+								$data['char'][$row->awardrec_character]['awards'][$i]['desc'] = $row->award_desc;
+								$data['char'][$row->awardrec_character]['awards'][$i]['date'] = ( ! empty($row->awardrec_date)) ? mdate($datestring, $date) : false;
 								$data['char'][$row->awardrec_character]['awards'][$i]['reason'] = $row->awardrec_reason;
 								$data['char'][$row->awardrec_character]['awards'][$i]['img'] = $award_img;
 								$data['char'][$row->awardrec_character]['awards'][$i]['nom'] = $this->char->get_character_name($row->awardrec_nominated_by, true);
@@ -1103,7 +1123,8 @@ abstract class Nova_personnel extends Nova_controller_main {
 							{
 								$data['awards'][$i]['award_id'] = $row->award_id;
 								$data['awards'][$i]['award'] = $row->award_name;
-								$data['awards'][$i]['date'] = mdate($datestring, $date);
+								$data['awards'][$i]['desc'] = $row->award_desc;
+								$data['awards'][$i]['date'] = ( ! empty($row->awardrec_date)) ? mdate($datestring, $date) : false;
 								$data['awards'][$i]['reason'] = $row->awardrec_reason;
 								$data['awards'][$i]['img'] = $award_img;
 								$data['awards'][$i]['nom'] = $this->char->get_character_name($row->awardrec_nominated_by, true);
@@ -1158,7 +1179,8 @@ abstract class Nova_personnel extends Nova_controller_main {
 
 							$data['awards'][$i]['award_id'] = $row->award_id;
 							$data['awards'][$i]['award'] = $row->award_name;
-							$data['awards'][$i]['date'] = mdate($datestring, $date);
+							$data['awards'][$i]['desc'] = $row->award_desc;
+							$data['awards'][$i]['date'] = ( ! empty($row->awardrec_date)) ? mdate($datestring, $date) : false;
 							$data['awards'][$i]['reason'] = $row->awardrec_reason;
 							$data['awards'][$i]['img'] = $award_img;
 							$data['awards'][$i]['nom'] = $this->char->get_character_name($row->awardrec_nominated_by, true);
@@ -1196,9 +1218,9 @@ abstract class Nova_personnel extends Nova_controller_main {
 			'award' => ucfirst(lang('global_award')),
 			'awarded' => ucfirst(lang('actions_awarded')),
 			'awards' => ucfirst(lang('global_awards')),
-			'backchar' => LARROW.' '.ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '.
+			'backchar' => ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '.
 				ucwords(lang('global_character') .' '. lang('labels_bio')),
-			'backuser' => LARROW.' '.ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '.
+			'backuser' => ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '.
 				ucwords(lang('global_user') .' '. lang('labels_bio')),
 			'nominatedby' => ucfirst(lang('actions_nominated') .' '. lang('labels_by')),
 			'ooc' => ucwords(lang('labels_ooc')),
@@ -1206,7 +1228,6 @@ abstract class Nova_personnel extends Nova_controller_main {
 		);
 		
 		$this->_regions['content'] = Location::view('personnel_viewawards', $this->skin, 'main', $data);
-		$this->_regions['javascript'] = Location::js('personnel_viewawards_js', $this->skin, 'main');
 		$this->_regions['title'].= $data['header'];
 		
 		Template::assign($this->_regions);
@@ -1286,8 +1307,22 @@ abstract class Nova_personnel extends Nova_controller_main {
 					$config['total_rows'] = $this->logs->count_character_logs($id);
 					$config['uri_segment'] = 5;
 					$config['per_page'] = $this->options['list_logs_num'];
-					$config['full_tag_open'] = '<p class="fontMedium">';
-					$config['full_tag_close'] = '</p>';
+					$config['full_tag_open']	= '<div class="pagination"><ul>';
+					$config['full_tag_close']	= '</ul></div>';
+					$config['num_tag_open'] 	= '<li>';
+					$config['num_tag_close'] 	= '</li>';
+					$config['num_tag_open'] 	= '<li>';
+					$config['num_tag_close'] 	= '</li>';
+					$config['cur_tag_open'] 	= '<li class="active"><a href="#">';
+					$config['cur_tag_close'] 	= '</a></li>';
+					$config['prev_tag_open'] 	= '<li>';
+					$config['prev_tag_close'] 	= '</li>';
+					$config['next_tag_open'] 	= '<li>';
+					$config['next_tag_close'] 	= '</li>';
+					$config['last_tag_open'] 	= '<li>';
+					$config['last_tag_close'] 	= '</li>';
+					$config['first_tag_open'] 	= '<li>';
+					$config['first_tag_close'] 	= '</li>';
 				
 					// initialize the pagination library
 					$this->pagination->initialize($config);
@@ -1357,15 +1392,15 @@ abstract class Nova_personnel extends Nova_controller_main {
 		
 		$data['label'] = array(
 			'addcomment' => ucfirst(lang('actions_add')).' '.lang('labels_a').' '.lang('labels_comment'),
-			'backchar' => LARROW .' '. ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '.
+			'backchar' => ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '.
 				ucwords(lang('global_character') .' '. lang('labels_bio')),
-			'backuser' => LARROW .' '. ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '.
+			'backuser' => ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '.
 				ucwords(lang('global_user') .' '. lang('labels_bio')),
 			'blurb' => ucfirst(lang('labels_blurb')),
 			'by' => lang('labels_by'),
 			'comments' => ucfirst(lang('labels_comments')),
 			'edited' => ucfirst(lang('actions_edited') .' '. lang('labels_on')),
-			'nologs' => lang('error_no_logs'),
+			'nologs' => sprintf(lang('error_not_found'), lang('global_personallogs')),
 			'on' => lang('labels_on'),
 			'posted' => ucfirst(lang('actions_posted') .' '. lang('labels_on')),
 			'tags' => ucfirst(lang('labels_tags')) .':',
@@ -1374,7 +1409,188 @@ abstract class Nova_personnel extends Nova_controller_main {
 		);
 		
 		$this->_regions['content'] = Location::view('personnel_viewlogs', $this->skin, 'main', $data);
-		$this->_regions['javascript'] = Location::js('personnel_viewlogs_js', $this->skin, 'main');
+		$this->_regions['title'].= $data['header'];
+		
+		Template::assign($this->_regions);
+		
+		Template::render();
+	}
+
+	public function viewnews($type = 'default', $id = false, $offset = 0)
+	{
+		// load the resources
+		$this->load->library('pagination');
+		$this->load->model('news_model', 'news');
+		$this->load->helper('text');
+		
+		// sanity checks
+		$id = (is_numeric($id)) ? $id : false;
+		$offset = (is_numeric($offset)) ? $offset : 0;
+		
+		// set the data variable
+		$data = false;
+		
+		switch ($type)
+		{
+			case 'u':
+				// run the model methods
+				$row = $this->user->get_user($id);
+				$data['user'] = $id;
+				
+				if ($row !== false)
+				{
+					// get the user's characters
+					$characters = $this->char->get_user_characters($row->userid, 'active', 'array');
+					
+					foreach ($characters as $char)
+					{
+						// set the character name info
+						$data['char'][$char]['character'] = $this->char->get_character_name($char, true);
+						
+						// grab all the character posts
+						$news = $this->news->get_character_news($char);
+						
+						if ($news->num_rows() > 0)
+						{
+							$datestring = $this->options['date_format'];
+
+							foreach ($news->result() as $n)
+							{
+								$date = gmt_to_local($n->news_date, $this->timezone, $this->dst);
+
+								$data['char'][$char]['news'][$n->news_id]['id'] = $n->news_id;
+								$data['char'][$char]['news'][$n->news_id]['title'] = $n->news_title;
+								$data['char'][$char]['news'][$n->news_id]['category'] = $n->newscat_name;
+								$data['char'][$char]['news'][$n->news_id]['date'] = mdate($datestring, $date);
+								$data['char'][$char]['news'][$n->news_id]['content'] = $n->news_content;
+							}
+						}
+					}
+					
+					// other data used by the template
+					$data['header'] = ucwords(lang('actions_view') .' '. lang('global_newsitems')) .' - '. $row->name;
+				}
+				else
+				{
+					// set the header
+					$data['header'] = lang('error_title_invalid_user');
+					$data['msg_error'] = lang('error_msg_invalid_user');
+				}
+			break;
+				
+			case 'c':
+				// run the model methods
+				$char_check = $this->char->get_character($id);
+
+				if ($char_check !== false)
+				{
+					// set the pagination config
+					$config['base_url'] = site_url('personnel/viewnews/c/'.$id);
+					$config['total_rows'] = $this->news->count_character_news($id);
+					$config['uri_segment'] = 5;
+					$config['per_page'] = 25;
+					$config['full_tag_open']	= '<div class="pagination"><ul>';
+					$config['full_tag_close']	= '</ul></div>';
+					$config['num_tag_open'] 	= '<li>';
+					$config['num_tag_close'] 	= '</li>';
+					$config['num_tag_open'] 	= '<li>';
+					$config['num_tag_close'] 	= '</li>';
+					$config['cur_tag_open'] 	= '<li class="active"><a href="#">';
+					$config['cur_tag_close'] 	= '</a></li>';
+					$config['prev_tag_open'] 	= '<li>';
+					$config['prev_tag_close'] 	= '</li>';
+					$config['next_tag_open'] 	= '<li>';
+					$config['next_tag_close'] 	= '</li>';
+					$config['last_tag_open'] 	= '<li>';
+					$config['last_tag_close'] 	= '</li>';
+					$config['first_tag_open'] 	= '<li>';
+					$config['first_tag_close'] 	= '</li>';
+				
+					// initialize the pagination library
+					$this->pagination->initialize($config);
+					
+					// create the page links
+					$data['pagination'] = $this->pagination->create_links('news');
+					
+					$news = $this->news->get_character_news($id, $config['per_page'], 'activated', $offset);
+
+					if ($news->num_rows() > 0)
+					{
+						$datestring = $this->options['date_format'];
+
+						foreach ($news->result() as $n)
+						{
+							$date = gmt_to_local($n->news_date, $this->timezone, $this->dst);
+
+							$data['news'][$n->news_id]['id'] = $n->news_id;
+							$data['news'][$n->news_id]['title'] = $n->news_title;
+							$data['news'][$n->news_id]['category'] = $n->newscat_name;
+							$data['news'][$n->news_id]['date'] = mdate($datestring, $date);
+							$data['news'][$n->news_id]['content'] = $n->news_content;
+						}
+
+						// other data used by the template
+						$data['header'] = $this->msgs->get_message('personnel_logs_title') . $this->char->get_character_name($id);
+						$data['charid'] = $id;
+						
+						if ($config['total_rows'] < 25)
+						{
+							$data['display'] = sprintf(
+								lang('text_display_x_of_y'),
+								$config['total_rows'],
+								$config['total_rows'],
+								lang('global_newsitems')
+							);
+						}
+						else
+						{
+							$data['display'] = sprintf(
+								lang('text_display_x_of_y'),
+								25,
+								$config['total_rows'],
+								lang('global_newsitems')
+							);
+						}
+					}
+					else
+					{
+						// other data used by the template
+						$data['header'] = ucwords(lang('actions_view') .' '. lang('global_newsitems')) .' - '. $this->char->get_character_name($id);
+						$data['msg_error'] = lang('error_no_logs');
+					}
+				}
+				else
+				{
+					// set the header
+					$data['header'] = lang('error_title_invalid_char');
+					$data['msg_error'] = lang('error_msg_invalid_char');
+				}
+			break;
+			
+			default:
+				$data['header'] = lang('error_head_general');
+				$data['msg_error'] = lang('error_msg_no_log_type');
+			break;
+		}
+		
+		$data['label'] = array(
+			'addcomment' => ucfirst(lang('actions_add')).' '.lang('labels_a').' '.lang('labels_comment'),
+			'backchar' => ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '.
+				ucwords(lang('global_character') .' '. lang('labels_bio')),
+			'backuser' => ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '.
+				ucwords(lang('global_user') .' '. lang('labels_bio')),
+			'blurb' => ucfirst(lang('labels_blurb')),
+			'by' => lang('labels_by'),
+			'comments' => ucfirst(lang('labels_comments')),
+			'edited' => ucfirst(lang('actions_edited') .' '. lang('labels_on')),
+			'nonews' => sprintf(lang('error_not_found'), lang('global_newsitems')),
+			'on' => lang('labels_on'),
+			'posted' => ucfirst(lang('actions_posted') .' '. lang('labels_on')),
+			'tags' => ucfirst(lang('labels_tags')) .':',
+			'title' => ucfirst(lang('labels_title')),
+		);
+		
+		$this->_regions['content'] = Location::view('personnel_viewnews', $this->skin, 'main', $data);
 		$this->_regions['title'].= $data['header'];
 		
 		Template::assign($this->_regions);
@@ -1388,6 +1604,7 @@ abstract class Nova_personnel extends Nova_controller_main {
 		$this->load->library('pagination');
 		$this->load->model('posts_model', 'posts');
 		$this->load->model('missions_model', 'mis');
+		$this->load->helper('text');
 		
 		// sanity checks
 		$id = (is_numeric($id)) ? $id : false;
@@ -1429,6 +1646,8 @@ abstract class Nova_personnel extends Nova_controller_main {
 								$data['char'][$char]['posts'][$post->post_id]['date'] = mdate($datestring, $date);
 								$data['char'][$char]['posts'][$post->post_id]['mission'] = $this->mis->get_mission($post->post_mission, 'mission_title');
 								$data['char'][$char]['posts'][$post->post_id]['mission_id'] = $post->post_mission;
+								$data['char'][$char]['posts'][$post->post_id]['content'] = text_output($post->post_content);
+								$data['char'][$char]['posts'][$post->post_id]['authors'] = $this->char->get_authors($post->post_authors);
 							}
 						}
 					}
@@ -1454,8 +1673,22 @@ abstract class Nova_personnel extends Nova_controller_main {
 					$config['total_rows'] = $this->posts->count_character_posts($id);
 					$config['uri_segment'] = 5;
 					$config['per_page'] = $this->options['list_posts_num'];
-					$config['full_tag_open'] = '<p class="fontMedium">';
-					$config['full_tag_close'] = '</p>';
+					$config['full_tag_open']	= '<div class="pagination"><ul>';
+					$config['full_tag_close']	= '</ul></div>';
+					$config['num_tag_open'] 	= '<li>';
+					$config['num_tag_close'] 	= '</li>';
+					$config['num_tag_open'] 	= '<li>';
+					$config['num_tag_close'] 	= '</li>';
+					$config['cur_tag_open'] 	= '<li class="active"><a href="#">';
+					$config['cur_tag_close'] 	= '</a></li>';
+					$config['prev_tag_open'] 	= '<li>';
+					$config['prev_tag_close'] 	= '</li>';
+					$config['next_tag_open'] 	= '<li>';
+					$config['next_tag_close'] 	= '</li>';
+					$config['last_tag_open'] 	= '<li>';
+					$config['last_tag_close'] 	= '</li>';
+					$config['first_tag_open'] 	= '<li>';
+					$config['first_tag_close'] 	= '</li>';
 				
 					// initialize the pagination library
 					$this->pagination->initialize($config);
@@ -1476,8 +1709,10 @@ abstract class Nova_personnel extends Nova_controller_main {
 							$data['posts'][$post->post_id]['id'] = $post->post_id;
 							$data['posts'][$post->post_id]['title'] = $post->post_title;
 							$data['posts'][$post->post_id]['date'] = mdate($datestring, $date);
+							$data['posts'][$post->post_id]['authors'] = $this->char->get_authors($post->post_authors);
 							$data['posts'][$post->post_id]['mission'] = $this->mis->get_mission($post->post_mission, 'mission_title');
 							$data['posts'][$post->post_id]['mission_id'] = $post->post_mission;
+							$data['posts'][$post->post_id]['content'] = text_output($post->post_content);
 						}
 
 						// other data used by the template
@@ -1525,19 +1760,19 @@ abstract class Nova_personnel extends Nova_controller_main {
 		}
 		
 		$data['label'] = array(
-			'backchar' => LARROW .' '. ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '.
+			'backchar' => ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '.
 				ucwords(lang('global_character') .' '. lang('labels_bio')),
-			'backuser' => LARROW .' '. ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '.
+			'backuser' => ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '.
 				ucwords(lang('global_user') .' '. lang('labels_bio')),
 			'mission' => ucfirst(lang('global_mission')),
 			'noposts' => lang('error_no_posts'),
 			'on' => lang('labels_on'),
 			'title' => ucfirst(lang('labels_title')),
 			'view_post' => ucwords(lang('actions_view') .' '. lang('global_post')),
+			'blurb' => ucfirst(lang('labels_blurb')),
 		);
 		
 		$this->_regions['content'] = Location::view('personnel_viewposts', $this->skin, 'main', $data);
-		$this->_regions['javascript'] = Location::js('personnel_viewposts_js', $this->skin, 'main');
 		$this->_regions['title'].= $data['header'];
 		
 		Template::assign($this->_regions);
