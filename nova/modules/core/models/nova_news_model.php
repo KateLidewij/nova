@@ -54,6 +54,7 @@ abstract class Nova_news_model extends CI_Model {
 	public function get_character_news($id = '', $limit = 0, $status = 'activated')
 	{
 		$this->db->from('news');
+		$this->db->join('news_categories', 'news_categories.newscat_id = news.news_cat');
 		
 		if ( ! empty($status))
 		{
