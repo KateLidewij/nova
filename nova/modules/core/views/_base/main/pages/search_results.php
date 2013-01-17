@@ -3,24 +3,22 @@
 <?php echo text_output($header, 'h1', 'page-head');?>
 
 <?php if (isset($msg)): ?>
-	<?php echo text_output($msg);?>
+	<?php echo text_output($msg, 'p', 'muted');?>
 <?php endif; ?>
 
-<p class="fontMedium"><?php echo anchor('search/index', $label['search'], array('class' => 'bold'));?></p>
+<p><?php echo anchor('search/index', $label['search'], array('class' => 'btn'));?></p>
 
 <?php if (isset($msg)): ?>
-	<hr />
+	<hr>
 <?php endif; ?>
 
 <?php if (isset($results)): ?>
-	<ul class="line_height_18">
-		<?php foreach ($results as $result): ?>
-			<li>
-				<strong><?php echo $result['link'];?></strong>
-				<div class="line_height_13"><?php echo word_limiter($result['content'], 100);?></div><br />
-			</li>
-		<?php endforeach; ?>
-	</ul>
+	<dl>
+	<?php foreach ($results as $result): ?>
+		<dt><?php echo $result['link'];?></dt>
+		<dd><?php echo word_limiter(text_output($result['content']), 100);?></dd>
+	<?php endforeach;?>
+	</dl>
 <?php else: ?>
-	<?php echo text_output($label['noresult'], 'h3', 'orange');?>
+	<?php echo text_output($label['noresult'], 'p', 'alert');?>
 <?php endif; ?>

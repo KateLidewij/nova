@@ -210,11 +210,8 @@ abstract class Nova_search extends Nova_controller_main {
 		}
 		
 		$data['label'] = array(
-			'search' => LARROW .' '. ucwords(lang('actions_back')) .' '.
-				lang('labels_to') .' '.
-				ucwords(lang('actions_search')),
-			'noresult' => ucfirst(lang('labels_no') .' '. lang('labels_results') .' '.
-				lang('actions_found')),
+			'search' => ucwords(lang('actions_search').' '.lang('labels_again')),
+			'noresult' => ucfirst(lang('labels_no').' '.lang('labels_results').' '.lang('actions_found')),
 		);
 		
 		$this->_regions['content'] = Location::view('search_results', $this->skin, 'main', $data);

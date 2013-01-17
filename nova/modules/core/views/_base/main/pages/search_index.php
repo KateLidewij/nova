@@ -25,6 +25,6 @@
 	</div>
 	
 	<div class="controls">
-		<button type="submit" name="submit" id="submit" class="btn btn-primary"><?php echo $label['submit'];?></button>
+		<button type="submit" name="search" id="submit" class="btn btn-primary" value="search"><?php echo $label['submit'];?></button>
 	</div>
 <?php echo form_close();?>
