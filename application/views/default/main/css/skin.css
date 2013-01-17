@@ -403,6 +403,11 @@ dd {
 	line-height: 1.75;
 }
 
+.label {
+	text-shadow: 0 0 0 transparent;
+	font-weight: 600;
+}
+
 .sub-icn {
 	margin-right: 10px;
 	padding-left: 22px;
