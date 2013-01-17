@@ -42,5 +42,10 @@
 		$.facebox.settings.loadingImage = '<?php echo base_url().MODFOLDER;?>/assets/js/images/facebox-loading.gif';
 		
 		$('.reflect').reflect({ opacity: '0.3' });
+
+		$('.tooltip-top').tooltip();
+		$('.tooltip-bottom').tooltip({ placement: 'bottom' });
+		$('.tooltip-left').tooltip({ placement: 'left' });
+		$('.tooltip-right').tooltip({ placement: 'right' });
 	});
 </script>
