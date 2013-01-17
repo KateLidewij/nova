@@ -33,7 +33,7 @@
 					<span class="sub-icn sub-icn-date"><?php echo $value['date'];?></span>
 				</p>
 				
-				<?php echo content_output($value['content'], 'p');?>
+				<?php echo text_output($value['content'], 'p');?>
 
 				<hr>
 			<?php endforeach; ?>
@@ -53,7 +53,7 @@
 					<span class="sub-icn sub-icn-date"><?php echo $value['date'];?></span>
 				</p>
 				
-				<?php echo content_output($value['content'], 'p');?>
+				<?php echo text_output($value['content'], 'p');?>
 
 				<hr>
 			<?php endforeach; ?>
@@ -72,7 +72,7 @@
 					<span class="sub-icn sub-icn-date"><?php echo $value['date'];?></span>
 				</p>
 				
-				<?php echo content_output($value['content'], 'p');?>
+				<?php echo text_output($value['content'], 'p');?>
 
 				<hr>
 			<?php endforeach; ?>
@@ -92,7 +92,7 @@
 				<span class="sub-icn sub-icn-date"><?php echo $value['date'];?></span>
 			</p>
 			
-			<?php echo content_output($value['content'], 'p');?>
+			<?php echo text_output($value['content'], 'p');?>
 
 			<hr>
 		<?php endforeach; ?>
@@ -110,7 +110,7 @@
 				<span class="sub-icn sub-icn-date"><?php echo $value['date'];?></span>
 			</p>
 			
-			<?php echo content_output($value['content'], 'p');?>
+			<?php echo text_output($value['content'], 'p');?>
 
 			<hr>
 		<?php endforeach; ?>
@@ -127,7 +127,7 @@
 				<span class="sub-icn sub-icn-date"><?php echo $value['date'];?></span>
 			</p>
 			
-			<?php echo content_output($value['content'], 'p');?>
+			<?php echo text_output($value['content'], 'p');?>
 
 			<hr>
 		<?php endforeach; ?>

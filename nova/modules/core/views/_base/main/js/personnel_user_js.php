@@ -2,9 +2,11 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#tabs').tabs();
-		$('#tabs').tabs('select', <?php echo $tab;?>);
 		
-		$('table.zebra tbody > tr:nth-child(odd)').addClass('alt');
+		// Initialize the tabs
+		$('#tabs a:first').tab('show');
+
+		// Initialize the subnav pills
+		$('#subnav a:first').tab('show');
 	});
 </script>

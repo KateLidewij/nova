@@ -2,7 +2,8 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#tabs').tabs();
+		
+		$('#tabs a:first').tab('show');
 		
 		$('table.zebra tbody > tr:nth-child(odd)').addClass('alt');
 		

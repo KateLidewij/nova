@@ -98,7 +98,7 @@
 		<?php if ( ! empty($summary['content'])): ?>
 			<h2><?php echo $summary['title'];?></h2>
 			
-			<?php echo content_output($summary['content']);?>
+			<?php echo text_output($summary['content']);?>
 		<?php else: ?>
 			<?php echo text_output($label['nosummary'], 'p', 'alert');?>
 		<?php endif; ?>

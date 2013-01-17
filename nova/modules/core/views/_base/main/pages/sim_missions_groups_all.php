@@ -20,7 +20,7 @@
 							<?php echo $label['count_missions'].' '.$g['count']['missions'];?>
 						</p>
 
-						<?php echo content_output($g['desc']);?>
+						<?php echo text_output($g['desc']);?>
 
 						<?php if (isset($g['missions']) or isset($g['subgroups'])): ?>
 							<hr>

@@ -2,10 +2,10 @@
 
 <h1><?php echo $header;?></h1>
 
-<p><?php echo link_to_if($edit_valid, 'site/messages', $label['edit'], array('class' => 'edit fontSmall bold'));?></p>
+<?php echo link_to_if($edit_valid, 'site/messages', img(Location::img('icon-edit.png', $this->skin, 'main')), array('class' => 'btn btn-small'));?>
 
-<?php echo content_output($msg_credits_perm);?>
+<?php echo text_output($msg_credits_perm);?>
 
 <hr>
 
-<?php echo content_output($msg_credits);?>
+<?php echo text_output($msg_credits);?>

@@ -1,40 +1,47 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<?php echo text_output($header, 'h1', 'page-head');?>
+<div class="btn-group pull-right">
+	<?php if (isset($awards)): ?>
+		<?php echo anchor('personnel/character/'.$charid, $label['backchar'], array('class' => 'btn btn-small'));?>
+	<?php endif;?>
+
+	<?php if (isset($char)): ?>
+		<?php echo anchor('personnel/user/'.$user, $label['backuser'], array('class' => 'btn btn-small'));?>
+	<?php endif;?>
+</div>
+
+<?php echo text_output($header, 'h1');?>
 
 <?php if (isset($msg_error)): ?>
-	<?php echo text_output($msg_error, 'h3', 'orange');?>
+	<?php echo text_output($msg_error, 'p', 'alert');?>
 <?php endif; ?>
 
 <?php if (isset($awards)): ?>
-	<p class="bold"><?php echo anchor('personnel/character/'. $charid, $label['backchar']);?></p>
-	<?php echo text_output($label['ooc'] .' '. $label['awards'], 'h2');?>
-	<table class="table100 zebra" cellpadding="3">
+	<?php echo text_output($label['awards'], 'h2');?>
+
+	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th colspan="2"><?php echo $label['award'];?></th>
+				<th><?php echo $label['award'];?></th>
 				<th><?php echo $label['reason'];?></th>
 			</tr>
 		</thead>
-		
 		<tbody>
 		<?php foreach ($awards as $key => $value): ?>
 			<tr>
-				<td>
-					<?php echo anchor('sim/awards/'. $value['award_id'], img($value['img']), array('class' => 'image'));?>
-				</td>
-				<td>
-					<strong><?php echo $value['award'];?></strong><br />
-					<em class="fontSmall">
-						<?php echo $label['awarded'] .' '. $value['date'];?>
+				<td class="span4">
+					<p><strong class="tooltip-right" title="<?php echo $value['desc'];?>"><?php echo $value['award'];?></strong></p>
+					<p><?php echo anchor('sim/awards/'. $value['award_id'], img($value['img']), array('class' => 'image'));?></p>
+
+					<?php if ( ! empty($value['date'])): ?>
+						<p class="muted"><span class="sub-icn sub-icn-date"><?php echo $value['date'];?></span></p>
+					<?php endif;?>
 						
-						<?php if ( ! empty($value['nom'])): ?>
-							<br />
-							<?php echo $label['nominatedby'] .' '. $value['nom'];?>
-						<?php endif;?>
-					</em>
+					<?php if ( ! empty($value['nom'])): ?>
+						<p class="muted"><span class="sub-icn sub-icn-user"><?php echo $value['nom'];?></span></p>
+					<?php endif;?>
 				</td>
-				<td class="col_50pct"><?php echo text_output($value['reason'], '');?></td>
+				<td><?php echo text_output($value['reason'], '');?></td>
 			</tr>
 		<?php endforeach; ?>
 		</tbody>
@@ -42,30 +49,37 @@
 <?php endif; ?>
 	
 <?php if (isset($char)): ?>
-	<p class="bold"><?php echo anchor('personnel/user/'. $user .'/5', $label['backuser']);?></p>
+	<?php if (count($char) > 1): ?>
+		<ul class="nav nav-pills">
+		<?php foreach ($char as $key => $value): ?>
+			<li><a href="#c<?php echo $key;?>"><?php echo $value['character'];?></a></li>
+		<?php endforeach;?>
+		</ul>
+	<?php endif;?>
+
 	<?php foreach ($char as $key => $value): ?>
-	<br />
-	<?php echo text_output($value['character'], 'h2');?>
-	<table class="table100 zebra" cellpadding="3">
-		<tbody>
-		<?php foreach ($value['awards'] as $b): ?>
-			<tr>
-				<td><?php echo anchor('sim/awards/'. $b['award_id'], img($b['img']), array('class' => 'image'));?></td>
-				<td>
-					<strong><?php echo $b['award'];?></strong><br />
-					<em class="fontSmall">
-						<?php echo $label['awarded'] .' '. $b['date'];?>
+		<a name="c<?php echo $key;?>"></a><?php echo text_output($value['character'], 'h2');?>
+		
+		<table class="table table-striped">
+			<tbody>
+			<?php foreach ($value['awards'] as $b): ?>
+				<tr>
+					<td class="span4">
+						<p><strong class="tooltip-right" title="<?php echo $b['desc'];?>"><?php echo $b['award'];?></strong></p>
+						<p><?php echo anchor('sim/awards/'.$b['award_id'], img($b['img']), array('class' => 'image'));?></p>
 						
-						<?php if ( ! empty($b['nom'])): ?>
-							<br />
-							<?php echo $label['nominatedby'] .' '. $b['nom'];?>
+						<?php if ( ! empty($b['date'])): ?>
+							<p class="muted"><span class="sub-icn sub-icn-date"><?php echo $b['date'];?></span></p>
 						<?php endif;?>
-					</em>
-				</td>
-				<td class="col_50pct"><?php echo text_output($b['reason'], '');?></td>
-			</tr>
-		<?php endforeach; ?>
-		</tbody>
-	</table>
+							
+						<?php if ( ! empty($b['nom'])): ?>
+							<p class="muted"><span class="sub-icn sub-icn-user"><?php echo $b['nom'];?></span></p>
+						<?php endif;?>
+					</td>
+					<td><?php echo text_output($b['reason']);?></td>
+				</tr>
+			<?php endforeach; ?>
+			</tbody>
+		</table>
 	<?php endforeach; ?>
 <?php endif; ?>

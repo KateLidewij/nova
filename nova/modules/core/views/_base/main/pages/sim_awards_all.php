@@ -9,7 +9,7 @@
 		<h4><?php echo $v['name'];?></h4>
 		<div class="row">
 			<div class="span7">
-				<?php echo content_output($v['desc']);?>
+				<?php echo text_output($v['desc']);?>
 				<?php echo anchor('sim/awards/'. $v['id'], $label['details'], array('class' => 'btn btn-small'));?>
 			</div>
 			<div class="span3 align_right"><?php echo anchor('sim/awards/'. $v['id'], img($v['img']), array('class' => 'image'));?></div>

@@ -11,7 +11,7 @@
 
 <p><?php echo img($img);?></p>
 
-<?php echo content_output($desc);?>
+<?php echo text_output($desc);?>
 
 <?php if (isset($msg_error)): ?>
 	<p class="alert"><?php echo $msg_error;?></p>

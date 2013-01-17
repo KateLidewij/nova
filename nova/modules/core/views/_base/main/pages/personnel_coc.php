@@ -11,7 +11,7 @@
 			<td class="col_15"></td>
 			<td class="col_150"><?php echo img($v['img_rank']);?></td>
 			<td>
-				<strong><?php echo $v['name'];?></strong><br>
+				<p><strong><?php echo $v['name'];?></strong></p>
 				<?php echo $v['position'];?>
 			</td>
 			<td></td>

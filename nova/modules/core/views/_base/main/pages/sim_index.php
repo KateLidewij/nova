@@ -2,4 +2,4 @@
 
 <h1><?php echo $header;?></h1>
 
-<?php echo content_output($msg_sim);?>
+<?php echo text_output($msg_sim);?>
