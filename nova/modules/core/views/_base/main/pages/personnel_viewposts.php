@@ -1,16 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<div class="btn-group pull-right">
+<h1><?php echo $header;?></h1>
+
+<div class="btn-group">
 	<?php if (isset($posts)): ?>
-		<?php echo anchor('personnel/character/'.$charid, $label['backchar'], array('class' => 'btn btn-small'));?>
+		<?php echo anchor('personnel/character/'.$charid, img(Location::img('previous.png', $this->skin, 'main')), array('class' => 'btn'));?>
 	<?php endif;?>
 
 	<?php if (isset($char)): ?>
-		<?php echo anchor('personnel/user/'.$user, $label['backuser'], array('class' => 'btn btn-small'));?>
+		<?php echo anchor('personnel/user/'.$user, img(Location::img('previous.png', $this->skin, 'main')), array('class' => 'btn'));?>
 	<?php endif;?>
 </div>
-
-<?php echo text_output($header, 'h1', 'page-head');?>
 
 <?php if (isset($msg_error)): ?>
 	<?php echo text_output($msg_error, 'p', 'alert');?>
