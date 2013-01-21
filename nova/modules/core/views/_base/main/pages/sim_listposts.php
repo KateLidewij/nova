@@ -1,33 +1,29 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<?php echo text_output($header, 'h1', 'page-head');?>
+<h1><?php echo $header;?></h1>
 
-<?php echo text_output($display, 'p', 'gray italic bold');?>
+<?php echo text_output($display, 'p', 'muted');?>
 
 <?php if (isset($posts)): ?>
-	<table class="table100 zebra">
+	<?php echo $pagination;?>
+
+	<table class="table table-striped">
 		<thead>
 			<tr>
 				<th><?php echo $label['title'];?></th>
-				<th><?php echo $label['date'];?></th>
+				<th><?php echo $label['blurb'];?></th>
 			</tr>
 		</thead>
-		
 		<tbody>
 		<?php foreach ($posts as $post): ?>
 			<tr>
-				<td>
-					<strong>
-						<?php echo anchor('sim/viewpost/'. $post['id'], $post['title'], array('class' => 'bold'));?>
-					</strong><br />
-					<span class="fontSmall gray">
-						<?php echo $label['by'] .' '. $post['author'];?><br />
-						
-						<strong><?php echo $label['mission'];?></strong>
-						<?php echo anchor('sim/missions/id/'. $post['mission_id'], $post['mission']);?>
-					</span>
+				<td class="span4">
+					<p><strong><?php echo anchor('sim/viewpost/'.$post['id'], $post['title']);?></strong></p>
+					<p class="muted"><span class="sub-icn sub-icn-user"><?php echo $post['authors'];?></span></p>
+					<p class="muted"><span class="sub-icn sub-icn-category"><?php echo anchor('sim/missions/id/'.$post['mission_id'], $post['mission']);?></span></p>
+					<p class="muted"><span class="sub-icn sub-icn-date"><?php echo $post['date'];?></span></p>
 				</td>
-				<td class="col_30pct align_center fontSmall"><?php echo $post['date'];?></td>
+				<td><?php echo $post['content'];?></td>
 			</tr>
 		<?php endforeach; ?>
 		</tbody>
@@ -35,5 +31,5 @@
 	
 	<?php echo $pagination;?>
 <?php else: ?>
-	<?php echo text_output($label['noposts'], 'h3', 'orange');?>
+	<?php echo text_output($label['noposts'], 'p', 'alert');?>
 <?php endif; ?>

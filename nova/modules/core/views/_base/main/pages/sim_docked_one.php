@@ -1,54 +1,52 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<?php echo text_output($header, 'h1', 'page-head');?>
+<h1><?php echo $header;?></h1>
 
-<p><?php echo anchor('sim/docked', $label['back'], array('class' => 'bold'));?></p><br />
+<div class="btn-toolbar">
+	<div class="btn-group">
+		<?php echo anchor('sim/docked', img(Location::img('previous.png', $this->skin, 'main')), array('class' => 'btn'));?>
+	</div>
+
+	<?php if ($edit_valid): ?>
+		<div class="btn-group">
+			<?php echo anchor('manage/docked/edit/'.$docked['id'], img(Location::img('icon-edit.png', $this->skin, 'main')), array('class' => 'btn'));?>
+		</div>
+	<?php endif;?>
+</div>
 
 <?php if (isset($docked)): ?>
-	<table class="table100 zebra">
-		<tbody>
-			<tr>
-				<td class="cell-label"><?php echo $label['name'];?></td>
-				<td class="cell-spacer"></td>
-				<td>
-					<?php echo $docked['sim_name'];?><br />
-					<span class="fontSmall">
-						<a href="<?php echo $docked['sim_url'];?>" target="_blank"><?php echo $docked['sim_url'];?></a>
-					</span>
-				</td>
-			</tr>
-			<tr>
-				<td class="cell-label"><?php echo $label['gm_name'];?></td>
-				<td class="cell-spacer"></td>
-				<td><?php echo $docked['gm_name'];?></td>
-			</tr>
-			<tr>
-				<td class="cell-label"><?php echo $label['received'];?></td>
-				<td class="cell-spacer"></td>
-				<td><?php echo $docked['date'];?></td>
-			</tr>
-		</tbody>
-	</table><br />
+	<div class="control-group">
+		<label class="control-label"><?php echo $label['name'];?></label>
+		<div class="controls">
+			<?php echo $docked['sim_name'];?>
+			<p class="help-block"><a href="<?php echo $docked['sim_url'];?>" target="_blank"><?php echo $docked['sim_url'];?></a></p>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<label class="control-label"><?php echo $label['gm_name'];?></label>
+		<div class="controls"><?php echo $docked['gm_name'];?></div>
+	</div>
+
+	<div class="control-group">
+		<label class="control-label"><?php echo $label['received'];?></label>
+		<div class="controls"><?php echo $docked['date'];?></div>
+	</div>
 	
 	<?php if (isset($sections)): ?>
 		<?php foreach ($sections as $section): ?>
-			<?php echo text_output($section['title'], 'h3', 'page-subhead');?>
+			<legend><?php echo $section['title'];?></legend>
 			
 			<?php if (isset($section['fields'])): ?>
-			<table class="table100 zebra" cellpadding="3">
-				<tbody>
 				<?php foreach ($section['fields'] as $field): ?>
-					<tr>
-						<td class="cell-label"><?php echo $field['field'];?></td>
-						<td class="cell-spacer"></td>
-						<td><?php echo $field['data'];?></td>
-					</tr>
-				<?php endforeach; ?>
-				</tbody>
-			</table><br />
-			<?php endif; ?>
-		<?php endforeach; ?>
-	<?php endif; ?>
+					<div class="control-group">
+						<label class="control-label"><?php echo $field['field'];?></label>
+						<div class="controls"><?php echo $field['data'];?></div>
+					</div>
+				<?php endforeach;?>
+			<?php endif;?>
+		<?php endforeach;?>
+	<?php endif;?>
 <?php else: ?>
-	<?php echo text_output($label['nosim'], 'h3', 'orange');?>
+	<?php echo text_output($label['nosim'], 'p', 'alert');?>
 <?php endif;?>

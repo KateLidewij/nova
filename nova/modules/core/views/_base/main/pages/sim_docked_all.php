@@ -1,48 +1,72 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<?php echo text_output($header, 'h1', 'page-head');?>
+<h1><?php echo $header;?></h1>
 
-<div id="tabs">
-	<ul>
-		<li><a href="#one"><span><?php echo $label['docked_current'];?></span></a></li>
-		<li><a href="#two"><span><?php echo $label['docked_previous'];?></span></a></li>
-	</ul>
-	
-	<div id="one">
+<div class="btn-group">
+	<?php if ($edit_valid_form): ?>
+		<?php echo anchor('site/dockingform', $label['edit_form'], array('class' => 'btn btn-small'));?>
+	<?php endif;?>
+
+	<?php if ($edit_valid_item): ?>
+		<?php echo anchor('manage/docked', $label['edit_items'], array('class' => 'btn btn-small'));?>
+	<?php endif;?>
+</div>
+
+<ul class="nav nav-tabs" id="tabs">
+	<li><a href="#current" data-toggle="tab"><?php echo $label['docked_current'];?></a></li>
+	<li><a href="#previous" data-toggle="tab"><?php echo $label['docked_previous'];?></a></li>
+</ul>
+
+<div class="tab-content">
+	<div id="current" class="tab-pane">
 		<?php if (isset($docked['active'])): ?>
-			<table class="table100 zebra">
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th><?php echo $label['name'];?></th>
 						<th><?php echo $label['gm_name'];?></th>
-						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 				<?php foreach ($docked['active'] as $d): ?>
 					<tr>
 						<td>
-							<?php echo text_output($d['sim_name'], 'span', 'bold fontMedium');?><br />
-							<a href="<?php echo $d['sim_url'];?>" target="_blank"><?php echo $d['sim_url'];?></a>
+							<p><strong><?php echo anchor('sim/docked/'.$d['id'], $d['sim_name']);?></strong></p>
+							<p><a href="<?php echo $d['sim_url'];?>" target="_blank"><?php echo $d['sim_url'];?></a></p>
 						</td>
 						<td><?php echo $d['gm_name'];?></td>
-						<td class="col_75 align_right">
-							<?php echo anchor('sim/docked/'. $d['id'], img($images['view']), array('class' => 'image'));?>
-						</td>
 					</tr>
 				<?php endforeach;?>
 				</tbody>
 			</table>
 		<?php else: ?>
-			<?php echo text_output($label['norequests'], 'h3', 'orange');?>
+			<?php echo text_output($label['norequests'], 'p', 'alert');?>
 		<?php endif;?>
 	</div>
 	
-	<div id="two">
+	<div id="previous" class="tab-pane">
 		<?php if (isset($docked['inactive'])): ?>
-			
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th><?php echo $label['name'];?></th>
+						<th><?php echo $label['gm_name'];?></th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php foreach ($docked['inactive'] as $d): ?>
+					<tr>
+						<td>
+							<p><strong><?php echo anchor('sim/docked/'.$d['id'], $d['sim_name']);?></strong></p>
+							<p><a href="<?php echo $d['sim_url'];?>" target="_blank"><?php echo $d['sim_url'];?></a></p>
+						</td>
+						<td><?php echo $d['gm_name'];?></td>
+					</tr>
+				<?php endforeach;?>
+				</tbody>
+			</table>
 		<?php else: ?>
-			<?php echo text_output($label['norequests'], 'h3', 'orange');?>
+			<?php echo text_output($label['norequests'], 'p', 'alert');?>
 		<?php endif;?>
 	</div>
 </div>

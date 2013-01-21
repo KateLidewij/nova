@@ -1,69 +1,65 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<?php echo text_output($header, 'h1', 'page-head');?>
+<h1><?php echo $header;?></h1>
 
-<?php if ($edit_valid_dept === TRUE || $edit_valid_pos === TRUE): ?>
-	<p>
-	<?php echo link_to_if($edit_valid_dept, 'manage/depts', $label['edit_dept'], array('class' => 'edit fontSmall bold'));?>
-	<?php echo link_to_if($edit_valid_pos, 'manage/positions', $label['edit_pos'], array('class' => 'edit fontSmall bold'));?>
-	</p>
-<?php endif;?>
+<div class="btn-group">
+	<?php echo link_to_if($edit_valid_dept, 'manage/depts', $label['edit_dept'], array('class' => 'btn btn-small'));?>
+	<?php echo link_to_if($edit_valid_pos, 'manage/positions', $label['edit_pos'], array('class' => 'btn btn-small'));?>
+</div>
 
 <?php if (isset($msg_error)): ?>
 	<?php echo $msg_error;?>
 <?php else: ?>
-	<ul class="none margin0 padding0">
+	<ul class="unstyled">
 		
 	<?php foreach ($depts as $value): ?>
 		<li>
-			<?php echo text_output($value['name'], 'h2');?>
+			<h2><?php echo $value['name'];?></h2>
+
 			<?php echo text_output($value['desc']);?>
 			
 			<?php if (isset($value['positions'])): ?>
-				<p><?php echo anchor('#', $label['toggle'], array('myID' => $value['id'], 'class' => 'toggle bold'));?></p>
+				<p><?php echo anchor('#', $label['toggle'], array('data-id' => $value['id'], 'class' => 'toggle btn btn-small'));?></p>
 				
-				<div id="<?php echo $value['id'];?>" class="hidden">
-					<table class="table100 zebra" cellspacing="0" cellpadding="3">
+				<div id="<?php echo $value['id'];?>" class="hide">
+					<table class="table table-striped">
 					<?php foreach ($value['positions'] as $pos1): ?>
 						<tr>
-							<td class="cell-label align_top"><?php echo $pos1['name'];?></td>
-							<td class="cell-spacer"></td>
+							<td class="span3"><?php echo $pos1['name'];?></td>
 							<td><?php echo text_output($pos1['desc'], '');?></td>
 						</tr>
-					<?php endforeach; ?>
+					<?php endforeach;?>
 					</table>
 				</div>
-			<?php endif; ?>
+			<?php endif;?>
 			
 			<?php if (isset($value['subs'])): ?>
-				<ul class="none margin1 padding1">
+				<ul class="unstyled nested-left">
 				<?php foreach ($value['subs'] as $sub): ?>
 					<li>
 						<h3><?php echo $sub['name'];?></h3>
-						<p><?php echo $sub['desc'];?></p>
+						
+						<?php echo text_output($sub['desc']);?>
 						
 						<?php if (isset($sub['positions'])): ?>
-							<p><?php echo anchor('#', $label['toggle'], array('myID' => $sub['id'], 'class' => 'toggle bold'));?></p>
+							<p><?php echo anchor('#', $label['toggle'], array('data-id' => $sub['id'], 'class' => 'toggle btn btn-small'));?></p>
 							
-							<div id="<?php echo $sub['id'];?>" class="hidden">
-								<table class="table100 zebra" cellspacing="0" cellpadding="3">
+							<div id="<?php echo $sub['id'];?>" class="hide">
+								<table class="table table-striped">
 								<?php foreach ($sub['positions'] as $pos2): ?>
 									<tr>
-										<td class="cell-label"><?php echo $pos2['name'];?></td>
-										<td class="cell-spacer"></td>
+										<td class="span3"><?php echo $pos2['name'];?></td>
 										<td><?php echo text_output($pos2['desc'], '');?></td>
 									</tr>
-								<?php endforeach; ?>
+								<?php endforeach;?>
 								</table>
 							</div>
-						<?php endif; ?>
-			
+						<?php endif;?>
 					</li>
-				<?php endforeach; ?>
+				<?php endforeach;?>
 				</ul>
-			<?php endif; ?>
+			<?php endif;?>
 		</li>
-	<?php endforeach; ?>
-	
+	<?php endforeach;?>
 	</ul>
-<?php endif; ?>
+<?php endif;?>

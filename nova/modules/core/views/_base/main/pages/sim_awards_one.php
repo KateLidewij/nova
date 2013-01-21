@@ -2,7 +2,17 @@
 
 <h1><?php echo $header;?></h1>
 
-<?php echo anchor('sim/awards', $label['back'], array('class' => 'btn btn-small pull-right'));?>
+<div class="btn-toolbar">
+	<div class="btn-group">
+		<?php echo anchor('sim/awards', img(Location::img('previous.png', $this->skin, 'main')), array('class' => 'btn'));?>
+	</div>
+
+	<?php if ($edit_valid): ?>
+		<div class="btn-group">
+			<?php echo anchor('manage/awards/edit/'.$id, img(Location::img('icon-edit.png', $this->skin, 'main')), array('class' => 'btn'));?>
+		</div>
+	<?php endif;?>
+</div>
 
 <p class="muted">
 	<span class="sub-icn sub-icn-category"><?php echo $cat;?></span>
@@ -21,7 +31,6 @@
 	<h3><?php echo $label['awarded_to'];?></h3>
 
 	<table class="table table-striped">
-		
 	<?php foreach ($awardees as $v): ?>
 		<tr>
 			<td class="span4">
@@ -31,6 +40,5 @@
 			<td><?php echo text_output($v['reason'], '');?></td>
 		</tr>
 	<?php endforeach; ?>
-	
 	</table>
 <?php endif; ?>

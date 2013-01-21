@@ -6,7 +6,7 @@
 	a.image span img { margin: 0px; padding: 0px; }
 </style>
 
-<?php echo text_output($header, 'h1', 'page-head');?>
+<h1><?php echo $header;?></h1>
 
 <?php if ($count > 1): ?>
 	<p><?php echo anchor('sim/specs', $label['back'], array('class' => 'bold'));?></p>

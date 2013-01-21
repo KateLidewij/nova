@@ -230,7 +230,7 @@ abstract class Nova_sim extends Nova_controller_main {
 					$deck_menu[] = '<a href="#'.$row->deck_id.'">'.$row->deck_name.'</a>';
 				}
 				
-				$data['decks_menu'] = implode(' &middot; ', $deck_menu);
+				$data['decks_menu'] = $deck_menu;
 			}
 		}
 		else
@@ -265,7 +265,6 @@ abstract class Nova_sim extends Nova_controller_main {
 		);
 		
 		$this->_regions['content'] = Location::view('sim_decks', $this->skin, 'main', $data);
-		$this->_regions['javascript'] = Location::js('sim_decks_js', $this->skin, 'main');
 		$this->_regions['title'].= $data['header'];
 		
 		Template::assign($this->_regions);
@@ -286,7 +285,7 @@ abstract class Nova_sim extends Nova_controller_main {
 			foreach ($depts_data->result() as $row)
 			{
 				$name = $this->dept->get_manifest($row->dept_manifest, 'manifest_name');
-				$manifest = ($name == '') ? false : ' <span class="fontTiny gray">('.$name.')</span>';
+				$manifest = ($name == '') ? false : ' <small>'.$name.'</small>';
 				
 				$data['depts'][$i]['name'] = $row->dept_name.$manifest;
 				$data['depts'][$i]['desc'] = $row->dept_desc;
@@ -348,8 +347,8 @@ abstract class Nova_sim extends Nova_controller_main {
 		$data['edit_valid_pos'] = (Auth::is_logged_in() and Auth::check_access('manage/positions', false)) ? true : false;
 		
 		$data['label'] = array(
-			'edit_dept' => '[ '. ucfirst(lang('actions_edit').' '.lang('global_departments')) .' ]',
-			'edit_pos' => '[ '. ucfirst(lang('actions_edit').' '.lang('global_positions')) .' ]',
+			'edit_dept' => ucfirst(lang('actions_edit').' '.lang('global_departments')),
+			'edit_pos' => ucfirst(lang('actions_edit').' '.lang('global_positions')),
 			'showhide' => lang('labels_showhide_positions'),
 			'toggle' => ucwords(lang('actions_show').' '.lang('global_positions')),
 		);
@@ -464,17 +463,11 @@ abstract class Nova_sim extends Nova_controller_main {
 			// send the variables to the view
 			$data['header'] = ucwords(lang('actions_docked') .' '. lang('global_sims'));
 		}
-		
-		$data['images'] = array(
-			'view' => array(
-				'src' => Location::img('icon-view.png', $this->skin, 'main'),
-				'alt' => lang('actions_view'),
-				'title' => ucfirst(lang('actions_view'))
-			)
-		);
+
+		$data['edit_valid_form'] = (Auth::is_logged_in() and Auth::check_access('site/dockingform', false)) ? true : false;
+		$data['edit_valid_item'] = (Auth::is_logged_in() and Auth::check_access('manage/docked', false)) ? true : false;
 		
 		$data['label'] = array(
-			'back' => LARROW .' '. ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '. ucwords(lang('actions_docked') .' '. lang('global_sims')),
 			'docked_current' => ucwords(lang('status_current') .' '. lang('actions_docked') .' '. lang('global_sims')),
 			'docked_previous' => ucwords(lang('status_previous') .' '. lang('actions_docked') .' '. lang('global_sims')),
 			'gm_name' => ucfirst(lang('labels_name')),
@@ -482,6 +475,8 @@ abstract class Nova_sim extends Nova_controller_main {
 			'norequests' => sprintf(lang('error_not_found'), lang('actions_docked') .' '. lang('labels_items')),
 			'nosim' => sprintf(lang('error_not_found'), lang('actions_docked') .' '. lang('global_sim')),
 			'received' => ucfirst(lang('actions_received')),
+			'edit_form' => ucwords(lang('actions_edit').' '.lang('actions_docking').' '.lang('labels_form')),
+			'edit_items' => ucwords(lang('actions_edit').' '.lang('actions_docking').' '.lang('labels_items')),
 		);
 		
 		$this->_regions['content'] = Location::view($view_loc, $this->skin, 'main', $data);
@@ -677,31 +672,10 @@ abstract class Nova_sim extends Nova_controller_main {
 		
 		// inputs
 		$data['inputs'] = array(
-			'sim_name' => array(
-				'name' => 'docking_sim_name',
-				'id' => 'sim_name'),
-			'sim_url' => array(
-				'name' => 'docking_sim_url',
-				'id' => 'sim_url'),
-			'gm_name' => array(
-				'name' => 'docking_gm_name',
-				'id' => 'gm_name'),
-			'gm_email' => array(
-				'name' => 'docking_gm_email',
-				'id' => 'gm_email'),
 			'check' => array(
 				'name' => 'check',
 				'id' => 'check',
-				'style' => 'background:transparent; border:1px solid transparent; color:transparent'),
-		);
-		
-		// submit button
-		$data['button_submit'] = array(
-			'type' => 'submit',
-			'class' => 'button-main',
-			'name' => 'submit',
-			'value' => 'submit',
-			'content' => ucwords(lang('actions_submit'))
+				'class' => 'hidden-input'),
 		);
 		
 		$data['label'] = array(
@@ -715,6 +689,7 @@ abstract class Nova_sim extends Nova_controller_main {
 			'r_explain' => ucfirst(lang('labels_reason')),
 			'r_info' => ucwords(lang('actions_docking') .' '. lang('labels_information')),
 			'url' => ucwords(lang('global_sim') .' '. lang('abbr_url')),
+			'submit' => ucwords(lang('actions_submit')),
 		);
 		
 		$this->_regions['content'] = Location::view('sim_dockingrequest', $this->skin, 'main', $data);
@@ -730,6 +705,7 @@ abstract class Nova_sim extends Nova_controller_main {
 		// load the resources
 		$this->load->library('pagination');
 		$this->load->model('personallogs_model', 'logs');
+		$this->load->helper('text');
 		
 		// define the data variable
 		$data = false;
@@ -741,8 +717,22 @@ abstract class Nova_sim extends Nova_controller_main {
 		$config['base_url'] = site_url('sim/listlogs');
 		$config['total_rows'] = $this->logs->count_all_logs();
 		$config['per_page'] = $this->options['list_logs_num'];
-		$config['full_tag_open'] = '<p>';
-		$config['full_tag_close'] = '</p>';
+		$config['full_tag_open']	= '<div class="pagination"><ul>';
+		$config['full_tag_close']	= '</ul></div>';
+		$config['num_tag_open'] 	= '<li>';
+		$config['num_tag_close'] 	= '</li>';
+		$config['num_tag_open'] 	= '<li>';
+		$config['num_tag_close'] 	= '</li>';
+		$config['cur_tag_open'] 	= '<li class="active"><a href="#">';
+		$config['cur_tag_close'] 	= '</a></li>';
+		$config['prev_tag_open'] 	= '<li>';
+		$config['prev_tag_close'] 	= '</li>';
+		$config['next_tag_open'] 	= '<li>';
+		$config['next_tag_close'] 	= '</li>';
+		$config['last_tag_open'] 	= '<li>';
+		$config['last_tag_close'] 	= '</li>';
+		$config['first_tag_open'] 	= '<li>';
+		$config['first_tag_close'] 	= '</li>';
 	
 		// initialize the pagination library
 		$this->pagination->initialize($config);
@@ -765,6 +755,7 @@ abstract class Nova_sim extends Nova_controller_main {
 				$data['logs'][$log->log_id]['title'] = $log->log_title;
 				$data['logs'][$log->log_id]['author'] = $this->char->get_character_name($log->log_author_character, true);
 				$data['logs'][$log->log_id]['date'] = mdate($datestring, $date);
+				$data['logs'][$log->log_id]['content'] = text_output(word_limiter($log->log_content, 50));
 			}
 		}
 		
@@ -794,6 +785,7 @@ abstract class Nova_sim extends Nova_controller_main {
 			'nologs' => sprintf(lang('error_not_found'), lang('global_personallogs')),
 			'on' => lang('labels_on'),
 			'title' => ucfirst(lang('labels_title')),
+			'blurb' => ucfirst(lang('labels_blurb')),
 		);
 		
 		$this->_regions['content'] = Location::view('sim_listlogs', $this->skin, 'main', $data);
@@ -811,6 +803,7 @@ abstract class Nova_sim extends Nova_controller_main {
 		$this->load->model('posts_model', 'posts');
 		$this->load->model('missions_model', 'mis');
 		$this->load->library('pagination');
+		$this->load->helper('text');
 		
 		// define the variables
 		$data = false;
@@ -828,8 +821,22 @@ abstract class Nova_sim extends Nova_controller_main {
 			$config['base_url'] = site_url('sim/listposts/');
 			$config['total_rows'] = $this->posts->count_all_posts();
 			$config['per_page'] = $this->options['list_posts_num'];
-			$config['full_tag_open'] = '<p class="fontMedium bold">';
-			$config['full_tag_close'] = '</p>';
+			$config['full_tag_open']	= '<div class="pagination"><ul>';
+			$config['full_tag_close']	= '</ul></div>';
+			$config['num_tag_open'] 	= '<li>';
+			$config['num_tag_close'] 	= '</li>';
+			$config['num_tag_open'] 	= '<li>';
+			$config['num_tag_close'] 	= '</li>';
+			$config['cur_tag_open'] 	= '<li class="active"><a href="#">';
+			$config['cur_tag_close'] 	= '</a></li>';
+			$config['prev_tag_open'] 	= '<li>';
+			$config['prev_tag_close'] 	= '</li>';
+			$config['next_tag_open'] 	= '<li>';
+			$config['next_tag_close'] 	= '</li>';
+			$config['last_tag_open'] 	= '<li>';
+			$config['last_tag_close'] 	= '</li>';
+			$config['first_tag_open'] 	= '<li>';
+			$config['first_tag_close'] 	= '</li>';
 		
 			// initialize the pagination library
 			$this->pagination->initialize($config);
@@ -849,8 +856,22 @@ abstract class Nova_sim extends Nova_controller_main {
 			$config['total_rows'] = $this->posts->count_all_posts($mission);
 			$config['per_page'] = $this->options['list_posts_num'];
 			$config['uri_segment'] = 5;
-			$config['full_tag_open'] = '<p class="fontMedium bold">';
-			$config['full_tag_close'] = '</p>';
+			$config['full_tag_open']	= '<div class="pagination"><ul>';
+			$config['full_tag_close']	= '</ul></div>';
+			$config['num_tag_open'] 	= '<li>';
+			$config['num_tag_close'] 	= '</li>';
+			$config['num_tag_open'] 	= '<li>';
+			$config['num_tag_close'] 	= '</li>';
+			$config['cur_tag_open'] 	= '<li class="active"><a href="#">';
+			$config['cur_tag_close'] 	= '</a></li>';
+			$config['prev_tag_open'] 	= '<li>';
+			$config['prev_tag_close'] 	= '</li>';
+			$config['next_tag_open'] 	= '<li>';
+			$config['next_tag_close'] 	= '</li>';
+			$config['last_tag_open'] 	= '<li>';
+			$config['last_tag_close'] 	= '</li>';
+			$config['first_tag_open'] 	= '<li>';
+			$config['first_tag_close'] 	= '</li>';
 		
 			// initialize the pagination library
 			$this->pagination->initialize($config);
@@ -872,10 +893,11 @@ abstract class Nova_sim extends Nova_controller_main {
 				
 				$data['posts'][$post->post_id]['id'] = $post->post_id;
 				$data['posts'][$post->post_id]['title'] = $post->post_title;
-				$data['posts'][$post->post_id]['author'] = $this->char->get_authors($post->post_authors, true);
+				$data['posts'][$post->post_id]['authors'] = $this->char->get_authors($post->post_authors, true);
 				$data['posts'][$post->post_id]['date'] = mdate($datestring, $date);
 				$data['posts'][$post->post_id]['mission'] = $this->mis->get_mission($post->post_mission, 'mission_title');
 				$data['posts'][$post->post_id]['mission_id'] = $post->post_mission;
+				$data['posts'][$post->post_id]['content'] = text_output(word_limiter($post->post_content, 50));
 			}
 			
 			if ($mission === false)
@@ -934,6 +956,7 @@ abstract class Nova_sim extends Nova_controller_main {
 			'mission' => ucfirst(lang('global_mission')) .':',
 			'noposts' => sprintf(lang('error_not_found'), lang('global_missionposts')),
 			'title' => ucfirst(lang('labels_title')),
+			'blurb' => ucfirst(lang('labels_blurb')),
 		);
 		
 		$this->_regions['content'] = Location::view('sim_listposts', $this->skin, 'main', $data);

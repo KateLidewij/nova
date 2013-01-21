@@ -1,28 +1,28 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<?php echo text_output($header, 'h1', 'page-head');?>
+<h1><?php echo $header;?></h1>
 
-<?php echo text_output($display, 'p', 'gray italic bold');?>
+<?php echo text_output($display, 'p', 'muted');?>
 
 <?php if (isset($logs)): ?>
-	<table class="table100 zebra">
+	<?php echo $pagination;?>
+
+	<table class="table table-striped">
 		<thead>
 			<tr>
 				<th><?php echo $label['title'];?></th>
-				<th><?php echo $label['author'];?></th>
+				<th><?php echo $label['blurb'];?></th>
 			</tr>
 		</thead>
-		
 		<tbody>
 		<?php foreach ($logs as $log): ?>
 			<tr>
-				<td class="col_60pct">
-					<strong>
-						<?php echo anchor('sim/viewlog/'. $log['id'], $log['title'], array('class' => 'bold'));?>
-					</strong><br />
-					<span class="fontSmall"><?php echo $label['on'] .' '. $log['date'];?></span>
+				<td class="span4">
+					<p><strong><?php echo anchor('sim/viewlog/'.$log['id'], $log['title']);?></strong></p>
+					<p class="muted"><span class="sub-icn sub-icn-user"><?php echo $log['author'];?></span></p>
+					<p class="muted"><span class="sub-icn sub-icn-date"><?php echo $log['date'];?></span></p>
 				</td>
-				<td><?php echo $log['author'];?></td>
+				<td><?php echo $log['content'];?></td>
 			</tr>
 		<?php endforeach; ?>
 		</tbody>
@@ -30,5 +30,5 @@
 	
 	<?php echo $pagination;?>
 <?php else: ?>
-	<?php echo text_output($label['nologs'], 'h3', 'orange');?>
-<?php endif; ?>
+	<?php echo text_output($label['nologs'], 'p', 'alert');?>
+<?php endif;?>

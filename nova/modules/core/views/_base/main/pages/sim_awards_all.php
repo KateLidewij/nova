@@ -1,18 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<?php echo text_output($header, 'h1', 'page-head');?>
+<h1><?php echo $header;?></h1>
 
-<p><?php echo link_to_if($edit_valid, 'manage/awards', $label['edit'], array('class' => 'edit fontSmall bold'));?></p>
+<div class="btn-toolbar">
+	<?php if ($edit_valid): ?>
+		<div class="btn-group">
+			<?php echo anchor('manage/awards', img(Location::img('icon-edit.png', $this->skin, 'main')), array('class' => 'btn'));?>
+		</div>
+	<?php endif;?>
+</div>
 
 <?php if (isset($awards)): ?>
-	<?php foreach ($awards as $v): ?>
-		<h4><?php echo $v['name'];?></h4>
+	<?php foreach ($awards as $a): ?>
+		<h4><?php echo $a['name'];?></h4>
+		
 		<div class="row">
 			<div class="span7">
-				<?php echo text_output($v['desc']);?>
-				<?php echo anchor('sim/awards/'. $v['id'], $label['details'], array('class' => 'btn btn-small'));?>
+				<?php echo text_output($a['desc']);?>
+				<?php echo anchor('sim/awards/'. $a['id'], $label['details'], array('class' => 'btn btn-small'));?>
 			</div>
-			<div class="span3 align_right"><?php echo anchor('sim/awards/'. $v['id'], img($v['img']), array('class' => 'image'));?></div>
+			<div class="span3 align_right"><?php echo anchor('sim/awards/'. $a['id'], img($a['img']), array('class' => 'image'));?></div>
 		</div>
 
 		<hr>

@@ -12,7 +12,7 @@
 	</div>
 <?php endif; ?>
 
-<?php echo text_output($title, 'h1', 'page-head');?>
+<h1><?php echo $title;?></h1>
 
 <p>
 	<?php echo link_to_if(in_array(TRUE, $valid), 'manage/posts/edit/'. $post_id, $label['edit'], array('class' => 'edit fontSmall bold'));?>
