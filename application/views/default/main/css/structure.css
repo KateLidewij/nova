@@ -80,40 +80,6 @@ td.align_center { text-align: center; }
 
 /*
 |---------------------------------------------------------------
-| BUTTONS
-|---------------------------------------------------------------
-*/
-button.button-main {
-	padding: 5px 30px;
-	outline: 0 !important;
-}
-button.button-sec {
-	padding: 3px 15px;
-	outline: 0 !important;
-}
-
-button.button-signin {
-	padding: 4px 12px 5px 12px !important;
-	outline: 0 !important;
-}
-
-button.button-small {
-	height: 20px !important;
-	padding: 0 0 1px 6px !important;
-	outline: 0 !important;
-}
-
-input.button-main {
-	height: 28px;
-	padding: 0 30px;
-}
-input.button-sec {
-	height: 22px;
-	padding: 0 10px;
-}
-
-/*
-|---------------------------------------------------------------
 | jQUERY AIDS
 |---------------------------------------------------------------
 */

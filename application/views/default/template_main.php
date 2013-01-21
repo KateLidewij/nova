@@ -93,7 +93,7 @@ $loginButton = array(
 			
 			<div class="container body-container">
 				<div class="row">
-					<div class="span10">
+					<div class="span10 nova-content">
 						<?php echo $flash_message;?>
 						<?php echo $content;?>
 						<?php echo $ajax;?>
