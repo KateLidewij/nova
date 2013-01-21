@@ -5,7 +5,7 @@
  * @package		Nova
  * @category	Model
  * @author		Anodyne Productions
- * @copyright	2011 Anodyne Productions
+ * @copyright	2013 Anodyne Productions
  */
 
 abstract class Nova_tour_model extends CI_Model {
@@ -45,7 +45,7 @@ abstract class Nova_tour_model extends CI_Model {
 	/**
 	 * Get tour field data.
 	 *
-	 * @since	2.1.4
+	 * @since	2.2
 	 * @param	int		The tour item ID
 	 * @param	mixed	The field ID or field_name field
 	 * @param	bool	Whether to return only the value or the entire object
