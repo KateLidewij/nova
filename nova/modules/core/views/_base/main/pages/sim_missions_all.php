@@ -2,7 +2,9 @@
 
 <h1><?php echo $header;?></h1>
 
-<p><?php echo link_to_if($edit_valid, 'manage/missions', $label['edit'], array('class' => 'edit fontSmall bold'));?></p>
+<div class="btn-group">
+	<?php echo link_to_if($edit_valid, 'manage/missions', img(Location::img('icon-edit.png', $this->skin, 'main')), array('class' => 'btn'));?>
+</div>
 
 <ul class="nav nav-tabs" id="tabs">
 	<li><a href="#current" data-toggle="tab"><?php echo $label['s_current'];?></a></li>
@@ -16,7 +18,7 @@
 			<?php foreach ($missions['current'] as $cur): ?>
 				<h4><?php echo anchor('sim/missions/id/'. $cur['id'], $cur['title']);?></h4>
 				
-				<p class="muted"><strong><?php echo $label['count'] .' '. $cur['count'];?></strong></p>
+				<p class="muted"><?php echo $label['count'] .' '. $cur['count'];?></p>
 				
 				<?php echo text_output($cur['desc']);?>
 				
@@ -38,7 +40,7 @@
 			<?php foreach ($missions['upcoming'] as $upc): ?>
 				<h4><?php echo anchor('sim/missions/id/'. $upc['id'], $upc['title']);?></h4>
 				
-				<p class="muted"><strong><?php echo $label['count'] .' '. $upc['count'];?></strong></p>
+				<p class="muted"><?php echo $label['count'] .' '. $upc['count'];?></p>
 				
 				<?php echo text_output($upc['desc']);?>
 				
@@ -60,7 +62,7 @@
 			<?php foreach ($missions['completed'] as $com): ?>
 				<h4><?php echo anchor('sim/missions/id/'. $com['id'], $com['title']);?></h4>
 				
-				<p class="muted"><strong><?php echo $label['count'] .' '. $com['count'];?></strong></p>
+				<p class="muted"><?php echo $label['count'] .' '. $com['count'];?></p>
 				
 				<?php echo text_output($com['desc']);?>
 				

@@ -8,35 +8,37 @@
 
 <h1><?php echo $header;?></h1>
 
-<p><?php echo anchor('sim/tour', $label['back'], array('class' => 'bold'));?></p>
+<div class="btn-group">
+	<?php echo anchor('sim/tour', img(Location::img('previous.png', $this->skin, 'main')), array('class' => 'btn'));?>
+</div>
 
-<?php echo text_output($label['summary'], 'h2', 'page-subhead');?>
+<h2><?php echo $label['summary'];?></h2>
+
 <?php echo text_output($summary);?>
 
 <?php if (isset($images['main_img'])): ?>
 	<div id="gallery">
-		<?php echo text_output($label['opengallery'], 'p', 'fontSmall gray bold');?>
+		<?php echo text_output($label['opengallery'], 'p', 'muted');?>
+		
 		<a href="<?php echo base_url() . $images['main_img']['src'];?>" class="image" rel="prettyPhoto[gallery]"><?php echo img($images['main_img']);?></a>
 		
-		<div class="hidden">
+		<div class="hide">
 			<?php if (count($images['image_array']) > 0): ?>
 				<?php foreach ($images['image_array'] as $image): ?>
 					<a href="<?php echo base_url() . $image['src'];?>" class="image" rel="prettyPhoto[gallery]"><?php echo img($image);?></a>
 				<?php endforeach; ?>
 			<?php endif; ?>
-		</div><br />
+		</div>
 	</div>
 <?php endif; ?>
 
 <?php if (isset($fields)): ?>
-	<?php echo text_output($label['info'], 'h2', 'page-subhead');?>
-	<table class="table100 zebra">
-		<?php foreach ($fields as $field): ?>
-			<tr>
-				<td class="cell-label"><?php echo $field['label'];?></td>
-				<td class="cell-spacer"></td>
-				<td><?php echo text_output($field['data'], '');?></td>
-			</tr>
-		<?php endforeach; ?>
-	</table>
+	<h2><?php echo $label['info'];?></h2>
+
+	<dl>
+	<?php foreach ($fields as $field): ?>
+		<dt><?php echo $field['label'];?></dt>
+		<dd><?php echo text_output($field['data'], '');?></dd>
+	<?php endforeach;?>
+	</dl>
 <?php endif; ?>

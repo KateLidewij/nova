@@ -2,41 +2,43 @@
 
 <h1><?php echo $header;?></h1>
 
-<p><?php echo anchor('sim/missions/group', $label['backgroups'], array('class' => 'bold'));?></p><br />
+<div class="btn-group">
+	<?php echo anchor('sim/missions/group', img(Location::img('previous.png', $this->skin, 'main')), array('class' => 'btn'));?>
+</div>
 
 <?php if (isset($group)): ?>
 	<?php echo text_output($group['desc']);?>
 	
-	<h4><?php echo $label['count_posts_group'] .' '. $group['posts'];?></h4>
+	<p class="muted"><?php echo $label['count_posts_group'] .' '. $group['posts'];?></p>
 	
 	<?php if (isset($group['missions'])): ?>
-		<hr />
+		<hr>
 		
-		<?php echo text_output($label['included'], 'h2', 'page-subhead');?>
+		<h2><?php echo $label['included'];?></h2>
 		
-		<div class="indent-left">
-			<?php foreach ($group['missions'] as $m): ?>
-				<h4><?php echo anchor('sim/missions/id/'. $m['id'], $m['title']);?></h4>
-				<strong class="fontSmall gray"><?php echo $label['count'] .' '. $m['count'];?></strong>
-				<?php echo text_output($m['desc'], 'p', 'fontSmall gray');?>
-			<?php endforeach;?>
-		</div>
+		<dl>
+		<?php foreach ($group['missions'] as $m): ?>
+			<dt><?php echo anchor('sim/missions/id/'. $m['id'], $m['title']);?></dt>
+			<dd class="muted"><?php echo $label['count'] .' '. $m['count'];?></dd>
+			<dd><?php echo text_output($m['desc']);?></dd>
+		<?php endforeach;?>
+		</dl>
 	<?php endif;?>
 	
 	<?php if (isset($group['subgroups'])): ?>
-		<br /><hr /><br />
+		<hr>
 		
-		<?php echo text_output($label['included_groups'], 'h2', 'page-subhead');?>
+		<h2><?php echo $label['included_groups'];?></h2>
 		
-		<div class="indent-left">
-			<?php foreach ($group['subgroups'] as $s): ?>
-				<h4><?php echo anchor('sim/missions/group/'. $s['id'], $s['name']);?></h4>
-				<strong class="fontSmall gray"><?php echo $label['count_missions'] .' '. $s['count']['missions'];?></strong><br />
-				<strong class="fontSmall gray"><?php echo $label['count'] .' '. $s['count']['posts'];?></strong>
-				<?php echo text_output($s['desc'], 'p', 'fontSmall gray');?>
-			<?php endforeach;?>
-		</div>
+		<dl>
+		<?php foreach ($group['subgroups'] as $s): ?>
+			<dt><?php echo anchor('sim/missions/group/'. $s['id'], $s['name']);?></dt>
+			<dd class="muted"><?php echo $label['count_missions'] .' '. $s['count']['missions'];?></dd>
+			<dd class="muted"><?php echo $label['count'] .' '. $s['count']['posts'];?></dd>
+			<dd><?php echo text_output($s['desc']);?></dd>
+		<?php endforeach;?>
+		</dl>
 	<?php endif;?>
 <?php else: ?>
-	<?php echo text_output($label['nogroup'], 'h3', 'orange');?>
+	<?php echo text_output($label['nogroup'], 'p', 'alert');?>
 <?php endif;?>

@@ -8,7 +8,9 @@
 
 <h1><?php echo $header;?></h1>
 
-<?php echo anchor('sim/missions', $label['missions'], array('class' => 'btn btn-small pull-right'));?>
+<div class="btn-group">
+	<?php echo anchor('sim/missions', img(Location::img('previous.png', $this->skin, 'main')), array('class' => 'btn'));?>
+</div>
 
 <?php if (isset($mission_img['src'])): ?>
 	<div id="gallery">

@@ -9,47 +9,45 @@
 <h1><?php echo $header;?></h1>
 
 <?php if ($count > 1): ?>
-	<p><?php echo anchor('sim/specs', $label['back'], array('class' => 'bold'));?></p>
+	<div class="btn-group">
+		<?php echo anchor('sim/specs', img(Location::img('previous.png', $this->skin, 'main')), array('class' => 'btn'));?>
+	</div>
 <?php endif;?>
 
-<?php echo text_output($label['summary'], 'h2', 'page-subhead');?>
-<?php echo text_output($summary);?><br />
+<h2><?php echo $label['summary'];?></h2>
+
+<?php echo text_output($summary);?>
 
 <?php if (isset($images['main_img'])): ?>
 	<div id="gallery">
-		<?php echo text_output($label['opengallery'], 'p', 'fontSmall gray bold');?>
+		<?php echo text_output($label['opengallery'], 'p', 'muted');?>
 		<a href="<?php echo base_url() . $images['main_img']['src'];?>" class="image" rel="prettyPhoto[gallery]"><?php echo img($images['main_img']);?></a>
 		
-		<div class="hidden">
+		<div class="hide">
 			<?php if (count($images['image_array']) > 0): ?>
 				<?php foreach ($images['image_array'] as $image): ?>
 					<a href="<?php echo base_url() . $image['src'];?>" class="image" rel="prettyPhoto[gallery]"><?php echo img($image);?></a>
 				<?php endforeach; ?>
 			<?php endif; ?>
-		</div><br />
+		</div>
 	</div>
-<?php endif; ?>
+<?php endif;?>
 
 <?php if (isset($sections)): ?>
 	<?php foreach ($sections as $section): ?>
-		<?php echo text_output($section['title'], 'h3', 'page-subhead');?>
+		<legend><?php echo $section['title'];?></legend>
 		
 		<?php if (isset($section['fields'])): ?>
-		<table class="table100 zebra" cellpadding="3">
-			<tbody>
 			<?php foreach ($section['fields'] as $field): ?>
-				<tr>
-					<td class="cell-label"><?php echo $field['field'];?></td>
-					<td class="cell-spacer"></td>
-					<td><?php echo text_output($field['data'], '');?></td>
-				</tr>
-			<?php endforeach; ?>
-			</tbody>
-		</table><br />
+				<div class="control-group">
+					<label class="control-label"><?php echo $field['field'];?></label>
+					<div class="controls"><?php echo text_output($field['data'], '');?></div>
+				</div>
+			<?php endforeach;?>
 		<?php else: ?>
-			<?php echo text_output($label['nospecs_all'], 'h4', 'orange');?>
-		<?php endif; ?>
-	<?php endforeach; ?>
+			<?php echo text_output($label['nospecs_all'], 'p', 'alert');?>
+		<?php endif;?>
+	<?php endforeach;?>
 <?php else: ?>
-	<?php echo text_output($label['nospecs_all'], 'h3', 'orange');?>
-<?php endif; ?>
+	<?php echo text_output($label['nospecs_all'], 'p', 'alert');?>
+<?php endif;?>

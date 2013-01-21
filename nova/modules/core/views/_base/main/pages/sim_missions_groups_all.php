@@ -2,7 +2,9 @@
 
 <h1><?php echo $header;?></h1>
 
-<p><?php echo anchor('sim/missions', $label['missions'], array('class' => 'btn btn-small'));?></p>
+<div class="btn-group">
+	<?php echo anchor('sim/missions', img(Location::img('previous.png', $this->skin, 'main')), array('class' => 'btn'));?>
+</div>
 
 <?php if (isset($groups)): ?>
 	<ul class="thumbnails">

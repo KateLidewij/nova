@@ -1504,10 +1504,10 @@ abstract class Nova_sim extends Nova_controller_main {
 		$data['edit_valid_form'] = (Auth::is_logged_in() and Auth::check_access('site/specsform', false)) ? true : false;
 		
 		$data['label'] = array(
-			'back' => LARROW .' '. ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '. ucwords(lang('global_specs')),
+			'back' => ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '. ucwords(lang('global_specs')),
 			'desc' => ucfirst(lang('labels_desc')),
-			'edit' => '[ '. ucwords(lang('actions_edit') .' '. lang('global_specs') .' '. lang('labels_items')) .' ]',
-			'edit_form' => '[ '. ucwords(lang('actions_edit') .' '. lang('global_specs') .' '. lang('labels_form')) .' ]',
+			'edit' => ucwords(lang('actions_edit') .' '. lang('global_specs') .' '. lang('labels_items')),
+			'edit_form' => ucwords(lang('actions_edit') .' '. lang('global_specs') .' '. lang('labels_form')),
 			'info' => ucwords(lang('labels_addtl_info')),
 			'name' => ucfirst(lang('labels_name')),
 			'nospecs_all' => sprintf(lang('error_not_found'), lang('global_specifications')),
@@ -1626,10 +1626,12 @@ abstract class Nova_sim extends Nova_controller_main {
 			'statspace' => lang('text_stats_pace'),
 			'thismonth' => ucwords(lang('labels_this') .' '. lang('time_month')),
 			'totals' => ucwords(lang('labels_totals')),
+			'posting' => ucfirst(lang('labels_posting')),
+			'averages' => ucfirst(lang('labels_averages')),
+			'personnel' => ucfirst(lang('labels_personnel')),
 		);
 		
 		$this->_regions['content'] = Location::view('sim_stats', $this->skin, 'main', $data);
-		$this->_regions['javascript'] = Location::js('sim_stats_js', $this->skin, 'main');
 		$this->_regions['title'].= $title;
 		
 		Template::assign($this->_regions);
@@ -1786,14 +1788,14 @@ abstract class Nova_sim extends Nova_controller_main {
 		$data['label'] = array(
 			'back' => LARROW .' '. ucfirst(lang('actions_back')) .' '. lang('labels_to') .' '. ucwords(lang('global_touritems')),
 			'desc' => ucfirst(lang('labels_desc')),
-			'edit' => '[ '.ucwords(lang('actions_edit').' '.lang('global_touritems')).' ]',
-			'edit_form' => '[ '.ucwords(lang('actions_edit').' '.lang('global_tour').' '.lang('labels_form')) .' ]',
+			'edit' => ucwords(lang('actions_edit').' '.lang('global_touritems')),
+			'edit_form' => ucwords(lang('actions_edit').' '.lang('global_tour').' '.lang('labels_form')) ,
 			'info' => ucwords(lang('labels_addtl_info')),
 			'name' => ucfirst(lang('labels_name')),
 			'notour_all' => sprintf(lang('error_not_found'), lang('global_touritems')),
 			'opengallery' => lang('open_gallery'),
 			'summary' => ucfirst(lang('labels_summary')),
-			'viewspec' => ucwords(lang('actions_view').' '.lang('global_specifications').' '.RARROW),
+			'viewspec' => ucwords(lang('actions_view').' '.lang('global_specifications')),
 		);
 		
 		$this->_regions['content'] = Location::view($view_loc, $this->skin, 'main', $data);

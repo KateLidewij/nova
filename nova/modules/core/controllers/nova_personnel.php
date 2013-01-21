@@ -919,7 +919,7 @@ abstract class Nova_personnel extends Nova_controller_main {
 					$data['posts'][$i]['title'] = $p->post_title;
 					$data['posts'][$i]['post_id'] = $p->post_id;
 					$data['posts'][$i]['date'] = mdate($datestring, gmt_to_local($p->post_date, $this->timezone, $this->dst));
-					$data['posts'][$i]['authors'] = $this->char->get_authors($p->post_authors);
+					$data['posts'][$i]['authors'] = $this->char->get_authors($p->post_authors, true, true);
 					$data['posts'][$i]['mission'] = $this->mis->get_mission($p->post_mission, 'mission_title');
 					$data['posts'][$i]['mission_id'] = $p->post_mission;
 					
@@ -935,7 +935,7 @@ abstract class Nova_personnel extends Nova_controller_main {
 					$data['logs'][$i]['title'] = $l->log_title;
 					$data['logs'][$i]['log_id'] = $l->log_id;
 					$data['logs'][$i]['date'] = mdate($datestring, gmt_to_local($l->log_date, $this->timezone, $this->dst));
-					$data['logs'][$i]['author'] = $this->char->get_character_name($l->log_author_character, true);
+					$data['logs'][$i]['author'] = $this->char->get_character_name($l->log_author_character, true, false, true);
 					
 					++$i;
 				}
@@ -950,7 +950,7 @@ abstract class Nova_personnel extends Nova_controller_main {
 					$data['news'][$i]['news_id'] = $n->news_id;
 					$data['news'][$i]['category'] = $n->newscat_name;
 					$data['news'][$i]['date'] = mdate($datestring, gmt_to_local($n->news_date, $this->timezone, $this->dst));
-					$data['news'][$i]['author'] = $this->char->get_character_name($n->news_author_character, true);
+					$data['news'][$i]['author'] = $this->char->get_character_name($n->news_author_character, true, false, true);
 					
 					++$i;
 				}
@@ -971,7 +971,7 @@ abstract class Nova_personnel extends Nova_controller_main {
 					$data['awards'][$i]['award_id'] = $a->awardrec_award;
 					$data['awards'][$i]['reason'] = $a->awardrec_reason;
 					$data['awards'][$i]['given'] = mdate($datestring, gmt_to_local($a->awardrec_date, $this->timezone, $this->dst));
-					$data['awards'][$i]['name'] = (empty($a->awardrec_character)) ? $row->name : $this->char->get_character_name($a->awardrec_character, true);
+					$data['awards'][$i]['name'] = (empty($a->awardrec_character)) ? $row->name : $this->char->get_character_name($a->awardrec_character, true, false, true);
 					
 					++$i;
 				}

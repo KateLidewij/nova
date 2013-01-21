@@ -2,7 +2,9 @@
 
 <h1><?php echo $header;?></h1>
 
-<p><?php echo link_to_if($edit_valid, 'characters/coc', $label['edit'], array('class' => 'edit fontSmall bold'));?></p>
+<div class="btn-group">
+	<?php echo link_to_if($edit_valid, 'characters/coc', img(Location::img('icon-edit.png', $this->skin, 'main')), array('class' => 'btn'));?>
+</div>
 
 <?php if (isset($coc)): ?>
 	<table>

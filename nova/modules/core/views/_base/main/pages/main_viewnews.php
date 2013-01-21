@@ -26,11 +26,17 @@
 		<?php endif;?>
 
 		<div class="btn-group">
-			<?php echo anchor('feed/news', img(Location::img('feed.png', $this->skin, 'main')), array('class' => 'btn'));?>
-		
-			<?php if (Auth::is_logged_in()): ?>
-				<a class="btn" href="#" id="add_comment" rel="facebox" data-id="<?php echo $news_id;?>"><?php echo img(Location::img('comment.png', $this->skin, 'main'));?></a>
+			<?php if (isset($comments) and is_array($comments)): ?>
+				<a class="btn" href="#comments"><?php echo img(Location::img('comment.png', $this->skin, 'main'));?></a>
 			<?php endif;?>
+
+			<?php if (Auth::is_logged_in()): ?>
+				<a class="btn" href="#" id="add_comment" rel="facebox" data-id="<?php echo $news_id;?>"><?php echo img(Location::img('comment-add.png', $this->skin, 'main'));?></a>
+			<?php endif;?>
+		</div>
+
+		<div class="btn-group">
+			<?php echo anchor('feed/news', img(Location::img('feed.png', $this->skin, 'main')), array('class' => 'btn'));?>
 		</div>
 	</div>
 	
@@ -50,21 +56,29 @@
 	</p>
 	
 	<?php echo text_output($content);?>
-	
-	<?php if (isset($next) or isset($prev)): ?>
+
+	<div class="btn-toolbar">
+		<?php if (isset($next) or isset($prev)): ?>
+			<div class="btn-group">
+				<?php if (isset($prev)): ?>
+					<?php echo anchor('main/viewnews/'.$prev, img(Location::img('previous.png', $this->skin, 'main')), array('class' => 'btn'));?>
+				<?php endif;?>
+				
+				<?php if (isset($next)): ?>
+					<?php echo anchor('main/viewnews/'.$next, img(Location::img('next.png', $this->skin, 'main')), array('class' => 'btn'));?>
+				<?php endif;?>
+			</div>
+		<?php endif;?>
+
 		<div class="btn-group">
-			<?php if (isset($prev)): ?>
-				<?php echo anchor('main/viewnews/'.$prev, img(Location::img('previous.png', $this->skin, 'main')), array('class' => 'btn'));?>
-			<?php endif;?>
-			
-			<?php if (isset($next)): ?>
-				<?php echo anchor('main/viewnews/'.$next, img(Location::img('next.png', $this->skin, 'main')), array('class' => 'btn'));?>
+			<?php if (Auth::is_logged_in()): ?>
+				<a class="btn" href="#" id="add_comment" rel="facebox" data-id="<?php echo $news_id;?>"><?php echo img(Location::img('comment-add.png', $this->skin, 'main'));?></a>
 			<?php endif;?>
 		</div>
-	<?php endif;?>
+	</div>
 
 	<?php if (isset($comments) and is_array($comments)): ?>
-		<a name="comments"></a><h2 class="page-subhead"><?php echo $label['comments'].' (' . $comment_count . ')';?></h2>
+		<a name="comments"></a><h2><?php echo $label['comments'].' (' . $comment_count . ')';?></h2>
 		
 		<?php foreach ($comments as $value): ?>
 			<blockquote>
