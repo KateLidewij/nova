@@ -1,0 +1,225 @@
+/*
+|---------------------------------------------------------------
+| SPECIAL FONT SIZES
+|---------------------------------------------------------------
+*/
+.fontLarge	{ font-size: 133%; }
+.fontMedium	{ font-size: 117%; }
+.fontNormal { font-size: 100%; }
+.fontSmall	{ font-size: 92%; }
+.fontTiny	{ font-size: 80%; }
+
+/*
+|---------------------------------------------------------------
+| SPECIAL FONT PRESENTATION CLASSES
+|---------------------------------------------------------------
+*/
+.nobold	{
+	font-weight: normal;
+}
+.bold {
+	font-weight: bold;
+}
+.italic {
+	font-style: italic;
+}
+
+.align-left {
+	text-align: left;
+}
+.align-right {
+	text-align: right;
+}
+.align-center {
+	text-align: center;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+.lowercase {
+	text-transform: lowercase;
+}
+
+/*
+|---------------------------------------------------------------
+| LINKS
+|---------------------------------------------------------------
+*/
+a {
+	outline: 0;
+}
+
+a.image, a.image:hover {
+	border: none;
+	text-decoration: none;
+}
+
+/*
+|---------------------------------------------------------------
+| TABLES
+|---------------------------------------------------------------
+*/
+.col_15 { width: 15px; }
+.col_30 { width: 30px; }
+.col_40 { width: 40px; }
+.col_50 { width: 50px; }
+.col_75 { width: 75px; }
+.col_100 { width: 100px; }
+.col_150 { width: 150px; }
+.col_200 { width: 200px; }
+.col_245 { width: 245px; }
+.col_260 { width: 260px; }
+.col_300 { width: 300px; }
+
+.col_20pct { width: 20%; }
+.col_25pct { width: 25%; }
+.col_30pct { width: 30%; }
+.col_40pct { width: 40%; }
+.col_50pct { width: 50%; }
+.col_60pct { width: 60%; }
+
+/*
+|---------------------------------------------------------------
+| jQUERY AIDS
+|---------------------------------------------------------------
+*/
+.clear-both {
+	clear: both;
+}
+.clear-right {
+	clear: right;
+}
+.clear-left {
+	clear: left;
+}
+
+/*
+|---------------------------------------------------------------
+| IMAGES
+|---------------------------------------------------------------
+*/
+.inline_img_left {
+    float: left;
+    margin: 2px 6px 0 0;
+}
+
+/*
+|---------------------------------------------------------------
+| PADDINGS
+|---------------------------------------------------------------
+*/
+.top_p5em	{ padding-top: .5em; }
+.top_1em	{ padding-top: 1em; }
+
+.right_p5em	{ padding-right: .5em; }
+.right_1em	{ padding-right: 1em; }
+
+.left_p5em	{ padding-right: .5em; }
+.left_1em	{ padding-right: 1em; }
+
+.padding_all_p5em { padding: .5em; }
+
+/*
+|---------------------------------------------------------------
+| MISC
+|---------------------------------------------------------------
+*/
+.bio_main_image {
+	float: right;
+	max-width: 200px;
+	max-height: 250px;
+}
+
+img { border: none; }
+
+.loader {
+	height: 50px;
+	text-align: center;
+}
+
+.system_warning {
+	height: 22px;
+	line-height: 22px;
+}
+
+.award-small {
+	width: 65px;
+}
+
+.logged-in-controls {
+	float: right;
+	padding: 11px 5px 0 0;
+	height: 20px;
+}
+
+.nested-left {
+	margin-left: 30px !important;
+}
+
+.btn-toolbar,
+.btn-group {
+	margin-bottom: 15px;
+}
+
+.hidden-input,
+.hidden-input:focus {
+	cursor: default;
+	background: transparent !important;
+	border-color: transparent !important;
+
+	-moz-box-shadow: inset 0 0 0 transparent, inset 0 0 0 transparent, 0 0 0 transparent !important;
+	-webkit-box-shadow: inset 0 0 0 transparent, inset 0 0 0 transparent, 0 0 0 transparent !important;
+	box-shadow: inset 0 0 0 transparent, inset 0 0 0 transparent, 0 0 0 transparent !important;
+}
+
+/*
+|---------------------------------------------------------------
+| DASHBOARD
+|---------------------------------------------------------------
+*/
+.panel-handle a, .panel-handle a:hover {
+	outline: 0;
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+.panel-handle a span {
+	display: block;
+	padding: 0 1em;
+}
+.panel-handle .ui-icon {
+	margin: 3px 0 0 4px;
+	padding: 0;
+}
+
+#panel .panel-body {
+	padding: 1em;
+}
+
+.panel-handle {
+	height: 22px;
+	line-height: 22px;
+}
+
+.panel-trigger {
+	display: block;
+	float: right;
+	width: 115px;
+}
+
+#panel-handle-left { width: auto; }
+#panel-handle-left li {
+	float: left;
+	margin: 0 2px 0 0;
+}
+
+.panel-notify-icon {
+	float: left;
+	margin: 6px 6px 0 0;
+}
+
+.panel-clear { clear: both; }
+
+.panel_1, .panel_2, .panel_3 { width: 300px; }
+.panel_spacer { width: 30px; }
