@@ -7,7 +7,7 @@
 <?php else: ?>
 	<?php if ($this->options['use_mission_notes'] == 'y'): ?>
 		<div id="notes">
-			<p class="float_right fontSmall">
+			<p class="pull-right fontSmall">
 				<a href="#" id="toggle_notes"><strong><?php echo $label['showhide'];?></strong></a>
 			</p>
 			<h3><?php echo $label['mission_notes'];?> <small class="gray"><?php echo $label['note_last_updated'];?></small></h3>
@@ -96,7 +96,7 @@
 		
 		<?php if ($inputs['locked']): ?>
 			<div id="notes">
-				<p class="float_left"><?php echo img($images['excl']);?>&nbsp;&nbsp;</p>
+				<p class="pull-left"><?php echo img($images['excl']);?>&nbsp;&nbsp;</p>
 				<?php echo text_output($label['locked'], 'h4');?>
 			</div>
 		<?php endif;?>

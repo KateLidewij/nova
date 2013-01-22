@@ -43,9 +43,9 @@ p {
 .bold   { font-weight: bold; }
 .italic { font-style: italic; }
 
-.align_left { text-align: left; }
-.align_right { text-align: right; }
-.align_center { text-align: center; }
+.align-left { text-align: left; }
+.align-right { text-align: right; }
+.align-center { text-align: center; }
 
 .uppercase { text-transform: uppercase; }
 .lowercase { text-transform: lowercase; }
@@ -152,9 +152,9 @@ tr.height_60 { height: 60px; }
 .align_top { vertical-align: top; }
 .align_bottom { vertical-align: bottom; }
 .align_middle { vertical-align: middle; }
-td.align_left { text-align: left; }
-td.align_right { text-align: right; }
-td.align_center { text-align: center; }
+td.align-left { text-align: left; }
+td.align-right { text-align: right; }
+td.align-center { text-align: center; }
 
 /*
 |---------------------------------------------------------------
@@ -325,8 +325,8 @@ ul.padding1, ol.padding1 { padding: .5em 1em; }
     max-height: 250px;
 }
 
-.float_left { float: left; }
-.float_right { float: right; }
+.pull-left { float: left; }
+.pull-right { float: right; }
 
 hr {
 	height: 0;

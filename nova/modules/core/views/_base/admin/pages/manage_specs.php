@@ -28,7 +28,7 @@
 						<?php echo $s['summary'];?>
 					</span>
 				</td>
-				<td class="col_75 align_right">
+				<td class="col_75 align-right">
 					<a href="#" myAction="delete" myID="<?php echo $s['id'];?>" rel="facebox" class="image"><?php echo img($images['delete']);?></a>
 					&nbsp;
 					<?php echo anchor('manage/specs/edit/'. $s['id'], img($images['edit']), array('class' => 'image'));?>

@@ -70,7 +70,7 @@
 							</span>
 						</td>
 						<td class="col_50pct fontSmall gray"><?php echo $b['reason'];?></td>
-						<td class="col_75 align_right">
+						<td class="col_75 align-right">
 							<a href="#" rel="facebox" myID="<?php echo $b['id'];?>" class="image"><?php echo img($images['delete']);?></a>
 						</td>
 					</tr>
@@ -99,7 +99,7 @@
 							</span>
 						</td>
 						<td class="col_50pct fontSmall gray"><?php echo $b['reason'];?></td>
-						<td class="col_75 align_right">
+						<td class="col_75 align-right">
 							<a href="#" rel="facebox" myID="<?php echo $b['id'];?>" class="image"><?php echo img($images['delete']);?></a>
 						</td>
 					</tr>

@@ -30,7 +30,7 @@
 						<strong><?php echo $label['name'];?></strong><br />
 						<?php echo form_input($t['name']);?>
 					</td>
-					<td class="align_right align_middle">
+					<td class="align-right align_middle">
 						<strong><?php echo form_label($label['delete'], $t['id'] .'_id');?>?</strong>
 						<?php echo form_checkbox($t['delete']);?>
 					</td>

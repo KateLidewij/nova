@@ -55,7 +55,7 @@
 									<?php echo $p['date'];?>
 								</span>
 							</td>
-							<td class="col_100 align_right fontSmall">
+							<td class="col_100 align-right fontSmall">
 								<?php if ($p['locked'] and Auth::get_access_level('manage/posts') == 2): ?>
 									<a href="#" rel="facebox" myAction="unlock" myID="<?php echo $p['post_id'];?>" class="image"><?php echo img($images['unlock']);?></a>
 									&nbsp;
@@ -90,7 +90,7 @@
 									<?php echo $label['by'] .' '. $l['author'];?>
 								</span>
 							</td>
-							<td class="col_30pct align_center fontSmall"><?php echo $l['date'];?></td>
+							<td class="col_30pct align-center fontSmall"><?php echo $l['date'];?></td>
 					<?php endforeach;?>
 					</tbody>
 				</table><br />
@@ -116,7 +116,7 @@
 									<strong><?php echo $label['category'] .'</strong> '. $n['category'];?>
 								</span>
 							</td>
-							<td class="col_30pct align_center fontSmall"><?php echo $n['date'];?></td>
+							<td class="col_30pct align-center fontSmall"><?php echo $n['date'];?></td>
 					<?php endforeach;?>
 					</tbody>
 				</table><br />
@@ -153,12 +153,12 @@
 										<?php echo anchor('sim/missions/id/'. $p['mission_id'], $p['mission']);?>
 									</span>
 								</td>
-								<td class="col_30 align_center">
+								<td class="col_30 align-center">
 									<?php if ($p['has_recent_comments']): ?>
 										<a href="<?php echo site_url('sim/viewpost/'.$p['post_id'].'#comments');?>" rel="tooltip" class="image" title="<?php echo $label['recent_comments'];?>"><?php echo img($images['comments']);?></a>
 									<?php endif;?>
 								</td>
-								<td class="col_30pct align_center fontSmall"><?php echo $p['date'];?></td>
+								<td class="col_30pct align-center fontSmall"><?php echo $p['date'];?></td>
 						<?php endforeach;?>
 						</tbody>
 					</table>
@@ -189,12 +189,12 @@
 										<?php echo $label['by'] .' '. $l['author'];?>
 									</span>
 								</td>
-								<td class="col_30 align_center">
+								<td class="col_30 align-center">
 									<?php if ($l['has_recent_comments']): ?>
 										<a href="<?php echo site_url('sim/viewlog/'.$l['log_id'].'#comments');?>" rel="tooltip" class="image" title="<?php echo $label['recent_comments'];?>"><?php echo img($images['comments']);?></a>
 									<?php endif;?>
 								</td>
-								<td class="col_30pct align_center fontSmall"><?php echo $l['date'];?></td>
+								<td class="col_30pct align-center fontSmall"><?php echo $l['date'];?></td>
 						<?php endforeach;?>
 						</tbody>
 					</table>
@@ -225,12 +225,12 @@
 										<strong><?php echo $label['category'] .'</strong> '. $n['category'];?>
 									</span>
 								</td>
-								<td class="col_30 align_center">
+								<td class="col_30 align-center">
 									<?php if ($n['has_recent_comments']): ?>
 										<a href="<?php echo site_url('main/viewnews/'.$n['news_id'].'#comments');?>" rel="tooltip" class="image" title="<?php echo $label['recent_comments'];?>"><?php echo img($images['comments']);?></a>
 									<?php endif;?>
 								</td>
-								<td class="col_30pct align_center fontSmall"><?php echo $n['date'];?></td>
+								<td class="col_30pct align-center fontSmall"><?php echo $n['date'];?></td>
 						<?php endforeach;?>
 						</tbody>
 					</table>
@@ -270,12 +270,12 @@
 										<?php echo anchor('sim/missions/id/'. $p['mission_id'], $p['mission']);?>
 									</span>
 								</td>
-								<td class="col_30 align_center">
+								<td class="col_30 align-center">
 									<?php if ($p['has_recent_comments']): ?>
 										<a href="<?php echo site_url('sim/viewpost/'.$p['post_id'].'#comments');?>" rel="tooltip" class="image" title="<?php echo $label['recent_comments'];?>"><?php echo img($images['comments']);?></a>
 									<?php endif;?>
 								</td>
-								<td class="col_30pct align_center fontSmall"><?php echo $p['date'];?></td>
+								<td class="col_30pct align-center fontSmall"><?php echo $p['date'];?></td>
 						<?php endforeach;?>
 						</tbody>
 					</table>
@@ -304,12 +304,12 @@
 										<?php echo $label['by'] .' '. $l['author'];?>
 									</span>
 								</td>
-								<td class="col_30 align_center">
+								<td class="col_30 align-center">
 									<?php if ($l['has_recent_comments']): ?>
 										<a href="<?php echo site_url('sim/viewlog/'.$l['log_id'].'#comments');?>" rel="tooltip" class="image" title="<?php echo $label['recent_comments'];?>"><?php echo img($images['comments']);?></a>
 									<?php endif;?>
 								</td>
-								<td class="col_30pct align_center fontSmall"><?php echo $l['date'];?></td>
+								<td class="col_30pct align-center fontSmall"><?php echo $l['date'];?></td>
 						<?php endforeach;?>
 						</tbody>
 					</table>
@@ -339,12 +339,12 @@
 										<strong><?php echo $label['category'] .'</strong> '. $n['category'];?>
 									</span>
 								</td>
-								<td class="col_30 align_center">
+								<td class="col_30 align-center">
 									<?php if ($n['has_recent_comments']): ?>
 										<a href="<?php echo site_url('main/viewnews/'.$n['news_id'].'#comments');?>" rel="tooltip" class="image" title="<?php echo $label['recent_comments'];?>"><?php echo img($images['comments']);?></a>
 									<?php endif;?>
 								</td>
-								<td class="col_30pct align_center fontSmall"><?php echo $n['date'];?></td>
+								<td class="col_30pct align-center fontSmall"><?php echo $n['date'];?></td>
 						<?php endforeach;?>
 						</tbody>
 					</table>

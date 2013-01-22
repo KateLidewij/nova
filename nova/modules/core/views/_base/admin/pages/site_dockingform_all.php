@@ -31,7 +31,7 @@
 						</td>
 						<td class="cell-spacer"></td>
 						<td><?php echo $f['input'];?></td>
-						<td class="col_75 align_right">
+						<td class="col_75 align-right">
 							<a href="#" rel="facebox" myAction="delete" myID="<?php echo $f['id'];?>" class="image"><?php echo img($images['delete']);?></a>
 							&nbsp;
 							<?php echo anchor('site/dockingform/edit/'. $f['id'], img($images['edit']), array('class' => 'image'));?>

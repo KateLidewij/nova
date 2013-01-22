@@ -6,7 +6,7 @@
 
 <div class="info-full">
 	<?php if (isset($allranks)): ?>
-		<?php echo text_output($label['sets'] . '&nbsp;&nbsp;', 'p', 'float_left bold gray');?>
+		<?php echo text_output($label['sets'] . '&nbsp;&nbsp;', 'p', 'pull-left bold gray');?>
 		<p>
 			<?php foreach ($allranks as $a => $b): ?>
 				<?php echo anchor('manage/ranks/'. $a, img($b), array('class' => 'image'));?> &nbsp;
@@ -15,7 +15,7 @@
 	<?php endif;?>
 	
 	<?php if (isset($allclasses)): ?>
-		<?php echo text_output($label['classes'] . '&nbsp;&nbsp;', 'p', 'float_left bold gray');?>
+		<?php echo text_output($label['classes'] . '&nbsp;&nbsp;', 'p', 'pull-left bold gray');?>
 		<p>
 			<?php foreach ($allclasses as $k => $v): ?>
 				<?php echo anchor('manage/ranks/'. $set .'/'. $k, img($v), array('class' => 'image'));?> &nbsp;
@@ -49,7 +49,7 @@
 							<?php echo text_output($label['image'], 'span', 'bold');?><br />
 							<?php echo form_input($r['image']) . text_output($ext, 'span', 'fontSmall gray');?>
 						</td>
-						<td class="align_right align_middle col_100">
+						<td class="align-right align_middle col_100">
 							<strong><?php echo form_label($label['delete'], $r['id'] .'_id');?>?</strong>
 							<?php echo form_checkbox($r['delete']);?>
 						</td>
@@ -83,9 +83,9 @@
 				
 				<table class="table100">
 					<tr>
-						<td class="align_right fontSmall UITheme">
+						<td class="align-right fontSmall UITheme">
 							<button class="button-small" curAction="more" id="<?php echo $r['id'];?>">
-								<span class="ui-icon ui-icon-triangle-1-s float_right"></span>
+								<span class="ui-icon ui-icon-triangle-1-s pull-right"></span>
 								<span class="text"><?php echo $label['more'];?></span>&nbsp;
 							</button>
 						</td>

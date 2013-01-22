@@ -29,13 +29,13 @@
 						<?php echo anchor('personnel/character/'. $u['charid'], $label['bio_char']);?>
 					</span>
 				</td>
-				<td class="align_center"><?php echo img($images[$u['posts']]);?></td>
-				<td class="align_center"><?php echo img($images[$u['comments_p']]);?></td>
-				<td class="align_center"><?php echo img($images[$u['logs']]);?></td>
-				<td class="align_center"><?php echo img($images[$u['comments_l']]);?></td>
-				<td class="align_center"><?php echo img($images[$u['news']]);?></td>
-				<td class="align_center"><?php echo img($images[$u['comments_n']]);?></td>
-				<td class="align_center"><?php echo img($images[$u['comments_w']]);?></td>
+				<td class="align-center"><?php echo img($images[$u['posts']]);?></td>
+				<td class="align-center"><?php echo img($images[$u['comments_p']]);?></td>
+				<td class="align-center"><?php echo img($images[$u['logs']]);?></td>
+				<td class="align-center"><?php echo img($images[$u['comments_l']]);?></td>
+				<td class="align-center"><?php echo img($images[$u['news']]);?></td>
+				<td class="align-center"><?php echo img($images[$u['comments_n']]);?></td>
+				<td class="align-center"><?php echo img($images[$u['comments_w']]);?></td>
 			</tr>
 		<?php endforeach;?>
 		</tbody>

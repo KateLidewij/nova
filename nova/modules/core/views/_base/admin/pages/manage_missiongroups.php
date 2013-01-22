@@ -13,7 +13,7 @@
 			<tr>
 				<td colspan="2" class="bold col-30pct"><?php echo $g['name'];?></td>
 				<td><?php echo text_output($g['desc']);?></td>
-				<td class="col_100 align_right">
+				<td class="col_100 align-right">
 					<?php echo anchor('sim/missions/group/'. $g['id'], img($images['view']), array('class' => 'image'));?>
 					&nbsp;
 					<a href="#" myAction="delete" myID="<?php echo $g['id'];?>" rel="facebox" class="image"><?php echo img($images['delete']);?></a>
@@ -27,7 +27,7 @@
 						<td class="col-30"></td>
 						<td class="bold col-30pct"><?php echo $g['name'];?></td>
 						<td><?php echo text_output($g['desc']);?></td>
-						<td class="col_100 align_right">
+						<td class="col_100 align-right">
 							<?php echo anchor('sim/missions/group/'. $g['id'], img($images['view']), array('class' => 'image'));?>
 							&nbsp;
 							<a href="#" myAction="delete" myID="<?php echo $g['id'];?>" rel="facebox" class="image"><?php echo img($images['delete']);?></a>

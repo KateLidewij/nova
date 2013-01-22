@@ -101,7 +101,7 @@
 									<?php endif; ?>
 								</td>
 								<td></td>
-								<td class="col_75 align_right">
+								<td class="col_75 align-right">
 									<?php echo anchor('personnel/character/'. $char['char_id'], img($char['combadge']), array('class' => 'bold image'));?>
 								</td>
 							</tr>
@@ -156,7 +156,7 @@
 											<?php endif; ?>
 										</td>
 										<td></td>
-										<td class="col_75 align_right">
+										<td class="col_75 align-right">
 											<?php echo anchor('personnel/character/'. $char['char_id'], img($char['combadge']), array('class' => 'bold image'));?>
 										</td>
 									</tr>

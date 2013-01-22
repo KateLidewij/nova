@@ -30,8 +30,11 @@ $bootstrapCss = ( ! is_file(APPPATH."views/$currentSkin/main/css/bootstrap.css")
 	? base_url().MODFOLDER.'/assets/js/css/bootstrap.min.css'
 	: base_url().APPFOLDER."/views/$currentSkin/main/css/bootstrap.css";
 
+$globalCss = ( ! is_file(APPPATH."views/$currentSkin/main/css/structure.css"))
+	? base_url().MODFOLDER.'/core/views/_base/global.css'
+	: base_url().APPFOLDER."/views/$currentSkin/main/css/structure.css";
+
 ?><style type="text/css">
-			@import url("<?php echo base_url().MODFOLDER.'/assets/js/css/jquery.ui.core.css';?>");
 			@import url('<?php echo $bootstrapCss;?>');
 			@import url('<?php echo $faceboxcss;?>');
 			@import url('<?php echo $uiTheme;?>');

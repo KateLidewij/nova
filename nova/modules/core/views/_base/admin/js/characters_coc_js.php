@@ -83,7 +83,7 @@
 					data: { user: id, 'nova_csrf_token': $('input[name=nova_csrf_token]').val() },
 					success: function(data){
 						var content = '<li class="ui-state-default" id="coc_' + id;
-						content += '"><div class="float_right"><a href="#" class="remove image" name="remove" id="' + id + '">x</a></div>' + user + '</li>';
+						content += '"><div class="pull-right"><a href="#" class="remove image" name="remove" id="' + id + '">x</a></div>' + user + '</li>';
 						
 						$('.flash_message').remove();
 						$('.' + parent).prepend(data);

@@ -26,7 +26,7 @@
 						<?php echo $label['category'] .' '. $cat['cat'];?>
 					</span>
 				</td>
-				<td class="col_75 align_right">
+				<td class="col_75 align-right">
 					<a href="#" rel="facebox" class="delete image" myAction="delete" myID="<?php echo $cat['id'];?>" title="<?php echo $label['delete'];?>">
 						<?php echo img($images['delete']);?>
 					</a>

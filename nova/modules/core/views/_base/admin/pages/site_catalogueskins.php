@@ -14,7 +14,7 @@
 			<tr class="height_40">
 				<td><strong><?php echo ucfirst($u);?></strong></td>
 				<td class="gray">views/<?php echo $u;?></td>
-				<td class="col_75 align_right">
+				<td class="col_75 align-right">
 					<?php echo form_open('site/catalogueskins/install');?>
 						<?php echo form_hidden('install_skin', $u);?>
 						<?php echo form_button($buttons['install']);?>
@@ -37,10 +37,10 @@
 			<tbody>
 				<tr>
 					<td colspan="2"><?php echo text_output($c['name'], 'h4');?></td>
-					<td class="fontSmall bold gray align_center col_50pct">
+					<td class="fontSmall bold gray align-center col_50pct">
 						<?php echo $label['location'] .' '.APPFOLDER .'/views/'. $c['location'];?>
 					</td>
-					<td class="col_75 align_right">
+					<td class="col_75 align-right">
 						<a href="#" rel="facebox" class="delete image" myAction="delete" myID="<?php echo $c['id'];?>" mySec="skin" title="<?php echo $label['delete'];?>">
 							<?php echo img($images['delete']);?>
 						</a>
@@ -62,7 +62,7 @@
 								
 								<strong><?php echo ucfirst($sec['name']);?></strong>
 							</td>
-							<td class="align_center">
+							<td class="align-center">
 								<?php if ($sec['status'] == 'active'): ?>
 									<span class="green bold">
 								<?php elseif ($sec['status'] == 'inactive'): ?>
@@ -73,7 +73,7 @@
 								
 								<?php echo ucfirst($sec['status']);?></span>
 							</td>
-							<td class="col_75 align_right">
+							<td class="col_75 align-right">
 								<a href="#" rel="facebox" class="delete image" myAction="delete" mySec="section" myID="<?php echo $sec['id'];?>" title="<?php echo $label['delete'];?>">
 									<?php echo img($images['delete']);?>
 								</a>

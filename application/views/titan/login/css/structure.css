@@ -42,7 +42,7 @@ p {
 .bold	{ font-weight: bold; }
 .italic	{ font-style: italic; }
 
-.align_right { text-align: right; }
+.align-right { text-align: right; }
 
 .uppercase { text-transform: uppercase; }
 .lowercase { text-transform: lowercase; }
@@ -114,9 +114,9 @@ td.col_30 { width: 30px; }
 td.align_top { vertical-align: top; }
 td.align_bottom { vertical-align: bottom; }
 td.align_middle { vertical-align: middle; }
-td.align_left { text-align: left; }
-td.align_right { text-align: right; }
-td.align_center { text-align: center; }
+td.align-left { text-align: left; }
+td.align-right { text-align: right; }
+td.align-center { text-align: center; }
 
 /*
 |---------------------------------------------------------------

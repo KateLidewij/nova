@@ -30,7 +30,7 @@
 								<?php echo $i['desc'];?>
 							</span>
 						</td>
-						<td class="col_100 align_right">
+						<td class="col_100 align-right">
 							<?php echo anchor('sim/missions/id/'. $i['id'], img($images['view']), array('class' => 'image'));?>
 							&nbsp;
 							<a href="#" myAction="delete" myID="<?php echo $i['id'];?>" rel="facebox" class="image"><?php echo img($images['delete']);?></a>
@@ -58,7 +58,7 @@
 							<strong class="fontMedium"><?php echo $i['title'];?></strong><br />
 							<?php echo text_output($i['desc'], 'span', 'fontSmall gray');?>
 						</td>
-						<td class="col_100 align_right">
+						<td class="col_100 align-right">
 							<a href="#" myAction="delete" myID="<?php echo $i['id'];?>" rel="facebox" class="image"><?php echo img($images['delete']);?></a>
 							&nbsp;
 							<?php echo anchor('manage/missions/edit/'. $i['id'], img($images['edit']), array('class' => 'image'));?>
@@ -84,7 +84,7 @@
 							<strong class="fontMedium"><?php echo $i['title'];?></strong><br />
 							<?php echo text_output($i['desc'], 'span', 'fontSmall gray');?>
 						</td>
-						<td class="col_100 align_right">
+						<td class="col_100 align-right">
 							<?php echo anchor('sim/missions/id/'. $i['id'], img($images['view']), array('class' => 'image'));?>
 							&nbsp;
 							<a href="#" myAction="delete" myID="<?php echo $i['id'];?>" rel="facebox" class="image"><?php echo img($images['delete']);?></a>

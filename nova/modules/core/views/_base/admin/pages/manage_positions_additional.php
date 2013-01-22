@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<div class="float_right"><a href="#" class="close-popover">Close</a></div>
+<div class="pull-right"><a href="#" class="close-popover">Close</a></div>
 
 <p>
 	<kbd><?php echo $label['order'];?></kbd>

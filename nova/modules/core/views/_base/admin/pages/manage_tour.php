@@ -34,7 +34,7 @@
 									<?php echo $t['summary'];?>
 								</span>
 							</td>
-							<td class="col_75 align_right">
+							<td class="col_75 align-right">
 								<a href="#" myAction="delete" myID="<?php echo $t['id'];?>" rel="facebox" class="image"><?php echo img($images['delete']);?></a>
 								&nbsp;
 								<?php echo anchor('manage/tour/edit/'. $t['id'], img($images['edit']), array('class' => 'image'));?>

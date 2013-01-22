@@ -41,8 +41,8 @@
 						<?php echo text_output($c['type'], 'span', 'fontSmall gray');?>
 					</td>
 					<td class="cell-spacer"></td>
-					<td class="col_30 align_right"><?php echo anchor('user/characterlink/'. $user .'/remove/'. $key, img($images['remove']), array('class' => 'image'));?></td>
-					<td class="col_30 align_right">
+					<td class="col_30 align-right"><?php echo anchor('user/characterlink/'. $user .'/remove/'. $key, img($images['remove']), array('class' => 'image'));?></td>
+					<td class="col_30 align-right">
 						<?php if ($c['main'] === FALSE && $c['type'] == 'Active'): ?>
 							<?php echo anchor('user/characterlink/'. $user .'/set/'. $key, img($images['star']), array('class' => 'image'));?>
 						<?php endif;?>

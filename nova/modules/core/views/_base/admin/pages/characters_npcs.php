@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<div id="loader" class="align_center">
+<div id="loader" class="align-center">
 	<?php echo img($images['loading']);?><br />
 	<?php echo text_output($label['loading'], 'span', 'fontSmall bold gray');?>
 </div>
@@ -33,7 +33,7 @@
 									<?php endif;?>
 								</span>
 							</td>
-							<td class="col_150 align_right">
+							<td class="col_150 align-right">
 								<?php if (!empty($i['pid']) && $levelcheck['account'] == 2): ?>
 									<?php echo anchor('user/account/'. $i['pid'], img($images['account']), array('class' => 'image'));?>
 									&nbsp;

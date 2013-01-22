@@ -33,7 +33,7 @@
 							</span>
 						</td>
 						<td class="fontSmall"><?php echo $t['content'];?></td>
-						<td class="col_75 align_right">
+						<td class="col_75 align-right">
 							<a href="#" rel="facebox" class="delete image" myAction="delete" myID="<?php echo $t['id'];?>" title="<?php echo $label['delete'];?>"><?php echo img($images['delete']);?></a>
 							&nbsp;
 							<a href="#" rel="facebox" class="edit image" myAction="edit" myID="<?php echo $t['id'];?>" title="<?php echo $label['edit'];?>"><?php echo img($images['edit']);?></a>
@@ -67,7 +67,7 @@
 							</span>
 						</td>
 						<td class="fontSmall"><?php echo $txt['content'];?></td>
-						<td class="col_75 align_right">
+						<td class="col_75 align-right">
 							<a href="#" rel="facebox" class="delete" myAction="delete" myID="<?php echo $txt['id'];?>" title="<?php echo $label['delete'];?>"><?php echo img($images['delete']);?></a>
 							&nbsp;
 							<a href="#" rel="facebox" class="edit" myAction="edit" myID="<?php echo $txt['id'];?>" title="<?php echo $label['edit'];?>"><?php echo img($images['edit']);?></a>
@@ -101,7 +101,7 @@
 							</span>
 						</td>
 						<td class="fontSmall"><?php echo $other['content'];?></td>
-						<td class="col_75 align_right">
+						<td class="col_75 align-right">
 							<a href="#" rel="facebox" class="delete" myAction="delete" myID="<?php echo $other['id'];?>" title="<?php echo $label['delete'];?>"><?php echo img($images['delete']);?></a>
 							&nbsp;
 							<a href="#" rel="facebox" class="edit" myAction="edit" myID="<?php echo $other['id'];?>" title="<?php echo $label['edit'];?>"><?php echo img($images['edit']);?></a>

@@ -41,7 +41,7 @@
 						<strong><?php echo $label['display'];?></strong><br />
 						<?php echo form_dropdown($c['id'] .'_display', $values['display'], $c['display']);?>
 					</td>
-					<td class="align_right align_middle">
+					<td class="align-right align_middle">
 						<strong><?php echo form_label($label['delete'], $c['id'] .'_id');?>?</strong>
 						<?php echo form_checkbox($c['delete']);?>
 					</td>

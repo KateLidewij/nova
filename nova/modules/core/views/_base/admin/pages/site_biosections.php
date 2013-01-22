@@ -26,12 +26,12 @@
 				<td>
 					<?php echo (!empty($sec['tab'])) ? $sec['tab'] : text_output($label['invalid_tab'], 'span', 'red bold');?>
 				</td>
-				<td class="col_30 align_center">
+				<td class="col_30 align-center">
 					<a href="#" rel="facebox" class="delete image" myAction="delete" myID="<?php echo $sec['id'];?>" title="<?php echo $label['delete'];?>">
 						<?php echo img($images['delete']);?>
 					</a>
 				</td>
-				<td class="col_30 align_center">
+				<td class="col_30 align-center">
 					<a href="#" rel="facebox" class="edit image" myAction="edit" myID="<?php echo $sec['id'];?>" title="<?php echo $label['edit'];?>">
 						<?php echo img($images['edit']);?>
 					</a>

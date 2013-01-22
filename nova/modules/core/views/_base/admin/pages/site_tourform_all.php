@@ -25,7 +25,7 @@
 				</td>
 				<td class="cell-spacer"></td>
 				<td><?php echo $t['input'];?></td>
-				<td class="col_75 align_right">
+				<td class="col_75 align-right">
 					<a href="#" rel="facebox" myAction="delete" myID="<?php echo $t['id'];?>" class="image"><?php echo img($images['delete']);?></a>
 					&nbsp;
 					<?php echo anchor('site/tourform/edit/'. $t['id'], img($images['edit']), array('class' => 'image'));?>

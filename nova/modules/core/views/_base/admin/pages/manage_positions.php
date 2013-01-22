@@ -62,13 +62,13 @@
 						<td class="slider_control UITheme">
 							<div id="<?php echo $p['id'];?>" class="slider"><?php echo $p['open'];?></div>
 						</td>
-						<td class="align_right align_middle">
+						<td class="align-right align_middle">
 							<strong><?php echo form_label($label['delete'], $p['id'] .'_id');?>?</strong>
 							<?php echo form_checkbox($inputs['position'][$p['id']]['delete']);?>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="6" class="align_right fontSmall">
+						<td colspan="6" class="align-right fontSmall">
 							<button class="button-small" rel="popover" title="<?php echo $inputs['position'][$p['id']]['name']['value'];?>" data-content="<?php echo $additional[$p['id']];?>"><span class="text"><?php echo $label['more'];?></span></button>
 						</td>
 					</tr>

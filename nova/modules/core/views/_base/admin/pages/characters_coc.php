@@ -27,7 +27,7 @@
 		<?php if (isset($coc)): ?>
 			<?php foreach ($coc as $key => $value): ?>
 				<li class="ui-state-default" id="coc_<?php echo $key;?>">
-					<div class="float_right"><a href="#" class="remove image" name="remove" id="<?php echo $key;?>">x</a></div>
+					<div class="pull-right"><a href="#" class="remove image" name="remove" id="<?php echo $key;?>">x</a></div>
 					<?php echo $value;?>
 				</li>
 			<?php endforeach; ?>

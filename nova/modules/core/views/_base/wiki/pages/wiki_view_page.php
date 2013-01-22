@@ -74,7 +74,7 @@
 								</td>
 								
 								<?php if (Auth::is_logged_in()): ?>
-									<td class="col_75 align_right">
+									<td class="col_75 align-right">
 										<?php echo anchor('wiki/view/draft/'. $h['draft'], img($images['view']), array('class' => 'image'));?>
 									</td>
 								<?php endif;?>

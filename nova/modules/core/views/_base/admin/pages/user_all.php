@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<div id="loader" class="align_center">
+<div id="loader" class="align-center">
 	<?php echo img($images['loading']);?><br />
 	<?php echo text_output($label['loading'], 'span', 'fontSmall bold gray');?>
 </div>
@@ -55,7 +55,7 @@
 								</span>
 							</td>
 							<td><?php echo $i['main_char'];?></td>
-							<td class="col_100 align_right">
+							<td class="col_100 align-right">
 								<?php echo anchor('personnel/user/'. $i['id'], img($images['view']), array('class' => 'image'));?>
 								&nbsp;
 								<?php echo anchor('user/account/'. $i['id'], img($images['edit']), array('class' => 'image'));?>

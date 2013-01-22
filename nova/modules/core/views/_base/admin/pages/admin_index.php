@@ -285,7 +285,7 @@
 									<?php echo anchor('sim/missions/id/'. $p['mission_id'], $p['mission']);?>
 								</span>
 							</td>
-							<td class="col_30pct align_center fontSmall"><?php echo $p['date'];?></td>
+							<td class="col_30pct align-center fontSmall"><?php echo $p['date'];?></td>
 					<?php endforeach; ?>
 					</tbody>
 				</table>
@@ -316,7 +316,7 @@
 									<?php echo $label['by'] .' '. $l['author'];?>
 								</span>
 							</td>
-							<td class="col_30pct align_center fontSmall"><?php echo $l['date'];?></td>
+							<td class="col_30pct align-center fontSmall"><?php echo $l['date'];?></td>
 					<?php endforeach; ?>
 					</tbody>
 				</table>
@@ -348,7 +348,7 @@
 									<strong><?php echo $label['category'] .'</strong> '. $n['category'];?>
 								</span>
 							</td>
-							<td class="col_30pct align_center fontSmall"><?php echo $n['date'];?></td>
+							<td class="col_30pct align-center fontSmall"><?php echo $n['date'];?></td>
 					<?php endforeach; ?>
 					</tbody>
 				</table>

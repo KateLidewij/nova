@@ -78,7 +78,7 @@
 			<ul id="list">
 				<?php foreach ($select as $key => $value): ?>
 					<li class="ui-state-default" id="value_<?php echo $key;?>">
-						<div class="float_right"><a href="#" class="remove image" name="remove" id="<?php echo $key;?>">x</a></div>
+						<div class="pull-right"><a href="#" class="remove image" name="remove" id="<?php echo $key;?>">x</a></div>
 						<a href="#" rel="facebox" myAction="edit_val" myField="<?php echo $id;?>" class="image" myID="<?php echo $key;?>"/><?php echo $value;?></a>
 					</li>
 				<?php endforeach; ?>

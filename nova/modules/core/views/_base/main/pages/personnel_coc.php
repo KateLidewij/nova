@@ -17,7 +17,7 @@
 				<?php echo $v['position'];?>
 			</td>
 			<td></td>
-			<td class="col_75 align_right">
+			<td class="col_75 align-right">
 				<?php echo anchor('personnel/character/'.$v['id'], img($v['img_bio']), array('class' => 'bold image'));?>
 			</td>
 		</tr>

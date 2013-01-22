@@ -33,7 +33,7 @@
 						<?php echo text_output($label['ipaddr'], 'strong') .': '. $a['ipaddr'];?>
 					</span>
 				</td>
-				<td class="col_30 align_center fontSmall bold">
+				<td class="col_30 align-center fontSmall bold">
 					<?php if ($a['action'] == 'accepted'): ?>
 						<?php echo img($images['green']);?>
 					<?php elseif ($a['action'] == 'rejected'): ?>
@@ -44,7 +44,7 @@
 						<?php echo img($images['yellow']);?>
 					<?php endif;?>
 				</td>
-				<td class="col_30 align_center">
+				<td class="col_30 align-center">
 					<?php echo anchor('report/viewapp/'. $a['id'], img($images['view']), array('class' => 'image'));?>
 				</td>
 			</tr>

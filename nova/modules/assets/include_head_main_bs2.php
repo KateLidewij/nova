@@ -5,7 +5,7 @@
  * @package		Nova
  * @category	Assets
  * @author		Anodyne Productions
- * @copyright	2011 Anodyne Productions
+ * @copyright	2013 Anodyne Productions
  */
 
 require_once MODPATH.'assets/global/main_head.php';

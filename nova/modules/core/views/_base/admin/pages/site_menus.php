@@ -37,7 +37,7 @@
 								<?php echo $label['url'] .' '. $main['link'];?>
 							</span>
 						</td>
-						<td class="col_75 align_right">
+						<td class="col_75 align-right">
 							<a href="#" rel="facebox" myAction="delete" myID="<?php echo $main['id'];?>" class="image"><?php echo img($images['delete']);?></a>
 							&nbsp;
 							<a href="#" rel="facebox" myAction="edit" myID="<?php echo $main['id'];?>" class="image"><?php echo img($images['edit']);?></a>
@@ -70,7 +70,7 @@
 									<?php echo $label['url'] .' '. $s['link'];?>
 								</span>
 							</td>
-							<td class="col_75 align_right">
+							<td class="col_75 align-right">
 								<a href="#" rel="facebox" myAction="delete" myID="<?php echo $s['id'];?>" class="image"><?php echo img($images['delete']);?></a>
 								&nbsp;
 								<a href="#" rel="facebox" myAction="edit" myID="<?php echo $s['id'];?>" class="image"><?php echo img($images['edit']);?></a>
@@ -104,7 +104,7 @@
 									<?php echo $label['url'] .' '. $a['link'];?>
 								</span>
 							</td>
-							<td class="col_75 align_right">
+							<td class="col_75 align-right">
 								<a href="#" rel="facebox" myAction="delete" myID="<?php echo $a['id'];?>" class="image"><?php echo img($images['delete']);?></a>
 								&nbsp;
 								<a href="#" rel="facebox" myAction="edit" myID="<?php echo $a['id'];?>" class="image"><?php echo img($images['edit']);?></a>

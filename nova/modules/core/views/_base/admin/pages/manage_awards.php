@@ -14,7 +14,7 @@
 					<strong><?php echo $a['name'];?></strong><br />
 					<?php echo text_output($a['desc'], 'span', 'fontSmall gray');?>
 				</td>
-				<td class="col_75 align_right">
+				<td class="col_75 align-right">
 					<a href="#" myAction="delete" myID="<?php echo $a['id'];?>" rel="facebox" class="image"><?php echo img($images['delete']);?></a>
 					&nbsp;
 					<?php echo anchor('manage/awards/edit/'. $a['id'], img($images['edit']), array('class' => 'image'));?>

@@ -30,7 +30,7 @@
 									<span class="gray fontSmall"><?php echo $d->dept_desc;?></span>
 								</td>
 								<td class="col_30"></td>
-								<td class="col_100 align_right">
+								<td class="col_100 align-right">
 									<a href="#" rel="facebox" myid="<?php echo $d->dept_id;?>" myaction="duplicate" class="image"><?php echo img($images['duplicate']);?></a>
 									&nbsp;
 									<a href="#" rel="facebox" myid="<?php echo $d->dept_id;?>" myaction="delete" class="image"><?php echo img($images['delete']);?></a>
@@ -48,7 +48,7 @@
 											<span class="gray fontSmall"><?php echo $v['data']->dept_desc;?></span>
 										</td>
 										<td class="col_30"></td>
-										<td class="col_100 align_right">
+										<td class="col_100 align-right">
 											<a href="#" rel="facebox" myid="<?php echo $v['data']->dept_id;?>" myaction="duplicate" class="image"><?php echo img($images['duplicate']);?></a>
 											&nbsp;
 											<a href="#" rel="facebox" myid="<?php echo $v['data']->dept_id;?>" myaction="delete" class="image"><?php echo img($images['delete']);?></a>
@@ -81,7 +81,7 @@
 										<span class="gray fontSmall"><?php echo $d->dept_desc;?></span>
 									</td>
 									<td class="col_30"></td>
-									<td class="col_100 align_right">
+									<td class="col_100 align-right">
 										<a href="#" rel="facebox" myid="<?php echo $d->dept_id;?>" myaction="duplicate" class="image"><?php echo img($images['duplicate']);?></a>
 										&nbsp;
 										<a href="#" rel="facebox" myid="<?php echo $d->dept_id;?>" myaction="delete" class="image"><?php echo img($images['delete']);?></a>

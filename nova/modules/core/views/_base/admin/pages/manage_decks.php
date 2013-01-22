@@ -36,7 +36,7 @@
 		<?php if (isset($decks)): ?>
 			<?php foreach ($decks as $key => $value): ?>
 				<li class="ui-state-default" id="decks_<?php echo $key;?>">
-					<div class="float_right"><a href="#" class="remove image" name="remove" id="<?php echo $key;?>">x</a></div>
+					<div class="pull-right"><a href="#" class="remove image" name="remove" id="<?php echo $key;?>">x</a></div>
 					<a href="#" rel="facebox" class="image" myID="<?php echo $key;?>"><?php echo $value;?></a>
 				</li>
 			<?php endforeach; ?>

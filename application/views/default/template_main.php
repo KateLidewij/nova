@@ -99,7 +99,7 @@ $loginButton = array(
 						<?php echo $ajax;?>
 					</div>
 
-					<div class="span2 align_right">
+					<div class="span2 align-right">
 						<?php if (Auth::is_logged_in()): ?>
 							<div class="row-fluid user-controls">
 								<div class="span4"><?php echo panel_dashboard(false, img($panel['dashboard']));?></div>

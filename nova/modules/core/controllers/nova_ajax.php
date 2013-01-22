@@ -184,7 +184,7 @@ abstract class Nova_ajax extends CI_Controller {
 			
 			if ($insert > 0)
 			{
-				$output = '<li class="ui-state-default" id="value_'. $insert_id .'"><div class="float_right"><a href="#" class="remove image" name="remove" id="'. $insert_id .'">x</a></div><a href="#" rel="facebox" myAction="edit_val" myField="<?php echo $id;?>" class="image" myID="'. $insert_id .'"/>'. $content .'</a></li>';
+				$output = '<li class="ui-state-default" id="value_'. $insert_id .'"><div class="pull-right"><a href="#" class="remove image" name="remove" id="'. $insert_id .'">x</a></div><a href="#" rel="facebox" myAction="edit_val" myField="<?php echo $id;?>" class="image" myID="'. $insert_id .'"/>'. $content .'</a></li>';
 			}
 			else
 			{
@@ -808,7 +808,7 @@ abstract class Nova_ajax extends CI_Controller {
 			
 			if ($insert > 0)
 			{
-				$output = '<li class="ui-state-default" id="decks_'. $insert_id .'"><div class="float_right"><a href="#" class="remove image" name="remove" id="'. $insert_id .'">x</a></div><a href="#" rel="facebox" myAction="edit_val" myField="<?php echo $id;?>" class="image" myID="'. $insert_id .'"/>'. $deck .'</a></li>';
+				$output = '<li class="ui-state-default" id="decks_'. $insert_id .'"><div class="pull-right"><a href="#" class="remove image" name="remove" id="'. $insert_id .'">x</a></div><a href="#" rel="facebox" myAction="edit_val" myField="<?php echo $id;?>" class="image" myID="'. $insert_id .'"/>'. $deck .'</a></li>';
 			}
 			else
 			{
@@ -1077,7 +1077,7 @@ abstract class Nova_ajax extends CI_Controller {
 			
 			if ($insert > 0)
 			{
-				$output = '<li class="ui-state-default" id="value_'. $insert_id .'"><div class="float_right"><a href="#" class="remove image" name="remove" id="'. $insert_id .'">x</a></div><a href="#" rel="facebox" myAction="edit_val" myField="<?php echo $id;?>" class="image" myID="'. $insert_id .'"/>'. $content .'</a></li>';
+				$output = '<li class="ui-state-default" id="value_'. $insert_id .'"><div class="pull-right"><a href="#" class="remove image" name="remove" id="'. $insert_id .'">x</a></div><a href="#" rel="facebox" myAction="edit_val" myField="<?php echo $id;?>" class="image" myID="'. $insert_id .'"/>'. $content .'</a></li>';
 			}
 			else
 			{
@@ -2109,7 +2109,7 @@ abstract class Nova_ajax extends CI_Controller {
 			
 			if ($insert > 0)
 			{
-				$output = '<li class="ui-state-default" id="value_'. $insert_id .'"><div class="float_right"><a href="#" class="remove image" name="remove" id="'. $insert_id .'">x</a></div><a href="#" rel="facebox" myAction="edit_val" myField="<?php echo $id;?>" class="image" myID="'. $insert_id .'"/>'. $content .'</a></li>';
+				$output = '<li class="ui-state-default" id="value_'. $insert_id .'"><div class="pull-right"><a href="#" class="remove image" name="remove" id="'. $insert_id .'">x</a></div><a href="#" rel="facebox" myAction="edit_val" myField="<?php echo $id;?>" class="image" myID="'. $insert_id .'"/>'. $content .'</a></li>';
 			}
 			else
 			{
@@ -2316,7 +2316,7 @@ abstract class Nova_ajax extends CI_Controller {
 			
 			if ($insert > 0)
 			{
-				$output = '<li class="ui-state-default" id="value_'. $insert_id .'"><div class="float_right"><a href="#" class="remove image" name="remove" id="'. $insert_id .'">x</a></div><a href="#" rel="facebox" myAction="edit_val" myField="<?php echo $id;?>" class="image" myID="'. $insert_id .'"/>'. $content .'</a></li>';
+				$output = '<li class="ui-state-default" id="value_'. $insert_id .'"><div class="pull-right"><a href="#" class="remove image" name="remove" id="'. $insert_id .'">x</a></div><a href="#" rel="facebox" myAction="edit_val" myField="<?php echo $id;?>" class="image" myID="'. $insert_id .'"/>'. $content .'</a></li>';
 			}
 			else
 			{

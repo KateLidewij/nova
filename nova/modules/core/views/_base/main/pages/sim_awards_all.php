@@ -19,7 +19,7 @@
 				<?php echo text_output($a['desc']);?>
 				<?php echo anchor('sim/awards/'. $a['id'], $label['details'], array('class' => 'btn btn-small'));?>
 			</div>
-			<div class="span3 align_right"><?php echo anchor('sim/awards/'. $a['id'], img($a['img']), array('class' => 'image'));?></div>
+			<div class="span3 align-right"><?php echo anchor('sim/awards/'. $a['id'], img($a['img']), array('class' => 'image'));?></div>
 		</div>
 
 		<hr>

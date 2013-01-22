@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
 <a href="#" id="userpanel" class="panel-trigger">
-	<span><div class="ui-icon ui-icon-triangle-1-s float_right"></div><?php echo $label['dashboard'];?></span>
+	<span><div class="ui-icon ui-icon-triangle-1-s pull-right"></div><?php echo $label['dashboard'];?></span>
 </a>
 
 <ul id="panel-handle-left">

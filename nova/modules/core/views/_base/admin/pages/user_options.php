@@ -42,7 +42,7 @@
 				<tbody>
 				<?php foreach ($ranks as $r): ?>
 					<tr>
-						<td class="col_15 align_center"><?php echo form_radio($r['input']);?></td>
+						<td class="col_15 align-center"><?php echo form_radio($r['input']);?></td>
 						<td class="cell-spacer"></td>
 						<td>
 							<label for="<?php echo 'rank_'. $r['id'];?>"><?php echo img($r['preview']);?></label><br />

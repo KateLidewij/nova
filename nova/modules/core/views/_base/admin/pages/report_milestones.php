@@ -7,7 +7,7 @@
 		<thead>
 			<tr>
 				<th><?php echo $label['name'];?></th>
-				<th class="align_right"><?php echo $label['timespan'];?></th>
+				<th class="align-right"><?php echo $label['timespan'];?></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,7 +21,7 @@
 						<?php echo anchor('personnel/character/'. $u['charid'], $label['bio_char']);?>
 					</span>
 				</td>
-				<td class="align_right">
+				<td class="align-right">
 					<?php echo $u['timespan'];?><br />
 					<?php echo text_output($u['join_date'], 'span', 'fontSmall gray');?>
 				</td>

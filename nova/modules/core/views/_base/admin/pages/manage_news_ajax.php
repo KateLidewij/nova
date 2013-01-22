@@ -18,7 +18,7 @@
 						<strong><?php echo $label['date'];?>:</strong> <?php echo $e['date'];?>
 					</span>
 				</td>
-				<td class="col_150 align_right">
+				<td class="col_150 align-right">
 					<?php echo anchor('main/viewnews/'. $e['id'], img($images['view']), array('class' => 'image'));?>
 					&nbsp;
 					<?php if ($e['status'] == 'pending'): ?>

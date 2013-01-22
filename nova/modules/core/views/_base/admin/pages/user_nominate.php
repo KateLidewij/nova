@@ -66,7 +66,7 @@
 									</span>
 								</td>
 								<td class="fontSmall"><?php echo $n['reason'];?></td>
-								<td class="col_75 align_right">
+								<td class="col_75 align-right">
 									<a href="#" rel="facebox" myAction="reject" class="image" myID="<?php echo $n['id'];?>">
 										<?php echo img($images['reject']);?>
 									</a>

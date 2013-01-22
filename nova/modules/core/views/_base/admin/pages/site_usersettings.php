@@ -20,7 +20,7 @@
 		<?php foreach ($settings as $k => $v): ?>
 			<tr>
 				<td class="bold"><?php echo $v;?></td>
-				<td class="col_75 align_right">
+				<td class="col_75 align-right">
 					<a href="#" class="delete" rel="facebox" myID="<?php echo $k;?>" myAction="delete" title="<?php echo $label['delete'];?>"><?php echo img($images['delete']);?></a>
 					&nbsp;
 					<a href="#" class="edit" rel="facebox" myID="<?php echo $k;?>" myAction="edit" title="<?php echo $label['edit'];?>"><?php echo img($images['edit']);?></a>

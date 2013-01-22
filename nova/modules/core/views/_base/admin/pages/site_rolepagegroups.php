@@ -25,7 +25,7 @@
 		<?php foreach ($groups as $group): ?>
 			<tr>
 				<td><?php echo $group['name'];?></td>
-				<td class="col_75 align_right">
+				<td class="col_75 align-right">
 					<a href="#" rel="facebox" class="delete image" title="<?php echo $label['delete'];?>" myID="<?php echo $group['id'];?>" myAction="delete"><?php echo img($images['delete']);?></a>
 					&nbsp;
 					<a href="#" rel="facebox" class="edit image" title="<?php echo $label['edit'];?>" myID="<?php echo $group['id'];?>" myAction="edit"><?php echo img($images['edit']);?></a>

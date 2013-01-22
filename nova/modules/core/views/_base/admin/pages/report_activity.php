@@ -52,19 +52,19 @@
 				</span>
 			</td>
 			
-			<td class="align_center"><?php echo $u['posts']['timeframe'];?></td>
-			<td class="align_center activity-border"><?php echo $u['posts']['month'];?></td>
+			<td class="align-center"><?php echo $u['posts']['timeframe'];?></td>
+			<td class="align-center activity-border"><?php echo $u['posts']['month'];?></td>
 			
-			<td class="align_center"><?php echo $u['logs']['timeframe'];?></td>
-			<td class="align_center activity-border"><?php echo $u['logs']['month'];?></td>
+			<td class="align-center"><?php echo $u['logs']['timeframe'];?></td>
+			<td class="align-center activity-border"><?php echo $u['logs']['month'];?></td>
 			
-			<td class="align_center"><?php echo $u['news']['timeframe'];?></td>
-			<td class="align_center activity-border"><?php echo $u['news']['month'];?></td>
+			<td class="align-center"><?php echo $u['news']['timeframe'];?></td>
+			<td class="align-center activity-border"><?php echo $u['news']['month'];?></td>
 			
-			<td class="align_center">
+			<td class="align-center">
 				<?php echo $u['posts']['timeframe'] + $u['logs']['timeframe'] + $u['news']['timeframe'];?>
 			</td>
-			<td class="align_center">
+			<td class="align-center">
 				<?php echo $u['posts']['month'] + $u['logs']['month'] + $u['news']['month'];?>
 			</td>
 		</tr>

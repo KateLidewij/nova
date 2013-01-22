@@ -14,7 +14,7 @@
 			<tr class="height_40">
 				<td><strong><?php echo ucfirst($u);?></strong></td>
 				<td class="gray">assets/common/<?php echo GENRE;?>/ranks/<?php echo $u;?></td>
-				<td class="col_75 align_right">
+				<td class="col_75 align-right">
 					<?php echo form_open('site/catalogueranks/install');?>
 						<?php echo form_hidden('install_rank', $u);?>
 						<?php echo form_button($buttons['install']);?>
@@ -63,7 +63,7 @@
 					
 					<?php echo ucfirst($c['status']);?></span>
 				</td>
-				<td class="col_75 align_right">
+				<td class="col_75 align-right">
 					<a href="#" rel="facebox" class="delete image" myAction="delete" myID="<?php echo $c['id'];?>" title="<?php echo $label['delete'];?>">
 						<?php echo img($images['delete']);?>
 					</a>

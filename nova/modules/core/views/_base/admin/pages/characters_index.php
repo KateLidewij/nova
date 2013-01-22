@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<div id="loader" class="align_center">
+<div id="loader" class="align-center">
 	<?php echo img($images['loading']);?><br />
 	<?php echo text_output($label['loading'], 'span', 'fontSmall bold gray');?>
 </div>
@@ -39,7 +39,7 @@
 										
 										<?php echo text_output($i['position_1'], 'span', 'fontSmall gray');?>
 									</td>
-									<td class="col_150 align_right">
+									<td class="col_150 align-right">
 										<?php if (!empty($i['uid']) && $levelcheck['account'] == 2): ?>
 											<?php echo anchor('user/account/'. $i['uid'], img($images['account']), array('class' => 'image'));?>
 											&nbsp;
@@ -84,7 +84,7 @@
 										<strong><?php echo $i['name'];?></strong><br />
 										<span class="fontSmall gray"><?php echo $i['position_1'];?></span>
 									</td>
-									<td class="col_75 align_right">
+									<td class="col_75 align-right">
 										<?php echo anchor('personnel/character/'. $i['id'], img($images['view']), array('class' => 'image'));?>
 										
 										<?php if ($levelcheck['bio'] == 3): ?>
@@ -137,7 +137,7 @@
 										<?php endif;?>
 										<?php echo text_output($i['email'], 'span', 'fontSmall bold gray');?>
 									</td>
-									<td class="col_75 align_center">
+									<td class="col_75 align-center">
 										<?php echo anchor('personnel/character/'. $i['id'], img($images['view']), array('class' => 'image'));?>
 										&nbsp;
 										<a href="#" rel="facebox" myID="<?php echo $i['id'];?>" myAction="delete" class="image">
@@ -147,7 +147,7 @@
 										<?php echo anchor('characters/bio/'. $i['id'], img($images['edit']), array('class' => 'image'));?>
 									</td>
 									<td class="col_5"></td>
-									<td class="col_75 align_right">
+									<td class="col_75 align-right">
 										<a href="#" rel="facebox" myID="<?php echo $i['id'];?>" myAction="reject" class="image">
 											<?php echo img($images['reject']);?>
 										</a>

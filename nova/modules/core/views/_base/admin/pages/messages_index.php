@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<div class="float_right">
+<div class="pull-right">
 	<br />
 	<?php echo form_open('messages/search');?>
 		<?php echo form_input($inputs['search']);?>&nbsp;<?php echo form_button($inputs['submit']);?>
@@ -54,17 +54,17 @@
 								<?php echo img($images['clock']).$item['date'];?>
 							</p>
 						</td>
-						<td class="col_30 align_center"><?php echo form_checkbox($item['checkbox']);?></td>
+						<td class="col_30 align-center"><?php echo form_checkbox($item['checkbox']);?></td>
 					</tr>
 				<?php endforeach;?>
 				</tbody>
 			</table>
 			
-			<span class="float_right"><br /><?php echo form_button($button['inbox']);?></span>
+			<span class="pull-right"><br /><?php echo form_button($button['inbox']);?></span>
 			
 			<?php echo $inbox_pagination;?>
 			
-			<div class="clear_right"></div>
+			<div class="clear-right"></div>
 		<?php echo form_close();?>
 	<?php endif;?>
 </div>

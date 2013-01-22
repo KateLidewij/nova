@@ -20,7 +20,7 @@
 					</span>
 				</td>
 				<td class="fontSmall"><?php echo text_output($n['reason'], '');?></td>
-				<td class="col_30 align_center">
+				<td class="col_30 align-center">
 					<?php if ($n['status'] == 'pending'): ?>
 						<?php echo img($images['yellow']);?>
 					<?php elseif ($n['status'] == 'rejected'): ?>

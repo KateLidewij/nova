@@ -15,7 +15,7 @@
 					</span>
 				</td>
 				<td class="fontSmall"><?php echo $e['content'];?></td>
-				<td class="col_75 align_right">
+				<td class="col_75 align-right">
 					<?php if ($e['status'] == 'pending'): ?>
 						<a href="#" rel="facebox" class="image" myAction="approve" myID="<?php echo $e['id'];?>" myType="<?php echo $type;?>_comment"><?php echo img($images['approve']);?></a>
 						&nbsp;

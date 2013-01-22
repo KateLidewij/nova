@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<div id="loader" class="align_center">
+<div id="loader" class="align-center">
 	<?php echo img($images['loading']);?><br />
 	<?php echo text_output($label['loading'], 'span', 'fontSmall bold gray');?>
 </div>
@@ -49,10 +49,10 @@
 										</span>
 									<?php endif;?>
 								</td>
-								<td class="align_center"><?php echo $u['posts'];?></td>
-								<td class="align_center"><?php echo $u['logs'];?></td>
-								<td class="align_center"><?php echo $u['news'];?></td>
-								<td class="align_center"><?php echo $u['posts'] + $u['logs'] + $u['news'];?></td>
+								<td class="align-center"><?php echo $u['posts'];?></td>
+								<td class="align-center"><?php echo $u['logs'];?></td>
+								<td class="align-center"><?php echo $u['news'];?></td>
+								<td class="align-center"><?php echo $u['posts'] + $u['logs'] + $u['news'];?></td>
 							</tr>
 						<?php endforeach;?>
 						</tbody>
@@ -74,10 +74,10 @@
 						<?php foreach ($users['inactive'] as $u): ?>
 							<tr>
 								<td class="col_40pct bold fontMedium"><?php echo $u['name'];?></td>
-								<td class="align_center"><?php echo $u['posts'];?></td>
-								<td class="align_center"><?php echo $u['logs'];?></td>
-								<td class="align_center"><?php echo $u['news'];?></td>
-								<td class="align_center"><?php echo $u['posts'] + $u['logs'] + $u['news'];?></td>
+								<td class="align-center"><?php echo $u['posts'];?></td>
+								<td class="align-center"><?php echo $u['logs'];?></td>
+								<td class="align-center"><?php echo $u['news'];?></td>
+								<td class="align-center"><?php echo $u['posts'] + $u['logs'] + $u['news'];?></td>
 							</tr>
 						<?php endforeach;?>
 						</tbody>
@@ -120,10 +120,10 @@
 									</span>
 								<?php endif;?>
 							</td>
-							<td class="align_center"><?php echo $c['posts'];?></td>
-							<td class="align_center"><?php echo $c['logs'];?></td>
-							<td class="align_center"><?php echo $c['news'];?></td>
-							<td class="align_center"><?php echo $c['posts'] + $c['logs'] + $c['news'];?></td>
+							<td class="align-center"><?php echo $c['posts'];?></td>
+							<td class="align-center"><?php echo $c['logs'];?></td>
+							<td class="align-center"><?php echo $c['news'];?></td>
+							<td class="align-center"><?php echo $c['posts'] + $c['logs'] + $c['news'];?></td>
 						</tr>
 					<?php endforeach;?>
 					</tbody>
@@ -160,10 +160,10 @@
 									</span>
 								<?php endif;?>
 							</td>
-							<td class="align_center"><?php echo $c['posts'];?></td>
-							<td class="align_center"><?php echo $c['logs'];?></td>
-							<td class="align_center"><?php echo $c['news'];?></td>
-							<td class="align_center"><?php echo $c['posts'] + $c['logs'] + $c['news'];?></td>
+							<td class="align-center"><?php echo $c['posts'];?></td>
+							<td class="align-center"><?php echo $c['logs'];?></td>
+							<td class="align-center"><?php echo $c['news'];?></td>
+							<td class="align-center"><?php echo $c['posts'] + $c['logs'] + $c['news'];?></td>
 						</tr>
 					<?php endforeach;?>
 					</tbody>
@@ -200,10 +200,10 @@
 									</span>
 								<?php endif;?>
 							</td>
-							<td class="align_center"><?php echo $c['posts'];?></td>
-							<td class="align_center"><?php echo $c['logs'];?></td>
-							<td class="align_center"><?php echo $c['news'];?></td>
-							<td class="align_center"><?php echo $c['posts'] + $c['logs'] + $c['news'];?></td>
+							<td class="align-center"><?php echo $c['posts'];?></td>
+							<td class="align-center"><?php echo $c['logs'];?></td>
+							<td class="align-center"><?php echo $c['news'];?></td>
+							<td class="align-center"><?php echo $c['posts'] + $c['logs'] + $c['news'];?></td>
 						</tr>
 					<?php endforeach;?>
 					</tbody>

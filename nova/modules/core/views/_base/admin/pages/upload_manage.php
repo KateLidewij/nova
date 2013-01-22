@@ -50,13 +50,13 @@
 									<?php echo $label['on'] .' '. $i['date'];?>
 								</span>
 							</td>
-							<td class="align_center"><?php echo form_checkbox($i['check']);?></td>
+							<td class="align-center"><?php echo form_checkbox($i['check']);?></td>
 						</tr>
 					<?php endforeach;?>
 					</tbody>
 				</table><br />
 				
-				<div class="align_right"><?php echo form_button($button['submit']);?></div>
+				<div class="align-right"><?php echo form_button($button['submit']);?></div>
 			<?php else: ?>
 				<?php echo text_output($label['nobio'], 'h3', 'orange');?>
 			<?php endif;?>
@@ -85,13 +85,13 @@
 									<?php echo $label['on'] .' '. $i['date'];?>
 								</span>
 							</td>
-							<td class="align_center"><?php echo form_checkbox($i['check']);?></td>
+							<td class="align-center"><?php echo form_checkbox($i['check']);?></td>
 						</tr>
 					<?php endforeach;?>
 					</tbody>
 				</table><br />
 				
-				<div class="align_right"><?php echo form_button($button['submit']);?></div>
+				<div class="align-right"><?php echo form_button($button['submit']);?></div>
 			<?php else: ?>
 				<?php echo text_output($label['noaward'], 'h3', 'orange');?>
 			<?php endif;?>
@@ -120,13 +120,13 @@
 									<?php echo $label['on'] .' '. $i['date'];?>
 								</span>
 							</td>
-							<td class="align_center"><?php echo form_checkbox($i['check']);?></td>
+							<td class="align-center"><?php echo form_checkbox($i['check']);?></td>
 						</tr>
 					<?php endforeach;?>
 					</tbody>
 				</table><br />
 
-				<div class="align_right"><?php echo form_button($button['submit']);?></div>
+				<div class="align-right"><?php echo form_button($button['submit']);?></div>
 			<?php else: ?>
 				<?php echo text_output($label['nomission'], 'h3', 'orange');?>
 			<?php endif;?>
@@ -155,13 +155,13 @@
 									<?php echo $label['on'] .' '. $i['date'];?>
 								</span>
 							</td>
-							<td class="align_center"><?php echo form_checkbox($i['check']);?></td>
+							<td class="align-center"><?php echo form_checkbox($i['check']);?></td>
 						</tr>
 					<?php endforeach;?>
 					</tbody>
 				</table><br />
 
-				<div class="align_right"><?php echo form_button($button['submit']);?></div>
+				<div class="align-right"><?php echo form_button($button['submit']);?></div>
 			<?php else: ?>
 				<?php echo text_output($label['nospecs'], 'h3', 'orange');?>
 			<?php endif;?>
@@ -190,13 +190,13 @@
 									<?php echo $label['on'] .' '. $i['date'];?>
 								</span>
 							</td>
-							<td class="align_center"><?php echo form_checkbox($i['check']);?></td>
+							<td class="align-center"><?php echo form_checkbox($i['check']);?></td>
 						</tr>
 					<?php endforeach;?>
 					</tbody>
 				</table><br />
 
-				<div class="align_right"><?php echo form_button($button['submit']);?></div>
+				<div class="align-right"><?php echo form_button($button['submit']);?></div>
 			<?php else: ?>
 				<?php echo text_output($label['notour'], 'h3', 'orange');?>
 			<?php endif;?>

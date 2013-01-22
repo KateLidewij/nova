@@ -46,7 +46,7 @@
 					<tbody>
 					<?php foreach ($user['awards'] as $u): ?>
 						<tr id="<?php echo $u['id'];?>">
-							<td class="col_75 align_center"><?php echo img($u['image']);?></td>
+							<td class="col_75 align-center"><?php echo img($u['image']);?></td>
 							<td>
 								<strong><?php echo $u['award'];?></strong><br />
 								<span class="fontSmall gray">
@@ -54,7 +54,7 @@
 									<?php echo text_output($u['reason'], '');?>
 								</span>
 							</td>
-							<td class="col_75 align_right">
+							<td class="col_75 align-right">
 								<a href="#" myID="<?php echo $u['id'];?>" class="remove image"><?php echo img($images['remove']);?></a>
 							</td>
 						</tr>
@@ -69,7 +69,7 @@
 					<tbody>
 					<?php foreach ($character['awards'] as $c): ?>
 						<tr id="<?php echo $c['id'];?>">
-							<td class="col_75 align_center"><?php echo img($c['image']);?></td>
+							<td class="col_75 align-center"><?php echo img($c['image']);?></td>
 							<td>
 								<strong><?php echo $c['award'];?></strong><br />
 								<span class="fontSmall gray">
@@ -77,7 +77,7 @@
 									<?php echo text_output($c['reason'], '');?>
 								</span>
 							</td>
-							<td class="col_75 align_right">
+							<td class="col_75 align-right">
 								<a href="#" myID="<?php echo $c['id'];?>" class="remove image"><?php echo img($images['remove']);?></a>
 							</td>
 						</tr>
