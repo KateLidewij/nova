@@ -241,11 +241,40 @@ abstract class Nova_system_model extends CI_Model {
 		return $query;
 	}
 	
-	public function get_security_questions()
+	/**
+	 * Get the security questions from the database.
+	 *
+	 * @param	bool	Return the object?
+	 * @return	object/array/bool
+	 */
+	public function get_security_questions($returnObj = true)
 	{
 		$query = $this->db->get('security_questions');
+
+		if ($returnObj)
+		{
+			return $query;
+		}
+
+		// Get an instance of the CI object
+		$ci =& get_instance();
+
+		// Load the app language file
+		$ci->lang->load('app');
 		
-		return $query;
+		$questions[0] = $ci->lang->line('login_questions_selectone');
+		
+		if ($query->num_rows() > 0)
+		{
+			foreach ($query->result() as $row)
+			{
+				$questions[$row->question_id] = $row->question_value;
+			}
+
+			return $questions;
+		}
+
+		return false;
 	}
 	
 	public function get_sim_types()
