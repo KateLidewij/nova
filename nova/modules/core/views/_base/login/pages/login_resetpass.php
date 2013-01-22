@@ -1,27 +1,34 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<?php echo text_output($header, 'h1', 'page-head');?>
+<div class="page-header">
+	<h1><?php echo $header;?></h1>
+</div>
 
-<?php echo text_output($message, 'p');?><br />
+<?php echo text_output($message);?>
 
 <?php echo form_open('login/reset_password');?>
-
-	<p>
-		<?php echo text_output($label['email'], 'kbd');?>
-		<?php echo form_input($inputs['email']);?>
-	</p>
+	<div class="control-group">
+		<label class="control-label"><?php echo $label['email'];?></label>
+		<div class="controls">
+			<input type="email" name="email" id="email" class="span5" placeholder="<?php echo $label['email'];?>">
+		</div>
+	</div>
 	
-	<p>
-		<?php echo text_output($label['question'], 'kbd');?>
-		<?php echo form_dropdown('question', $questions);?>
-	</p>
+	<div class="control-group">
+		<label class="control-label"><?php echo $label['question'];?></label>
+		<div class="controls"><?php echo form_dropdown('question', $questions, false, 'class="span5"');?></div>
+	</div>
 	
-	<p>
-		<?php echo text_output($label['answer'], 'kbd');?>
-		<?php echo form_input($inputs['answer']);?>
-	</p>
+	<div class="control-group">
+		<label class="control-label"><?php echo $label['answer'];?></label>
+		<div class="controls">
+			<input type="text" name="answer" id="answer" class="span5">
+		</div>
+	</div>
 	
-	<br /><p>
-		<?php echo form_button($button_submit);?>
-	</p>
+	<div class="control-group">
+		<div class="controls">
+			<button type="submit" name="submit" id="submit" value="submit" class="btn btn-large btn-block btn-primary"><?php echo $label['submit'];?></button>
+		</div>
+	</div>
 <?php echo form_close();?>

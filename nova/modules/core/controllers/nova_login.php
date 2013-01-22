@@ -197,39 +197,11 @@ abstract class Nova_login extends CI_Controller {
 			$this->_regions['flash_message'] = Location::view('flash', $this->skin, 'login', $flash);
 		}
 		
-		$data['inputs'] = array(
-			'email' => array(
-				'name' => 'email',
-				'id' => 'email',
-				'autocomplete' => 'off',
-				'tabindex' => 1,
-				'placeholder' => ucfirst(lang('labels_email_address')),
-				'type' => 'email'),
-			'password' => array(
-				'name' => 'password',
-				'id' => 'password',
-				'tabindex' => 2,
-				'placeholder' => ucfirst(lang('labels_password'))),
-			'remember_me' => array(
-				'name' => 'remember',
-				'id' => 'remember',
-				'value' => 'yes',
-				'tabindex' => 3)
-		);
-		
-		$data['button_login'] = array(
-			'type' => 'submit',
-			'class' => 'button-main',
-			'name' => 'login',
-			'value' => 'login',
-			'tabindex' => 4,
-			'content' => ucwords(lang('actions_login'))
-		);
-		
 		$data['label'] = array(
 			'email' => ucwords(lang('labels_email_address')),
 			'password' => ucfirst(lang('labels_password')),
 			'remember' => ucfirst(lang('actions_remember') .' '. lang('labels_me')),
+			'login' => ucwords(lang('actions_login')),
 		);
 		
 		$this->_regions['content'] = Location::view('login_index', $this->skin, 'login', $data);
@@ -376,50 +348,19 @@ abstract class Nova_login extends CI_Controller {
 			$this->_regions['flash_message'] = Location::view('flash', $this->skin, 'login', $flash);
 		}
 		
-		// run the methods
-		$questions = $this->sys->get_security_questions();
-		
-		$data['questions'][0] = lang('login_questions_selectone');
-		
-		if ($questions->num_rows() > 0)
-		{
-			foreach ($questions->result() as $row)
-			{
-				$data['questions'][$row->question_id] = $row->question_value;
-			}
-		}
+		// Get the security questions
+		$data['questions'] = $this->sys->get_security_questions(false);
 		
 		// define the header and message
 		$data['header'] = lang('head_login_resetpass');
 		$data['message'] = lang('login_reset_message');
 		
-		$data['inputs'] = array(
-			'answer' => array(
-				'name' => 'answer',
-				'id' => 'answer'),
-			'email' => array(
-				'name' => 'email',
-				'id' => 'email')
-		);
-		
-		$data['button_submit'] = array(
-			'type' => 'submit',
-			'class' => 'button-main',
-			'name' => 'submit',
-			'value' => 'submit',
-			'content' => ucwords(lang('actions_submit'))
-		);
-		
 		$data['label'] = array(
 			'email' => ucwords(lang('labels_email_address')),
 			'question' => ucwords(lang('labels_security') .' '. lang('labels_question')),
-			'answer' => ucfirst(lang('labels_answer'))
+			'answer' => ucfirst(lang('labels_answer')),
+			'submit' => ucwords(lang('actions_submit')),
 		);
-		
-		if ($this->options['system_email'] == 'off')
-		{
-			$data['button_submit']['disabled'] = 'yes';
-		}
 		
 		$this->_regions['content'] = Location::view('login_resetpass', $this->skin, 'login', $data);
 		$this->_regions['title'].= ucfirst(lang('head_login_resetpass'));

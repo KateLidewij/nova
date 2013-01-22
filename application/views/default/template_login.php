@@ -1,7 +1,6 @@
 <?php
 
-$sec = 'login';
-$css = 'main.css';
+$section = 'login';
 
 $path = explode('/', dirname(__FILE__));
 
@@ -10,17 +9,14 @@ if (count($path) <= 1)
 	$path = explode('\\', dirname(__FILE__));
 
 $pcount = count($path);
-$skin_loc = $pcount -1;
-$current_skin = $path[$skin_loc];
-
-// set the final style location
-$style_loc = APPFOLDER.'/views/'.$current_skin.'/'.$sec.'/css/'. $css;
+$skinLoc = $pcount -1;
+$currentSkin = $path[$skinLoc];
 
 // set up the link tag parameters
 $link = array(
-	'href'	=> 	$style_loc,
-	'rel'	=> 	'stylesheet',
-	'type'	=> 	'text/css',
+	'href'		=> APPFOLDER."/views/$currentSkin/$section/css/main.css",
+	'rel'		=> 'stylesheet',
+	'type'		=> 'text/css',
 	'media'		=> 'screen',
 	'charset'	=> 'utf-8'
 );
@@ -31,51 +27,44 @@ $link = array(
 		<meta charset="utf-8">
 		<title><?php echo $title;?></title>
 		
-		<meta name="description" content="<?php echo $this->config->item('meta_desc');?>" />
-		<meta name="keywords" content="<?php echo $this->config->item('meta_keywords');?>" />
-		<meta name="author" content="<?php echo $this->config->item('meta_author');?>" />
+		<meta name="description" content="<?php echo $this->config->item('meta_desc');?>">
+		<meta name="keywords" content="<?php echo $this->config->item('meta_keywords');?>">
+		<meta name="author" content="<?php echo $this->config->item('meta_author');?>">
 		
 		<?php echo $_redirect;?>
-		
-		<?php echo link_tag($link);?>
-		
+
 		<!--[if lt IE 9]>
 		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
+
+		<?php include_once MODFOLDER.'/assets/global/login_head.php';?>
 		
-		<?php include_once($this->config->item('include_head_login'));?>
-		
-		<script type="text/javascript" src="<?php echo base_url() . APPFOLDER;?>/views/<?php echo $current_skin;?>/jquery.blockUI.js"></script>
-		
-		<?php echo $javascript;?>
+		<?php echo link_tag($link);?>
 	</head>
 	<body>
-		<h1 id="name"><?php echo $this->options['sim_name'];?></h1>
-		<section>
-			<div class="wrapper">
-				<div class="content">
-					<?php echo $flash_message;?>
-					<?php echo $content;?>
-				</div>
-				
-				<footer>
-					<?php if ($this->uri->segment(2) and $this->uri->segment(2) !== 'index'): ?>
-						<strong><?php echo anchor('login/index', ucwords(lang('actions_login') .' '. lang('time_now')));?></strong>
-						&nbsp; | &nbsp;
-					<?php endif; ?>
+		<div class="signin">
+			<header>
+				<a class="brand"><?php echo $this->options['sim_name'];?></a>
+			</header>
 
-					<?php if ($this->uri->segment(2) !== 'reset_password'): ?>
-						<strong><?php echo anchor('login/reset_password', ucwords(lang('actions_reset') .' '. lang('labels_password')));?></strong>
-						&nbsp; | &nbsp;
-					<?php endif; ?>
+			<nav>
+				<ul>
+					<li><a href="<?php echo site_url('login/index');?>"<?php if ($this->uri->rsegment(2) != 'reset_password') { echo ' class="active"'; }?>><span><?php echo ucwords(lang('actions_login') .' '. lang('time_now'));?></span></a></li>
+					<li><a href="<?php echo site_url('login/reset_password');?>"<?php if ($this->uri->rsegment(2) == 'reset_password') { echo ' class="active"'; }?>><span><?php echo ucwords(lang('actions_reset') .' '. lang('labels_password'));?></span></a></li>
+					<li><a href="<?php echo site_url('main/index');?>"><span><?php echo ucfirst(lang('actions_back') .' '. lang('labels_to') .' '. lang('labels_site'));?></span></a></li>
+				</ul>
+			</nav>
+			
+			<section>
+				<?php echo $flash_message;?>
+				<?php echo $content;?>
+			</section>
+			
+			<footer>
+				Powered by <?php echo APP_NAME;?> from <a href="http://www.anodyne-productions.com" target="_blank">Anodyne Productions</a>
+			</footer>
+		</div>
 
-					<strong><?php echo anchor('main/index', ucfirst(lang('actions_back') .' '. lang('labels_to') .' '. lang('labels_site')));?></strong>
-					
-					<br><br>
-					
-					Powered by <strong><?php echo APP_NAME;?></strong>
-				</footer>
-			</div>
-		</section>
+		<?php include_once MODFOLDER.'/assets/global/login_foot.php';?>
 	</body>
 </html>

@@ -1,12 +1,177 @@
+@import url(http://fonts.googleapis.com/css?family=Nova+Square);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700);
+
+body {
+	line-height: 1.75;
+	background: #eaeaea;
+	font-family: "Open Sans", helvetica, arial, sans-serif;
+	font-size: 15px;
+}
+
+.signin {
+	margin: 20px auto;
+	max-width: 600px;
+
+	border-radius: 4px;
+}
+
+header {
+	/*background: #f03838; RED */
+	/*background: #1287be; BLUE */
+	/*background: #9d70c2; PURPLE */
+	/*background: #5b9543; GREEN */
+	text-align: center;
+}
+header .brand {
+	font-family: "Nova Square";
+	font-weight: 400;
+	color: #f03838;
+	font-size: 36px;
+	text-decoration: none;
+	border: none;
+	text-align: center;
+}
+header .brand:hover {
+	color: #f03838;
+}
+
+nav {
+	height: 40px;
+	line-height: 40px;
+	display: table;
+	margin: 0 auto 10px auto;
+}
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+nav ul li {
+	display: inline;
+	margin: 0 15px;
+}
+nav ul li a {
+	display: inline-block;
+
+	font-family: "Open Sans Condensed", helvetica, arial, sans-serif;
+	text-decoration: none;
+	color: rgba(0, 0, 0, .25);
+	font-weight: 700;
+	font-size: 20px;
+	border: none;
+}
+nav ul li a:hover {
+	color: rgba(0, 0, 0, .5);
+	text-decoration: none;
+}
+nav ul li a.active {
+	color: rgba(0, 0, 0, .75);
+}
+
+section {
+	clear: both;
+	padding: 10px;
+
+	background: #fdfdfd;
+	border: 1px solid #cfcfcf;
+	border-bottom: none;
+
+	border-radius: 4px 4px 0 0;
+}
+
+footer {
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 12px;
+	color: #888;
+	background: #f5f5f5;
+	border: 1px solid #cfcfcf;
+
+	border-radius: 0 0 4px 4px;
+}
+footer a {
+	color: #cc3030;
+}
+footer a:hover {
+	color: #f03838;
+}
+
 /*
 |---------------------------------------------------------------
-| STYLESHEET - LOGIN
+| FONTS
 |---------------------------------------------------------------
-|
-| File: default/login/css/main.css
-| Author: David VanScott [davidv@anodyne-productions.com]
-| Version: 1.0
 */
+h1, h2, h3 {
+	font-family: "Open Sans Condensed", helvetica, arial, sans-serif;
+	font-weight: 300;
+}
+h4, h5, h6 {
+	font-family: "Open Sans", helvetica, arial, sans-serif;
+	font-weight: 600;
+}
 
-@import url('structure.css');
-@import url('skin.css');
+/*
+|---------------------------------------------------------------
+| FORMS AND BUTTONS
+|---------------------------------------------------------------
+*/
+input[type=text],
+input[type=password],
+input[type=email],
+textarea,
+select {
+	border-bottom: 1px solid #d0d0d0;
+	border-top: 1px solid #a8a8a8;
+	border-left: 1px solid #bcbcbc;
+	border-right: 1px solid #bcbcbc;
+	background: #fefefe;
+	background: -moz-linear-gradient(top, #fefefe 0%, #f3f3f3 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(100%,#f3f3f3));
+	background: -webkit-linear-gradient(top, #fefefe 0%,#f3f3f3 100%);
+	background: -o-linear-gradient(top, #fefefe 0%,#f3f3f3 100%);
+	background: -ms-linear-gradient(top, #fefefe 0%,#f3f3f3 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f3f3f3',GradientType=0 );
+	background: linear-gradient(top, #fefefe 0%,#f3f3f3 100%);
+	color: #999;
+	-moz-border-radius: 3px;
+	border-radius: 3px 3px 3px 3px;
+	-moz-box-shadow: inset 0 1px 1px #e3e3e3, 0 1px 0 #f6f6f6;
+	-webkit-box-shadow: inset 0 1px 1px #e3e3e3, 0 1px 0 #f6f6f6;
+	box-shadow: inset 0 1px 1px #e3e3e3, 0 1px 0 #f6f6f6;
+}
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+textarea:focus,
+select:hover,
+select:focus {
+	border-color: #a8b3a3;
+	background: #fff;
+	color: #555;
+}
+
+.control-label {
+	font-weight: 600;
+	font-size: 15px;
+}
+
+.btn {
+	font-family: "Open Sans", helvetica, arial, sans-serif;
+	font-weight: 600;
+}
+.btn.btn-small,
+.btn.btn-mini {
+	font-weight: 400;
+	color: #666;
+}
+.btn.btn-small:hover,
+.btn.btn-mini:hover {
+	color: #444;
+}
+
+.btn-toolbar,
+.btn-group {
+	margin-bottom: 15px;
+}
