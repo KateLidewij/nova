@@ -66,7 +66,7 @@ $loginButton = array(
 			</noscript>
 			
 			<?php if (Auth::is_logged_in()): ?>
-				<div id="panel" class="hidden">
+				<div id="panel" class="hide">
 					<div class="panel-body">
 						<table class="table100">
 							<tbody>
