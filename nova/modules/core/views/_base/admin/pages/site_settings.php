@@ -113,6 +113,13 @@
 					<?php echo form_radio($inputs['participants_y']) .' '. form_label($label['yes'], 'participants_y');?>
 					<?php echo form_radio($inputs['participants_n']) .' '. form_label($label['no'], 'participants_n');?>
 				</p>
+				<p>
+					<kbd>
+						<?php echo $label['post_flag_words'];?>&nbsp;
+						<a href="#" rel="tooltip" class="fontTiny image" title="<?php echo $label['tt_post_flag_words'];?>"><?php echo img($images['help']);?></a>
+					</kbd>
+					<?php echo form_textarea($inputs['post_flag_words']);?>
+				</p>
 			</div><br />
 			
 			<?php echo text_output($label['header_email'], 'h2', 'page-subhead');?>

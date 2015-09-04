@@ -153,6 +153,8 @@ $lang['info_posting_participants'] = "Smart post participants is a way to ensure
 
 $lang['info_post_count_format'] = 'Nova allows GMs to count posts in one of two ways. The first way (and default) is <strong>multiple</strong>. This format counts a post as many times as there are authors on the post. If a post has 3 authors, it will count as 3 posts. The second way is <strong>single</strong>. The single format counts a post once regardless of how many authors were part it.';
 
+$lang['info_post_flag_words'] = "Some hosts look for words in posted content for potential spam keywords. You can specify any words you want that you know cause your posts to fail being posted. These words will be highlighted and a message displayed to users so they know it's possible their post may not go through. Enter the words separated by commas.";
+
 /*
 |---------------------------------------------------------------
 | SHORT MESSAGES
@@ -182,6 +184,7 @@ $lang['versions_redirect'] = "For a full version history of Nova, please visit <
 $lang['components_redirect'] = "For a full listing of third-party components and plugins in Nova, please visit <a href='http://docs.anodyne-productions.com/index.php/nova2/overview/index' target='_blank'>AnodyneDocs</a>.";
 $lang['tags_explain'] = "Tags (i.e. keywords) are a form of meta-data to classify items and help find them later using Nova's search capabilities (e.g. klingon, peace summit, Khitomer)";
 $lang['metadata_explain'] = "You can specify additional information to be displayed on the manifest by entering the field's <strong>HTML name</strong> (found under HTML Attributes when editing a bio form field) and separating fields with a pipe (|). Information will be displayed in the order specified. (i.e. species|gender)";
+$lang['flagged_words_found'] = "Your %s contains one or more words that have been flagged by the admins that could cause issues posting it on this server. Please update your %s to not use the word(s) highlighted.";
 
 /*
 |---------------------------------------------------------------

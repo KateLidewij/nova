@@ -4800,6 +4800,11 @@ abstract class Nova_site extends Nova_controller_admin {
 					'id' => 'participants_n',
 					'value' => 'n',
 					'checked' => ($setting['use_post_participants'] == 'n') ? true : false),
+				'post_flag_words' => array(
+					'name' => 'post_flag_words',
+					'id' => 'post_flag_words',
+					'rows' => 3,
+					'value' => $setting['post_flag_words']),
 			);
 			
 			$data['values']['updates'] = array(
@@ -5042,6 +5047,9 @@ abstract class Nova_site extends Nova_controller_admin {
 			'user' => ucwords(lang('labels_user') .'-'. lang('actions_created') .' '. lang('labels_settings')),
 			'year' => ucwords(lang('global_sim') .' '. lang('time_year')),
 			'yes' => ucfirst(lang('labels_yes')),
+
+			'post_flag_words' => ucwords(lang('labels_post_flag_words')),
+			'tt_post_flag_words' => lang('info_post_flag_words'),
 		);
 		
 		// set the js data
