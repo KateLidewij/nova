@@ -1998,6 +1998,10 @@ $settings = array(
 		'setting_key' => 'use_post_participants',
 		'setting_value' => 'y',
 		'setting_user_created' => 'n'),
+	array(
+		'setting_key' => 'post_flag_words',
+		'setting_value' => 'lorazepam,poker,casino',
+		'setting_user_created' => 'n'),
 );
 
 $sim_type = array(
@@ -2243,8 +2247,8 @@ $system_info = array(
 		'sys_uid' => random_string('alnum', 32),
 		'sys_install_date' => now(),
 		'sys_version_major' => 2,
-		'sys_version_minor' => 4,
-		'sys_version_update' => 4)
+		'sys_version_minor' => 5,
+		'sys_version_update' => 0)
 );
 
 $tour_fields = array(

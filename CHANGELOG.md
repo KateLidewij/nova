@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.5.0
+
+* Posts, logs, and news items can now contain signatures and OOC notes. Signatures will be shown on the display pages, but OOC notes will only be seen by users when they're logged in. Users can specify a default signature that will be automatically filled in to the field (and edited if the user wants).
+* When composing or editing posts, a word count will be displayed. The final word count will also be stored on the post/log/news item record and used throughout the admin section.
+* Admins can now specify words that they know may create problems on certain hosts. Those words will be highlighted in the post so that users know the word could cause issues.
+
+
 ## 2.4.4 (4 September 2015)
 
 ### Nova Core

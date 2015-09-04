@@ -2,10 +2,10 @@
 
 define('APP_NAME',				'Nova');
 
-define('APP_VERSION',			'2.4.4');
+define('APP_VERSION',			'2.5.0');
 define('APP_VERSION_MAJOR',		2);
-define('APP_VERSION_MINOR',		4);
-define('APP_VERSION_UPDATE',	4);
+define('APP_VERSION_MINOR',		5);
+define('APP_VERSION_UPDATE',	0);
 
 define('WIKI_NAME',				'Thresher');
 define('WIKI_VERSION',			'Release 2');
@@ -13,9 +13,9 @@ define('WIKI_VERSION',			'Release 2');
 define('SMS_UPGRADE_VERSION',	'2.6.9');
 
 //define('VERSION_FEED', MODPATH.'assets/version.yml');
-define('VERSION_FEED', 'http://www.anodyne-productions.com/feeds/version_nova.yml');
+define('VERSION_FEED', 'http://anodyne-productions.com/feeds/version_nova.yml');
 
-define('REGISTER', 'http://www.anodyne-productions.com/register/index.php/utility/do_registration');
+define('REGISTER', 'http://anodyne-productions.com/register/index.php/utility/do_registration');
 
 // figure out whether to install the bare essentials or the dev stuff
 define('APP_DATA_SRC', 'basic');

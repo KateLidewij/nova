@@ -1007,6 +1007,13 @@ $fields_news = array(
 		'type' => $date_type,
 		'constraint' => $date_constraint,
 		'default' => 0),
+	'news_word_count' => array(
+		'type' => 'INT',
+		'constraint' => 5),
+	'news_signature' => array(
+		'type' => 'TEXT'),
+	'news_ooc_notes' => array(
+		'type' => 'TEXT'),
 );
 
 $fields_news_categories = array(
@@ -1079,6 +1086,13 @@ $fields_personallogs = array(
 		'type' => $date_type,
 		'constraint' => $date_constraint,
 		'default' => 0),
+	'log_word_count' => array(
+		'type' => 'INT',
+		'constraint' => 5),
+	'log_signature' => array(
+		'type' => 'TEXT'),
+	'log_ooc_notes' => array(
+		'type' => 'TEXT'),
 );
 
 $fields_personallogs_comments = array(
@@ -1190,6 +1204,13 @@ $fields_posts = array(
 	'post_lock_date' => array(
 		'type' => $date_type,
 		'constraint' => $date_constraint),
+	'post_word_count' => array(
+		'type' => 'INT',
+		'constraint' => 5),
+	'post_signature' => array(
+		'type' => 'TEXT'),
+	'post_ooc_notes' => array(
+		'type' => 'TEXT'),
 );
 
 $fields_posts_comments = array(
@@ -1872,6 +1893,8 @@ $fields_users = array(
 	'last_update' => array(
 		'type' => $date_type,
 		'constraint' => $date_constraint),
+	'signature' => array(
+		'type' => 'TEXT'),
 );
 
 $fields_wiki_categories = array(
