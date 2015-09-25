@@ -66,6 +66,8 @@
 				<kbd><?php echo $label['content'];?></kbd>
 				<?php echo form_textarea($inputs['content']);?>
 			</p>
+
+			<p>flagged_words_found</p>
 			
 			<p>
 				<kbd><?php echo $label['tags'];?></kbd>
