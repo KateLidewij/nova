@@ -348,7 +348,7 @@ if ( ! function_exists('verify_server'))
 		// build the specs array
 		$specs = array(
 			'php' => array(
-				'req'	=> '5.1',
+				'req'	=> '5.3',
 				'act'	=> phpversion()),
 			'db' => array(
 				'req'	=> array('mysql', 'mysqli'),
@@ -365,6 +365,9 @@ if ( ! function_exists('verify_server'))
 			'file' => array(
 				'req'	=> lang('global_on'),
 				'act'	=> (ini_get('allow_url_fopen') == 1) ? lang('global_on') : lang('global_off')),
+			'configWritable' => array(
+				'req'	=> lang('global_yes'),
+				'act'	=> (is_writable(APPPATH.'config')) ? lang('global_yes') : lang('global_no')),
 		);
 		
 		// set the final result array
