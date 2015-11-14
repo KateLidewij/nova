@@ -9,49 +9,51 @@
  */
 
 abstract class Nova_update extends CI_Controller {
-	
+
 	/**
 	 * @var	bool	Is the system installed?
 	 */
 	public $installed = false;
-	
+
 	/**
 	 * @var	string	The version of the system
 	 */
 	public $version;
-	
+
 	/**
 	 * @var	array 	The options array that stores all the settings from the database
 	 */
 	public $options;
-	
+
 	/**
 	 * @var	array 	Variable to store all the information about template regions
 	 */
 	protected $_regions = array();
-	
+
 	public function __construct()
 	{
 		parent::__construct();
-		
+
 		// load the nova core module
 		$this->load->module('core', 'nova', MODPATH);
-		
+
 		if ( ! file_exists(APPPATH.'config/database.php'))
 		{
 			redirect('install/setupconfig');
 		}
-		
+
 		$this->load->database();
 		$this->load->library('session');
 		$this->load->model('settings_model', 'settings');
 		$this->load->model('system_model', 'sys');
 		$this->nova->lang('install');
 		$this->lang->load('app', $this->session->userdata('language'));
-		
+
+		$this->sys->prepare_database_session();
+
 		// set the version
 		$this->version = APP_VERSION_MAJOR.'.'.APP_VERSION_MINOR.'.'.APP_VERSION_UPDATE;
-		
+
 		// an array of items to pull from the settings table
 		$settings_array = array(
 			'sim_name',
@@ -59,19 +61,19 @@ abstract class Nova_update extends CI_Controller {
 			'updates',
 			'maintenance'
 		);
-		
+
 		// grab the settings
 		$this->options = $this->settings->get_settings($settings_array);
 
 		// check if nova is installed
 		$this->installed = $this->sys->check_install_status();
-		
+
 		// set the template file
 		Template::$file = '_base/template_update';
-		
+
 		// set the module
 		Template::$data['module'] = 'core';
-		
+
 		// assign all of the items to the template with false values to prevent errors
 		$this->_regions = array(
 			'label'			=> false,
@@ -91,17 +93,17 @@ abstract class Nova_update extends CI_Controller {
 		// check for errors
 		$code = ( ! $this->installed) ? 1 : $code;
 		$code = ($this->options['maintenance'] == 'off') ? 2 : $code;
-		
+
 		if ($code > 0)
 		{
 			$flash['status'] = ($code == 1) ? 'error' : 'info';
 			$flash['message'] = lang('upd_error_'.$code);
-			
+
 			$this->_regions['flash_message'] = Location::view('flash', '_base', 'update', $flash);
 		}
-		
+
 		$data['installed'] = $this->installed;
-		
+
 		$data['label'] = array(
 			'options_check' => lang('upd_index_options_update'),
 			'options_readme' => lang('upd_index_options_readme'),
@@ -114,7 +116,7 @@ abstract class Nova_update extends CI_Controller {
 			'intro' => lang('global_content_index'),
 			'header' => lang('upd_index_header'),
 		);
-		
+
 		$next = array(
 			'name' => 'next',
 			'type' => 'submit',
@@ -122,35 +124,35 @@ abstract class Nova_update extends CI_Controller {
 			'id' => 'next',
 			'content' => lang('button_verify'),
 		);
-		
+
 		$this->_regions['content'] = Location::view('update_index', '_base', 'update', $data);
 		$this->_regions['javascript'] = Location::js('update_index_js', '_base', 'update');
 		$this->_regions['title'].= lang('upd_index_title');
 		$this->_regions['label'] = lang('upd_index_title');
 		$this->_regions['controls'] = form_open('update/verify').form_button($next).form_close();
-		
+
 		Template::assign($this->_regions);
-		
+
 		Template::render();
 	}
-	
+
 	public function check()
 	{
 		if (isset($_POST['submit']))
 		{
 			$email = $this->input->post('email', true);
 			$password = $this->input->post('password', true);
-			
+
 			$verify = Auth::verify($email, $password);
-			
+
 			$user = $this->sys->get_item('users', 'email', $email, 'userid');
-			
+
 			$sysadmin = Auth::is_sysadmin($user);
-			
+
 			if ($verify == 0 and $sysadmin)
 			{
 				$update = $this->_check_version();
-				
+
 				if ($update['flash']['message'] != '')
 				{
 					$flash = $update['flash'];
@@ -165,7 +167,7 @@ abstract class Nova_update extends CI_Controller {
 					);
 					$data['link'] = text_output(anchor('update/index', lang('button_back_update')), 'p', 'fontMedium bold');
 				}
-				
+
 				$data['label'] = array(
 					'whatsnew' => lang('upd_header_whatsnew'),
 					'notes' => (is_array($update['update'])) ? $update['update']['notes'] : '',
@@ -176,7 +178,7 @@ abstract class Nova_update extends CI_Controller {
 					'start_text' => lang('upd_check_text_start'),
 					'start_go' => anchor('update/step/1', lang('upd_check_go_start'), array('id' => 'next')),
 				);
-				
+
 				// the view files
 				$view_loc = 'update_check_main';
 				$js_loc = 'update_check_js';
@@ -184,17 +186,17 @@ abstract class Nova_update extends CI_Controller {
 			else
 			{
 				$flash['status'] = 'error';
-				
+
 				if ( ! $sysadmin)
 				{
 					$flash['message'] = lang('error_update_2');
 				}
-				
+
 				if ($verify > 0)
 				{
 					$flash['message'] = lang('error_login_'. $verify);
 				}
-				
+
 				$data['inputs'] = array(
 					'email' => array(
 						'name' => 'email',
@@ -210,7 +212,7 @@ abstract class Nova_update extends CI_Controller {
 						'content' => ucwords(lang('button_submit'))
 					)
 				);
-				
+
 				$data['label'] = array(
 					'email' => ucwords(lang('global_email')),
 					'password' => ucwords(lang('global_password')),
@@ -219,14 +221,14 @@ abstract class Nova_update extends CI_Controller {
 						lang('global_update'),
 						lang('global_update')),
 				);
-				
+
 				// the views
 				$view_loc = 'update_check';
 				$js_loc = 'update_check_js';
-				
+
 				$this->_regions['controls'] = form_button($data['inputs']['submit']).form_close();
 			}
-			
+
 			$this->_regions['flash_message'] = Location::view('flash', '_base', 'update', $flash);
 		}
 		else
@@ -246,7 +248,7 @@ abstract class Nova_update extends CI_Controller {
 					'content' => ucwords(lang('button_submit'))
 				)
 			);
-			
+
 			$data['label'] = array(
 				'email' => ucwords(lang('global_email')),
 				'password' => ucwords(lang('global_password')),
@@ -255,24 +257,24 @@ abstract class Nova_update extends CI_Controller {
 					lang('global_update'),
 					lang('global_update')),
 			);
-			
+
 			// the views
 			$view_loc = 'update_check';
 			$js_loc = 'update_check_js';
-			
+
 			$this->_regions['controls'] = form_button($data['inputs']['submit']).form_close();
 		}
-		
+
 		$this->_regions['content'] = Location::view($view_loc, '_base', 'update', $data);
 		$this->_regions['javascript'] = Location::js($js_loc, '_base', 'update');
 		$this->_regions['title'].= lang('upd_index_title');
 		$this->_regions['label'] = lang('upd_index_title');
-		
+
 		Template::assign($this->_regions);
-		
+
 		Template::render();
 	}
-	
+
 	public function error($id = 0)
 	{
 		/**
@@ -281,16 +283,16 @@ abstract class Nova_update extends CI_Controller {
 		 * 2 - maintenance mode is not active
 		 * 3 - you are not a system admin, make sure you're logged in
 		 */
-		
+
 		$label = array(
 			'error_1' => lang('upd_error_1'),
 			'error_2' => lang('upd_error_2'),
 			'error_3' => lang('upd_error_3'),
 		);
-		
+
 		$flash['status'] = 'error';
 		$flash['message'] = $label['error_'.$id];
-		
+
 		$next = array(
 			'name' => 'next',
 			'type' => 'submit',
@@ -298,53 +300,53 @@ abstract class Nova_update extends CI_Controller {
 			'id' => 'next',
 			'content' => lang('button_update'),
 		);
-		
+
 		$this->_regions['content'] = Location::view('update_error', '_base', 'update', false);
 		$this->_regions['flash_message'] = Location::view('flash', '_base', 'update', $flash);
 		$this->_regions['controls'] = form_open('update/index').form_button($next).form_close();
 		$this->_regions['title'].= lang('upd_error_title');
 		$this->_regions['label'] = lang('upd_error_title');
-		
+
 		Template::assign($this->_regions);
-		
+
 		Template::render();
 	}
-	
+
 	public function readme()
 	{
 		$this->_regions['content'] = Location::view('readme', '_base', 'install', 'foo');
 		$this->_regions['title'].= APP_NAME.' '.lang('global_readme_title');
 		$this->_regions['label'] = APP_NAME.' '.lang('global_readme_title');
-		
+
 		Template::assign($this->_regions);
-		
+
 		Template::render();
 	}
-	
+
 	public function step($step = 1)
 	{
 		// sanity check
 		$step = (is_numeric($step)) ? $step : 1;
-		
+
 		switch ($step)
 		{
 			case 1:
 				ini_set('memory_limit', -1);
-				
+
 				$this->load->helper('utility');
-				
+
 				// check the database size and the server memory limit
 				$db_size = file_size($this->sys->get_database_size());
 				$memory = check_memory($db_size);
-				
+
 				if ($memory)
 				{
 					$today = getdate();
-					
+
 					$filename = $this->db->dbprefix.$today['year'].$today['mon'].$today['mday'];
-						
+
 					$backup = backup_database($this->db->dbprefix, 'save', $filename);
-					
+
 					if ($backup)
 					{
 						if (is_file(APPPATH.'assets/backups/'.$filename.'.zip'))
@@ -366,9 +368,9 @@ abstract class Nova_update extends CI_Controller {
 				{
 					$message = lang('upd_step1_memory');
 				}
-				
+
 				$data['label']['text'] = $message;
-				
+
 				$next = array(
 					'name' => 'next',
 					'type' => 'submit',
@@ -376,27 +378,27 @@ abstract class Nova_update extends CI_Controller {
 					'id' => 'next',
 					'content' => lang('button_next'),
 				);
-				
+
 				$this->_regions['content'] = Location::view('update_step_1', '_base', 'update', $data);
 				$this->_regions['javascript'] = Location::js('update_step_1_js', '_base', 'update');
 				$this->_regions['controls'] = form_open('update/step/2').form_button($next).form_close();
 				$this->_regions['title'].= lang('upd_step1_title');
 				$this->_regions['label'] = lang('upd_step1_title');
 			break;
-				
+
 			case 2:
 				$this->load->helper('directory');
-				
+
 				$item = $this->sys->get_item('system_info', 'sys_id', 1);
-				
+
 				$version = $item->sys_version_major.$item->sys_version_minor.$item->sys_version_update;
-				
+
 				$dir = directory_map(MODFOLDER.'/assets/update');
-				
+
 				if (is_array($dir))
 				{
 					sort($dir);
-					
+
 					foreach ($dir as $key => $value)
 					{
 						if ($value == 'index.html' or $value == 'versions.php')
@@ -406,25 +408,25 @@ abstract class Nova_update extends CI_Controller {
 						else
 						{
 							$file = substr($value, 7, -4);
-							
+
 							if ($file < $version)
 							{
 								unset($dir[$key]);
 							}
 						}
 					}
-					
+
 					foreach ($dir as $d)
 					{
 						include_once(MODPATH.'assets/update/'.$d);
-						
+
 						sleep(1);
 					}
 				}
 				else
 				{
 					include_once(MODPATH.'assets/update/versions.php');
-					
+
 					foreach ($version_array as $k => $v)
 					{
 						if ($v < $version)
@@ -432,25 +434,25 @@ abstract class Nova_update extends CI_Controller {
 							unset($version_array[$k]);
 						}
 					}
-					
+
 					foreach ($version_array as $value)
 					{
 						include_once(MODPATH.'assets/update/update_' .$value.'.php');
-						
+
 						sleep(1);
 					}
 				}
 
 				// update the system info table
 				$this->sys->update_system_info($system_info);
-				
+
 				//$this->_register();
-				
+
 				// update the users to be first launch
 				$this->load->model('users_model', 'user');
 				$users = array('is_firstlaunch' => 'y');
 				$this->user->update_all_users($users, '');
-				
+
 				$data['label'] = array(
 					'text' => sprintf(
 						lang('upd_step2_success'),
@@ -458,7 +460,7 @@ abstract class Nova_update extends CI_Controller {
 					),
 					'back' => lang('upd_step2_site')
 				);
-				
+
 				$next = array(
 					'name' => 'next',
 					'type' => 'submit',
@@ -466,7 +468,7 @@ abstract class Nova_update extends CI_Controller {
 					'id' => 'next',
 					'content' => lang('upd_step2_site'),
 				);
-				
+
 				$this->_regions['content'] = Location::view('update_step_2', '_base', 'update', $data);
 				$this->_regions['javascript'] = Location::js('update_step_2_js', '_base', 'update');
 				$this->_regions['controls'] = form_open('main/index').form_button($next).form_close();
@@ -474,23 +476,23 @@ abstract class Nova_update extends CI_Controller {
 				$this->_regions['label'] = lang('upd_step2_title');
 			break;
 		}
-		
+
 		Template::assign($this->_regions);
-		
+
 		Template::render();
 	}
 
 	public function verify()
 	{
 		$this->load->helper('utility');
-		
+
 		$data['table'] = verify_server();
-		
+
 		$data['label'] = array(
 			'back' => lang('upd_verify_back'),
 			'text' => lang('verify_text')
 		);
-		
+
 		$button = array(
 			'name' => 'install',
 			'type' => 'submit',
@@ -498,18 +500,18 @@ abstract class Nova_update extends CI_Controller {
 			'class' => 'btn-main',
 			'content' => lang('button_begin_update'),
 		);
-		
+
 		$this->_regions['content'] = Location::view('update_verify', '_base', 'update', $data);
 		$this->_regions['javascript'] = Location::js('verify_js', '_base', 'update');
 		$this->_regions['controls'] = form_open('update/check').form_button($button).form_close();
 		$this->_regions['title'].= lang('verify_title');
 		$this->_regions['label'] = lang('verify_title');
-		
+
 		Template::assign($this->_regions);
-		
+
 		Template::render();
 	}
-	
+
 	/**
 	 * Check for the latest version of the system
 	 *
@@ -521,13 +523,13 @@ abstract class Nova_update extends CI_Controller {
 		if (ini_get('allow_url_fopen'))
 		{
 			$this->load->helper('yayparser');
-			
+
 			$contents = file_get_contents(VERSION_FEED);
-			
+
 			$array = yayparser($contents);
-			
+
 			$system = $this->sys->get_system_info();
-			
+
 			$version = array(
 				'files' => array(
 					'full'		=> APP_VERSION_MAJOR.'.'.APP_VERSION_MINOR.'.'.APP_VERSION_UPDATE,
@@ -542,9 +544,9 @@ abstract class Nova_update extends CI_Controller {
 					'update'	=> $system->sys_version_update
 				),
 			);
-			
+
 			$update = false;
-			
+
 			if (version_compare($version['files']['full'], $array['version'], '<') or version_compare($version['database']['full'], $array['version'], '<'))
 			{
 				$update['version']		= $array['version'];
@@ -552,7 +554,7 @@ abstract class Nova_update extends CI_Controller {
 				$update['severity']		= $array['severity'];
 				$update['link']			= $array['link'];
 			}
-			
+
 			if (version_compare($version['database']['full'], $version['files']['full'], '>'))
 			{
 				$flash['status'] = 'info';
@@ -577,7 +579,7 @@ abstract class Nova_update extends CI_Controller {
 					lang('update_your_version'),
 					APP_NAME,
 					$version['files']['full']);
-					
+
 				$flash['status'] = 'info';
 				$flash['message'] = sprintf(
 					lang('update_available'),
@@ -591,18 +593,18 @@ abstract class Nova_update extends CI_Controller {
 				$flash['status'] = '';
 				$flash['message'] = '';
 			}
-			
+
 			$retval = array(
 				'flash' => $flash,
 				'update' => $update
 			);
-			
+
 			return $retval;
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * Register Nova
 	 *
@@ -613,11 +615,11 @@ abstract class Nova_update extends CI_Controller {
 	{
 		$this->load->library('xmlrpc');
 		$this->load->library('mail');
-		
+
 		// set up the server and method for the request
 		$this->xmlrpc->server(REGISTER, 80);
 		$this->xmlrpc->method('Do_Registration');
-		
+
 		// build the request
 		$request = array(
 			APP_NAME,
@@ -630,10 +632,10 @@ abstract class Nova_update extends CI_Controller {
 			$this->db->version(),
 			'update'
 		);
-		
+
 		// compile the request
 		$this->xmlrpc->request($request);
-		
+
 		if (extension_loaded('xmlrpc'))
 		{
 			if ( ! $this->xmlrpc->send_request())
@@ -644,7 +646,7 @@ abstract class Nova_update extends CI_Controller {
 		else
 		{
 			$insert = "INSERT INTO www_installs (product, version, url, ip_client, ip_server, php, db_platform, db_version, type, date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %d);";
-			
+
 			$message = sprintf(
 				$insert,
 				$this->db->escape($request[0]),
@@ -658,15 +660,15 @@ abstract class Nova_update extends CI_Controller {
 				$this->db->escape($request[8]),
 				$this->db->escape(now())
 			);
-			
+
 			$this->mail->from(Util::email_sender());
 			$this->mail->to('anodyne.nova@gmail.com');
 			$this->mail->subject('Nova Registration');
 			$this->mail->message($message);
-			
+
 			$email = $this->mail->send();
 		}
-		
+
 		$items = array(
 			'php'					=> PHP_VERSION,
 			'pcre_utf8'				=> (bool) @preg_match('/^.$/u', 'ñ'),
@@ -690,9 +692,9 @@ abstract class Nova_update extends CI_Controller {
 			'disabled_classes'		=> ini_get('disable_classes'),
 			'server_os'				=> PHP_OS,
 		);
-		
+
 		$insert = "INSERT INTO www_nova2_survey (url, php, pcre_utf8, pcre_unicode, spl, reflection, filters, iconv, mbstring, mb_overload, curl, mcrypt, gd, pdo, fopen, url_include, register_globals, memory, xmlrpc, disabled_functions, disabled_classes, server_os, date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %d);";
-		
+
 		$message = sprintf(
 			$insert,
 			$this->db->escape(base_url()),
@@ -719,12 +721,12 @@ abstract class Nova_update extends CI_Controller {
 			$this->db->escape($items['server_os']),
 			$this->db->escape(now())
 		);
-		
+
 		$this->mail->from(Util::email_sender());
 		$this->mail->to('anodyne.nova@gmail.com');
 		$this->mail->subject('Nova 2 Survey');
 		$this->mail->message($message);
-		
+
 		$email = $this->mail->send();
 	}
 }

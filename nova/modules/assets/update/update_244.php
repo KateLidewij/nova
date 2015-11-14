@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Update Nova from 2.4.4 to 2.5
+ * Update Nova from 2.4.4 to 2.4.5
  */
 $system_info	= null;
 $add_tables		= null;
@@ -16,8 +16,8 @@ $drop_column	= null;
 $system_info = array(
 	'sys_last_update'		=> now(),
 	'sys_version_major'		=> 2,
-	'sys_version_minor'		=> 5,
-	'sys_version_update'	=> 0,
+	'sys_version_minor'		=> 4,
+	'sys_version_update'	=> 5,
 );
 
 /*
@@ -104,40 +104,6 @@ if ($rename_tables !== null)
 |---------------------------------------------------------------
 */
 
-$add_column = array(
-	'posts' => array(
-		'post_word_count' => array(
-			'type' => 'INT',
-			'constraint' => 5),
-		'post_signature' => array(
-			'type' => 'TEXT'),
-		'post_ooc_notes' => array(
-			'type' => 'TEXT'),
-	),
-	'personallogs' => array(
-		'log_word_count' => array(
-			'type' => 'INT',
-			'constraint' => 5),
-		'log_signature' => array(
-			'type' => 'TEXT'),
-		'log_ooc_notes' => array(
-			'type' => 'TEXT'),
-	),
-	'news' => array(
-		'news_word_count' => array(
-			'type' => 'INT',
-			'constraint' => 5),
-		'news_signature' => array(
-			'type' => 'TEXT'),
-		'news_ooc_notes' => array(
-			'type' => 'TEXT'),
-	),
-	'users' => array(
-		'signature' => array(
-			'type' => 'TEXT'),
-	),
-);
-
 if ($add_column !== null)
 {
 	foreach ($add_column as $key => $value)
@@ -185,11 +151,3 @@ if ($drop_column !== null)
 		$this->dbforge->drop_column($key, $value[0]);
 	}
 }
-
-// Add the post_flag_words setting
-$additem = array(
-	'setting_key' => 'post_flag_words',
-	'setting_value' => 'lorazepam,poker,casino',
-	'setting_user_created' => 'n'
-);
-$this->db->insert('settings', $additem);
